@@ -10,6 +10,7 @@ use App\Models\Commission;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use App\Models\Admin\Product;
+use App\Models\CustomerWallet;
 use App\Models\CustomerAddress;
 use App\Models\CustomerOrderStatus;
 
@@ -117,8 +118,19 @@ class OrderController extends Controller
                             $commission->level = $i;
                             $commission->save();
 
+
                             $refferal_customer->balance = $refferal_customer->balance + $commission->commission;
                             $refferal_customer->save();
+
+                            $customer_wallet = new CustomerWallet;
+                            $customer_wallet->user_id=$refferal_customer->id;
+                            $customer_wallet->amount=$commission->commission;
+                            $customer_wallet->transaction_type='credited';
+                            $customer_wallet->transaction_detail='Comission Credited';
+                            $customer_wallet->payment_details=[];
+                            $customer_wallet->balance= $refferal_customer->balance;
+                            $customer_wallet->approval=0;
+                            $customer_wallet->save();
 
                         }
 
