@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Customer;
+use App\Models\Commission;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use App\Models\Admin\Product;
@@ -53,28 +55,29 @@ class OrderController extends Controller
             foreach($carts as $cart)
             {
                 $product = Product::where('id',$cart->product_id)->first();
+                 $product_price = homePrice($cart->product_id);
                 if($product)
                 {
-                    $mrp_prices = $mrp_prices + $product->mrp_price;
-                    $selling_prices = $selling_prices + $product->retailer_selling_price * $cart->quantity;
+                    $mrp_prices = $mrp_prices + $product_price['p_p'];
+                    $selling_prices = $selling_prices + $product_price['s_p'] * $cart->quantity;
 
-                    if($product->retailer_discount_type == 'percent')
+                    if($product_price['discount_type'] == 'percent')
                     {
-                        $discount_amount = ($product->retailer_selling_price * $product->retailer_discount)/100;
-                        $discounted_prices = $discounted_prices + ($product->retailer_selling_price  * $cart->quantity) - $discount_amount;
+                        $discount_amount = ($product_price['s_p'] * $product_price['discount'])/100;
+                        $discounted_prices = $discounted_prices + ($product_price['s_p']  * $cart->quantity) - $discount_amount;
                     }
-                    elseif($product->retailer_discount_type == 'amount')
+                    elseif($product_price['discount_type'] == 'amount')
                     {
-                        $discount_amount = $product->retailer_discount;
-                        $discounted_prices = $discounted_prices + ($product->retailer_selling_price  * $cart->quantity) - $discount_amount;
+                        $discount_amount = $product_price['discount'];
+                        $discounted_prices = $discounted_prices + ($product_price['s_p']   * $cart->quantity) - $discount_amount;
                     }
                     $order_details = new OrderDetail;
 
                     $order_details->order_id = $order->id;
                     $order_details->product_id = $cart->product_id;
                     $order_details->quantity = $cart->quantity;
-                    $order_details->mrp_price = $product->retailer_selling_price;
-                    $order_details->price = $product->retailer_selling_price - $discount_amount;
+                    $order_details->mrp_price = $product_price['s_p'];
+                    $order_details->price = $product_price['s_p'] - $discount_amount;
                     $order_details->discounted_price = $discount_amount;
                     $order_details->tax = $product->tax_amount;
                     $order_details->shipping_cost = 0.00;
@@ -95,6 +98,36 @@ class OrderController extends Controller
                 'grand_total'=>$discounted_prices,
                 'total_product_discount'=>$selling_prices - $discounted_prices
             ]);
+            $customer=Customer::find($user_id);
+            if(empty($customer->referral_code)){
+             if(featureActivation('mlm') == '1' && !empty(Auth::guard('customer')->user()->refered_by)){
+                if($customer->order->sum('grand_total') > 4000){
+                    $customer->verify_status=1;
+                    $customer->referral_code='MM'.rand(1111,9999);
+                    $customer->save();
+                    $level = 10;
+                    $referral_code=Auth::guard('customer')->user()->refered_by;
+                    for($i=1;$i<=$level;$i++){
+                        $refferal_customer=Customer::where('referral_code',$referral_code)->first();
+                        if(!empty($refferal_customer->id)){
+                            $commission = new Commission;
+                            $commission->user_id = $refferal_customer->id;
+                            $commission->order_id = $order->id;
+                            $commission->commission = 300;
+                            $commission->level = $i;
+                            $commission->save();
+
+                            $refferal_customer->balance = $refferal_customer->balance + $commission->commission;
+                            $refferal_customer->save();
+
+                        }
+
+                        $referral_code=$refferal_customer->refered_by;
+                    }
+                 }
+               }
+             }
+
         }
     }
 
