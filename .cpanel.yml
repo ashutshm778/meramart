@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/techupmart/public_html/
+    - export DEPLOYPATH=/home/meramart/public_html/
     - /bin/cp -R * $DEPLOYPATH
