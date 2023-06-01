@@ -107,9 +107,13 @@
                                             <li><a class="dropdown-item" href="{{ route('user.login') }}">Login</a></li>
                                             @endif
                                             @if(featureActivation('retailer') == '1')
-                                            <li><a class="dropdown-item" href="{{ route('user.register') }}">Register</a>
-                                                @endif
+                                            <li><a class="dropdown-item" href="{{ route('user.register') }}">User Register</a>
                                             </li>
+                                            @endif
+                                            @if(featureActivation('mlm') == '1')
+                                            <li><a class="dropdown-item" href="{{ route('user.register.mlm') }}">Mlm Register</a>
+                                            </li>
+                                            @endif
                                             @if(featureActivation('distributor') == '1' || featureActivation('wholeseller') == '1')
                                             <li><a class="dropdown-item"
                                                     href="{{ route('business.person.request.form') }}">Dealer Register</a>

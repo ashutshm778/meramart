@@ -20,6 +20,8 @@ class Customer extends Authenticatable
         'type',
         'password',
         'photo',
+        'referral_code',
+        'refered_by',
         'verify_status',
     ];
 

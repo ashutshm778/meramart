@@ -73,8 +73,12 @@ Route::group(['middleware' => 'auth:customer'], function () {
 if(featureActivation('retailer') == '1'){
     Route::view('user-register', 'frontend.auth.register')->name('user.register');
     Route::post('customer-register', [FrontController::class, 'attemptRegister'])->name('customer.register');
-}
 
+}
+if(featureActivation('mlm') == '1'){
+    Route::view('user-register-mlm', 'frontend.auth.register_mlm')->name('user.register.mlm');
+    Route::post('customer-register-mlm', [FrontController::class, 'attemptRegisterMlm'])->name('customer.register_mlm');
+}
 Route::get('send-otp/{phone}', [FrontController::class, 'sendOtp'])->name('send.otp');
 Route::get('verify-otp/{phone}/{otp}', [FrontController::class, 'verifyOtp'])->name('verify.otp');
 
