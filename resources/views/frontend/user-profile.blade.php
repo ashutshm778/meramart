@@ -89,6 +89,12 @@
                                                     <label class="form-label">Photo</label>
                                                     <input type="file" class="form-control" name="photo" accept="image/*">
                                                 </div>
+                                                @if(featureActivation('mlm') == '1' && !empty(Auth::guard('customer')->user()->refered_by))
+                                                   <div class="col-md-6">
+                                                      <label class="form-label">Referral Code</label>
+                                                      <input type="text" class="form-control" value="{{Auth::guard('customer')->user()->referral_code}}" readonly>
+                                                    </div>
+                                                @endif
                                                 <div class="col-md-12 text-center">
                                                     <button type="submit" class="btn btn-primary">Update</button>
                                                 </div>

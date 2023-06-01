@@ -34,4 +34,8 @@ class Customer extends Authenticatable
         return $this->belongsTo(BusinessDetail::class,'id','customer_id');
     }
 
+    public function orders(){
+        return $this->hasMany(Order::class,'id','user_id');
+    }
+
 }

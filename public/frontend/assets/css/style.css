@@ -21478,6 +21478,16 @@ h4.ec-faq-title::after, .ec-faq-title.h4::after {
     border-radius: 30px;
 }
 
+.out-of-stock
+{
+    background: red;
+    color: #fff;
+    font-size: 12px;
+    margin-bottom: 24px;
+    padding: 3px 10px;
+    border-radius: 30px;
+}
+
 .single-pro-content .ec-single-price-stoke .ec-single-ps-title {
   line-height: 1;
   font-size: 16px;
