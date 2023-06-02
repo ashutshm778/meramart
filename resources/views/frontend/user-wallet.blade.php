@@ -51,7 +51,7 @@
                                             <tr>
                                                 <td><span>{{$transaction_history->created_at->format('d-M-Y h:i A')}}</span></td>
                                                 <td><span>{{$transaction_history->amount}}</span></td>
-                                                <td><span>{{ucFirst($transaction_type->transaction_type)}}</span></td>
+                                                <td><span>{{ucFirst($transaction_history->transaction_type)}}</span></td>
                                                 <td><span>{{$transaction_history->transaction_detail}}</span></td>
                                                 <td> <span>{{$transaction_history->balance}}</span></td>
                                             </tr>
