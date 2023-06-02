@@ -570,4 +570,14 @@ if (! function_exists('wholesalerPrice')) {
     }
 }
 
+
+if (! function_exists('commissions')) {
+    function commissions()
+    {
+        return [
+          300,200,100,25,25,25,25,25,25,25
+        ];
+    }
+}
+
 ?>

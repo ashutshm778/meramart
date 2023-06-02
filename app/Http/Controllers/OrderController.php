@@ -100,6 +100,7 @@ class OrderController extends Controller
                 'total_product_discount'=>$selling_prices - $discounted_prices
             ]);
             $customer=Customer::find($user_id);
+            $commission=commissions();
             if(empty($customer->referral_code)){
              if(featureActivation('mlm') == '1' && !empty(Auth::guard('customer')->user()->refered_by)){
                 if($customer->orders->sum('grand_total') > 3999){
@@ -114,7 +115,7 @@ class OrderController extends Controller
                             $commission = new Commission;
                             $commission->user_id = $refferal_customer->id;
                             $commission->order_id = $order->id;
-                            $commission->commission = 300;
+                            $commission->commission = $commission[$i];
                             $commission->level = $i;
                             $commission->save();
 
