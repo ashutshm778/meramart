@@ -21,6 +21,8 @@
                         <li><a href="{{route('cart')}}">Cart</a></li>
                         <li><a href="{{route('track_order')}}">Track Order</a></li>
                         <li><a href="{{route('user_wallet')}}">User Wallet</a></li>
+                        <li><a href="{{route('user_commission')}}">Commission</a></li>
+                        <li><a href="{{route('user_referral')}}">Referrals</a></li>
                     </ul>
                 </div>
             </div>
