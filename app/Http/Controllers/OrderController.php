@@ -127,7 +127,7 @@ class OrderController extends Controller
                             $customer_wallet->amount=$commission->commission;
                             $customer_wallet->transaction_type='credited';
                             $customer_wallet->transaction_detail='Comission Credited';
-                            $customer_wallet->payment_details=[];
+                            $customer_wallet->payment_details='';
                             $customer_wallet->balance= $refferal_customer->balance;
                             $customer_wallet->approval=0;
                             $customer_wallet->save();
