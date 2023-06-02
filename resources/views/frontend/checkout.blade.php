@@ -350,7 +350,8 @@
                 payment_type:type,
             },
             success: function(data){
-                window.location.href = "{{route('order.summary')}}";
+                console.log(data);
+               // window.location.href = "{{route('order.summary')}}";
             }
         });
     }
