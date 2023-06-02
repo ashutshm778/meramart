@@ -46,6 +46,7 @@ Route::group(['middleware' => 'auth:customer'], function () {
     Route::view('track-order', 'frontend.track-order')->name('track_order');
     Route::view('wishlist', 'frontend.wishlist')->name('wishlist');
     Route::view('user-history', 'frontend.user-history')->name('user_history');
+    Route::view('user-wallet', 'frontend.user-wallet')->name('user_wallet');
     Route::view('user-dashboard', 'frontend.user-dashboard')->name('user_dashboard');
     Route::post('update-user-profile',[FrontController::class, 'updateUserProfile'])->name('update.user.profile');
     Route::view('manage-address','frontend.manage_address')->name('manage.address');
