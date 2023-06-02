@@ -132,9 +132,10 @@ class OrderController extends Controller
                             $customer_wallet->approval=0;
                             $customer_wallet->save();
 
+                            $referral_code=$refferal_customer->refered_by;
                         }
 
-                        $referral_code=$refferal_customer->refered_by;
+
                     }
                  }
                }
