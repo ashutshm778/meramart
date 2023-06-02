@@ -48,7 +48,7 @@
                                             <tr>
                                                 <td><span>{{$commission_history->created_at->format('d-M-Y h:i A')}}</span></td>
                                                 <td><span>{{$commission_history->order->order_id}}</span></td>
-                                                <td><span>{{$commission_history->order->customer->first_name}}</span></td>
+                                                <td><span>{{$commission_history->order->customer->first_name}}</span><br>{{$commission_history->order->customer->phone}}</td>
                                                 <td><span>{{$commission_history->level}}</span></td>
                                                 <td> <span>{{$commission_history->commission}}</span></td>
                                             </tr>

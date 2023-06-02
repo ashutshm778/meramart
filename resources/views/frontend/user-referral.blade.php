@@ -36,7 +36,7 @@
                                             <th scope="col">First Name</th>
                                             <th scope="col">Phone</th>
                                             <th scope="col">Email</th>
-                                            <th scope="col">Balance</th>
+                                            <th scope="col">Earning</th>
                                             <th scope="col">Register Date</th>
                                         </tr>
                                     </thead>
