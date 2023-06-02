@@ -8,7 +8,7 @@
                     <img class="v-img" src="@if(Auth::guard('customer')->user()->photo) {{asset('public/public/frontend/user_profile/'.Auth::guard('customer')->user()->photo)}} @else {{asset('public/public/frontend/assets/images/149071.png')}} @endif" alt="vendor image">
                     <h5>{{Auth::guard('customer')->user()->first_name}} {{Auth::guard('customer')->user()->last_name}}</h5>
                     @if(featureActivation('mlm') == '1' && !empty(Auth::guard('customer')->user()->refered_by))
-                      @if(Auth::guard('customer')->user()->verify_status==1)  <span class="in-stock" style="color:green;" >{{'Active'}} </span> @else <span class="out-of-stock" >{{'InActive'}} @endif</span>
+                      @if(Auth::guard('customer')->user()->verify_status==1)  <span class="in-stock">{{'Active'}} </span> @else <span class="out-of-stock" >{{'InActive'}} @endif</span>
                     @endif
                 </div>
                 <div class="ec-vendor-block-items">

@@ -37,39 +37,41 @@
         </div>
     </div>
 
-    <section class="ec-page-content section-space-p">
+    <section class="ec-page-content ptb-50">
         <div class="container">
             <div class="row">
-                <div class="col-md-7">
+                {{-- <div class="col-md-7">
                     <div class="image-contain">
                         <img src="{{asset('public/frontend/assets/images/reset-password.jpg')}}" class="img-fluid" alt="">
                     </div>
-                </div>
-                <div class="ec-register-wrapper col-md-5">
-                    <div class="ec-register-container">
-                        <div class="ec-register-form">
-                            <form id="valid_form" action="#" method="post">
-                                @csrf
-                                <span class="ec-register-wrap col-md-12">
-                                    <label>Phone Number<span style="color:red">*<span></label> <br>
-                                    <input type="number" class="form-control" id="phone" name="phone" value="{{old('phone')}}" placeholder="Enter Your Phone Number..." onchange="getOtp()" required>
-                                    <span class="error invalid-feedback" id="phone_error" style="display:none">Phone Number Already Exists</span>
-                                    @if ($errors->has('phone'))
-                                        <span class="text-danger">{{ $errors->first('phone') }}</span>
-                                    @endif
-                                </span>
+                </div> --}}
 
-                                <span class="ec-register-wrap ec-register-btn">
-                                    <button class="btn btn-primary" type="button" onclick="verifyOtp()">Reset Password</button>
-                                    <div class="text-center">
-                                        <p class="mt-2">Already have an account? <a href="{{ route('user.login') }}"> Login</a></p>
-                                    </div>
-                                </span>
+                    <div class="ec-register-wrapper col-md-5">
+                        <div class="ec-register-container">
+                            <div class="ec-register-form">
+                                <form id="valid_form" action="#" method="post">
+                                    @csrf
+                                    <span class="ec-register-wrap col-md-12">
+                                        <label>Phone Number<span style="color:red">*<span></label> <br>
+                                        <input type="number" class="form-control" id="phone" name="phone" value="{{old('phone')}}" placeholder="Enter Your Phone Number..." onchange="getOtp()" required>
+                                        <span class="error invalid-feedback" id="phone_error" style="display:none">Phone Number Already Exists</span>
+                                        @if ($errors->has('phone'))
+                                            <span class="text-danger">{{ $errors->first('phone') }}</span>
+                                        @endif
+                                    </span>
 
-                            </form>
+                                    <span class="ec-register-wrap ec-register-btn">
+                                        <button class="btn btn-primary" type="button" onclick="verifyOtp()">Reset Password</button>
+                                        <hr>
+                                        <div class="text-center">
+                                            <p class="mt-2">Already have an account? <a href="{{ route('user.login') }}"> Login</a></p>
+                                        </div>
+                                    </span>
+
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </section>

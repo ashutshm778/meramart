@@ -56,7 +56,14 @@
                                             @endif
                                             <p>Hello <span>{{Auth::guard('customer')->user()->first_name}} {{Auth::guard('customer')->user()->last_name}}</span></p>
                                             <p>From your account you can easily view and track orders. You can manage and change your account information like address, contact information and history of orders.</p>
+                                            <hr>
+                                            <div class="marquee">
+                                            @if(Auth::guard('customer')->user()->verify_status==0   )
+                                              <p><b><marquee behavior="alternate" onmouseover="this.stop();" onmouseout="this.start();"><a href="/">To Activate Your Account & Referral Code Please Buy a Product of Worth ₹4,000</a></marquee></b></p>
+                                            @endif
+                                            </div>
                                         </div>
+
                                         <div class="ec-vendor-upload-detail">
                                             <form class="row" action="{{route('update.user.profile')}}" method="POST" enctype="multipart/form-data">
                                                 @csrf
