@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin\Product;
 use App\Models\CustomerWallet;
 use App\Models\CustomerAddress;
+use App\Models\CommissionDirect;
 use App\Models\CustomerOrderStatus;
 
 class OrderController extends Controller
@@ -112,6 +113,7 @@ class OrderController extends Controller
                     $referral_code=Auth::guard('customer')->user()->refered_by;
                     for($i=1;$i<=$level;$i++){
                         $refferal_customer=Customer::where('referral_code',$referral_code)->first();
+
                         if(!empty($refferal_customer->id)){
                             $commission = new Commission;
                             $commission->user_id = $refferal_customer->id;
@@ -134,10 +136,34 @@ class OrderController extends Controller
                             $customer_wallet->approval=0;
                             $customer_wallet->save();
 
+
+                            if(Customer::where('refered_by',$referral_code)->get()->count() >= 2){
+                                if(empty(CommissionDirect::where('user_id',$refferal_customer->id)->where('direct',2)->get())){
+
+                                    $commission_direct = new CommissionDirect;
+                                    $commission_direct->user_id = $refferal_customer->id;
+                                    $commission_direct->commission = 600;
+                                    $commission_direct->direct = 2;
+                                    $commission_direct->save();
+
+
+                                    $refferal_customer->balance = $refferal_customer->balance + $commission_direct->commission;
+                                    $refferal_customer->save();
+
+                                    $customer_wallet = new CustomerWallet;
+                                    $customer_wallet->user_id=$refferal_customer->id;
+                                    $customer_wallet->amount=$commission_direct->commission;
+                                    $customer_wallet->transaction_type='credited';
+                                    $customer_wallet->transaction_detail='Comission Credited For Two Direct';
+                                    $customer_wallet->payment_details='';
+                                    $customer_wallet->balance= $refferal_customer->balance;
+                                    $customer_wallet->approval=0;
+                                    $customer_wallet->save();
+                                }
+                            }
+
                             $referral_code=$refferal_customer->refered_by;
                         }
-
-
                     }
                  }
                }
