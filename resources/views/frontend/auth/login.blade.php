@@ -37,47 +37,60 @@
         </div>
     </div>
 
-    <section class="ec-page-content section-space-p">
+    <section class="ec-page-content ptb-50">
         <div class="container">
             <div class="row">
-                <div class="col-md-5">
-                    <div class="image-contain">
-                        <img src="{{asset('public/frontend/assets/images/login.png')}}" class="img-fluid" alt="">
-                    </div>
-                </div>
-                <div class="ec-register-wrapper col-md-7">
-                    <div class="ec-register-container">
-                        <div class="ec-register-form">
-                            <form id="valid_form" action="{{route('customer.login')}}" method="post">
-                                @csrf
-                                <span class="ec-register-wrap col-md-12">
-                                    <label>Phone Number<span style="color:red">*<span></label> <br>
-                                    <input type="number" class="form-control" id="phone" name="phone" value="{{old('phone')}}" placeholder="Enter Your Phone Number..." required>
-                                    @if ($errors->has('phone'))
-                                        <span class="text-danger">{{ $errors->first('phone') }}</span>
-                                    @endif
-                                </span>
-
-                                <span class="ec-register-wrap col-md-12">
-                                    <label>Password<span style="color:red">*<span></label> <br>
-                                    <input type="password" id="pasword" class="form-control" name="password" placeholder="Enter Your Password..." required />
-                                    @if ($errors->has('password'))
-                                        <span class="text-danger">{{ $errors->first('password') }}</span>
-                                    @endif
-                                </span>
-
-                                <span class="ec-register-wrap ec-register-btn">
-                                    <button class="btn btn-primary" type="submit">Login</button>
-                                    <div class="text-center">
-                                        <p class="mt-2">Don't have an account ?  <a href="{{ route('user.register') }}"> Register</a></p>
-                                        <p>Lost your password ? <a href="{{ route('user.register') }}"> Click Here</a></p>
-                                    </div>
-                                </span>
-
-                            </form>
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                  <div class="row">
+                    <div class="col-md-6">
+                        <div class="image-contain">
+                            <img src="{{asset('public/frontend/assets/images/login.png')}}" class="img-fluid" alt="">
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="ec-register-wrapper">
+                            <div class="ec-register-container">
+                                <div class="ec-register-form">
+                                    <form id="valid_form" action="{{route('customer.login')}}" method="post">
+                                        @csrf
+                                        <span class="ec-register-wrap col-md-12">
+                                            <label>Phone Number<span style="color:red">*<span></label> <br>
+                                            <input type="number" class="form-control" id="phone" name="phone" value="{{old('phone')}}" placeholder="" required>
+                                            @if ($errors->has('phone'))
+                                                <span class="text-danger">{{ $errors->first('phone') }}</span>
+                                            @endif
+                                        </span>
+
+                                        <span class="ec-register-wrap col-md-12">
+                                            <label>Password<span style="color:red">*<span></label> <br>
+                                            <input type="password" id="pasword" class="form-control" name="password" placeholder="" required />
+                                            @if ($errors->has('password'))
+                                                <span class="text-danger">{{ $errors->first('password') }}</span>
+                                            @endif
+                                        </span>
+
+                                        <span class="ec-register-wrap ec-register-btn">
+                                            <button class="btn btn-primary" type="submit">Login</button>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <p class="mt-2">Don't have an account ?  <a href="{{ route('customer.forgot_password') }}"> Register</a></p>
+                                                </div>
+                                                <div class="col-md-6 text-right">
+                                                     <p class="mt-2">Forget Password ? <a href="{{ route('customer.forgot_password') }}"> Click Here</a></p>
+                                                </div>
+                                            </div>
+                                        </span>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
                 </div>
+                <div class="col-md-1"></div>
             </div>
         </div>
     </section>

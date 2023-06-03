@@ -1,5 +1,12 @@
 @extends('frontend.layouts.app')
 @section('content')
+
+ <style>
+    label {
+        margin-bottom: 0px;
+    }
+ </style>
+
     <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
         <div class="container">
             <div class="row">
@@ -70,27 +77,27 @@
                                                                 @csrf
                                                                 <span class="ec-bill-wrap ec-bill-half">
                                                                     <label>Your Name*</label>
-                                                                    <input type="text" name="name" id="name" placeholder="Enter your Name" required>
+                                                                    <input type="text" name="name" id="name" placeholder="" required>
                                                                 </span>
                                                                 <span class="ec-bill-wrap ec-bill-half">
                                                                     <label>Your Phone Number*</label>
-                                                                    <input type="text" name="phone" id="phone" placeholder="Enter your Phone Number" required>
+                                                                    <input type="text" name="phone" id="phone" placeholder="" required>
                                                                 </span>
                                                                 <span class="ec-bill-wrap ec-bill-half">
                                                                     <label>Zip code *</label>
-                                                                    <input type="text" name="pincode" id="pincode" placeholder="Post Code" onchange="get_address()" required>
+                                                                    <input type="text" name="pincode" id="pincode" placeholder="" onchange="get_address()" required>
                                                                 </span>
                                                                 <span class="ec-bill-wrap ec-bill-half">
                                                                     <label>City *</label>
-                                                                    <input type="text" name="city" id="city" placeholder="Enter your City" readonly required>
+                                                                    <input type="text" name="city" id="city" placeholder="" readonly required>
                                                                 </span>
                                                                 <span class="ec-bill-wrap ec-bill-half">
                                                                     <label>State *</label>
-                                                                    <input type="text" name="state" id="state" placeholder="Enter your State" readonly required>
+                                                                    <input type="text" name="state" id="state" placeholder="" readonly required>
                                                                 </span>
                                                                 <span class="ec-bill-wrap ec-bill-half">
                                                                     <label>Country *</label>
-                                                                    <input type="text" name="country" id="country" placeholder="Enter your Country" readonly required>
+                                                                    <input type="text" name="country" id="country" placeholder="" readonly required>
                                                                 </span>
                                                                 <span class="ec-bill-wrap">
                                                                     <label>Address</label>
@@ -151,8 +158,8 @@
                                                 aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                                 <div class="accordion-body">
                                                     <div class="row">
-                                                        <div class="col-md-6 col-xs-6">
-                                                            <label class="aiz-megabox d-block mb-3">
+                                                        <div class="col-md-4 col-xs-6">
+                                                            <label class="aiz-megabox">
                                                                 <a onclick="make_order('razorpay')">
                                                                 <span class="d-block p-2 aiz-megabox-elem">
                                                                     <img src="{{asset('public/frontend/assets/images/rozarpay.png')}}" class="img-fluid mb-2">
@@ -163,8 +170,8 @@
                                                                 </a>
                                                             </label>
                                                         </div>
-                                                        <div class="col-md-6 col-xs-6">
-                                                            <label class="aiz-megabox d-block mb-3">
+                                                        <div class="col-md-4 col-xs-6">
+                                                            <label class="aiz-megabox">
                                                                 <a onclick="make_order('cod')">
                                                                     <span class="d-block p-2 aiz-megabox-elem">
                                                                         <img src="{{asset('public/frontend/assets/images/cod.png')}}" class="img-fluid mb-2">

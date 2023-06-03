@@ -52,7 +52,7 @@
                                 @csrf
                                 <span class="ec-register-wrap ec-register-half">
                                     <label>First Name<span style="color:red">*<span></label> <br>
-                                    <input type="text" class="form-control" name="first_name" value="{{old('first_name')}}" placeholder="Enter your First Name..." required />
+                                    <input type="text" class="form-control" name="first_name" value="{{old('first_name')}}" placeholder="" required />
                                     @if ($errors->has('first_name'))
                                         <span class="text-danger">{{ $errors->first('first_name') }}</span>
                                     @endif
@@ -60,7 +60,7 @@
 
                                 <span class="ec-register-wrap ec-register-half">
                                     <label>Last Name<span style="color:red">*<span></label> <br>
-                                    <input type="text" class="form-control" name="last_name" value="{{old('last_name')}}" placeholder="Enter Your Last Name..." required />
+                                    <input type="text" class="form-control" name="last_name" value="{{old('last_name')}}" placeholder="" required />
                                     @if ($errors->has('last_name'))
                                         <span class="text-danger">{{ $errors->first('last_name') }}</span>
                                     @endif
@@ -68,7 +68,7 @@
 
                                 <span class="ec-register-wrap ec-register-half">
                                     <label>Phone Number<span style="color:red">*<span></label> <br>
-                                    <input type="number" class="form-control" id="phone" name="phone" value="{{old('phone')}}" placeholder="Enter Your Phone Number..." onchange="getOtp()" required>
+                                    <input type="number" class="form-control" id="phone" name="phone" value="{{old('phone')}}" placeholder="" onchange="getOtp()" required>
                                     <span class="error invalid-feedback" id="phone_error" style="display:none">Phone Number Already Exists</span>
                                     @if ($errors->has('phone'))
                                         <span class="text-danger">{{ $errors->first('phone') }}</span>
@@ -77,7 +77,7 @@
 
                                 <span class="ec-register-wrap ec-register-half">
                                     <label>OTP<span style="color:red">*<span></label> <br>
-                                    <input type="number" class="form-control" id="otp" name="otp" value="{{old('otp')}}" placeholder="Enter Your OTP..." required />
+                                    <input type="number" class="form-control" id="otp" name="otp" value="{{old('otp')}}" placeholder="" required />
                                     <span class="error invalid-feedback" id="otp_error" style="display:none">Wrong OTP</span>
                                     <span class="text-success" id="otp_success" style="display:none">Match OTP</span>
                                     @if ($errors->has('otp'))
@@ -87,7 +87,7 @@
 
                                 <span class="ec-register-wrap ec-register-half">
                                     <label>Password<span style="color:red">*<span></label> <br>
-                                    <input type="password" id="pasword" class="form-control" name="password" placeholder="Enter Your Password..." required />
+                                    <input type="password" id="pasword" class="form-control" name="password" placeholder="" required />
                                     @if ($errors->has('password'))
                                         <span class="text-danger">{{ $errors->first('password') }}</span>
                                     @endif
@@ -95,7 +95,7 @@
 
                                 <span class="ec-register-wrap ec-register-half">
                                     <label>Confirm Password<span style="color:red">*<span></label> <br>
-                                    <input type="password" id="confirm_password" class="form-control" name="confirm_password" placeholder="Enter Your Confirm Password..." required />
+                                    <input type="password" id="confirm_password" class="form-control" name="confirm_password" placeholder="" required />
                                     <span class="text-danger error" id="confirm_password_error" style="display:none">Your Password Does Not Match</span>
                                     @if ($errors->has('password'))
                                         <span class="text-danger">{{ $errors->first('password') }}</span>
@@ -103,13 +103,14 @@
                                 </span>
                                 <span class="ec-register-wrap ec-register-half">
                                     <label>Referral Code<span style="color:red">*<span></label> <br>
-                                    <input type="text" class="form-control" name="referral_code" value="{{old('referral_code')}}" placeholder="Enter Referral Code" required />
+                                    <input type="text" class="form-control" name="referral_code" value="{{old('referral_code')}}" placeholder="" required />
                                     @if ($errors->has('referral_code'))
                                         <span class="text-danger">{{ $errors->first('referral_code') }}</span>
                                     @endif
                                 </span>
                                 <span class="ec-register-wrap ec-register-btn">
                                     <button class="btn btn-primary" type="button" onclick="verifyOtp()">Register</button>
+                                    <hr>
                                     <div class="text-center">
                                         <p class="mt-2">Already have an account? <a href="{{ route('user.login') }}"> Login</a></p>
                                     </div>

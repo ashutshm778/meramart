@@ -111,6 +111,22 @@
     line-height: 27px;
 }
 
+.aiz-megabox
+{
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.aiz-megabox:hover
+{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-color: var(--main-color);
+}
+
+.aiz-megabox > input:checked ~ .aiz-megabox-elem, .aiz-megabox > input:checked ~ .aiz-megabox-elem {
+    border-color: var(--main-color);
+}
+
 /*-----  Header Top  -----*/
 .header-top-call {
   display: -webkit-box;
