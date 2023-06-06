@@ -580,4 +580,13 @@ if (! function_exists('commissions')) {
     }
 }
 
+if (! function_exists('repurchase_commissions')) {
+    function repurchase_commissions()
+    {
+        return [
+          100,50,50
+        ];
+    }
+}
+
 ?>
