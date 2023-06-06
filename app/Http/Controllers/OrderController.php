@@ -114,7 +114,7 @@ class OrderController extends Controller
                     for($i=1;$i<=$level;$i++){
                         $refferal_customer=Customer::where('referral_code',$referral_code)->first();
 
-                        if(Customer::where('refered_by',$referral_code)->get()->count() >= 2){
+                        if(Customer::where('refered_by',$referral_code)->get()->count() == 2){
 
                             if(CommissionDirect::where('user_id',$refferal_customer->id)->where('direct',2)->get()->count() < 1){
 
@@ -138,7 +138,33 @@ class OrderController extends Controller
                                 $customer_wallet->approval=0;
                                 $customer_wallet->save();
                             }
+
                         }
+
+                        if(Customer::where('refered_by',$referral_code)->get()->count() == 10){
+                            if(CommissionDirect::where('user_id',$refferal_customer->id)->where('direct',10)->get()->count() < 1){
+
+                            $commission_direct = new CommissionDirect;
+                            $commission_direct->user_id = $refferal_customer->id;
+                            $commission_direct->commission = 2560;
+                            $commission_direct->direct = 10;
+                            $commission_direct->save();
+
+
+                            $refferal_customer->balance = $refferal_customer->balance + $commission_direct->commission;
+                            $refferal_customer->save();
+
+                            $customer_wallet = new CustomerWallet;
+                            $customer_wallet->user_id=$refferal_customer->id;
+                            $customer_wallet->amount=$commission_direct->commission;
+                            $customer_wallet->transaction_type='credited';
+                            $customer_wallet->transaction_detail='Comission Credited For Ten Direct';
+                            $customer_wallet->payment_details='';
+                            $customer_wallet->balance= $refferal_customer->balance;
+                            $customer_wallet->approval=0;
+                            $customer_wallet->save();
+                             }
+                         }
 
                         if(!empty($refferal_customer->id)){
                             $commission = new Commission;
@@ -156,7 +182,7 @@ class OrderController extends Controller
                             $customer_wallet->user_id=$refferal_customer->id;
                             $customer_wallet->amount=$commission->commission;
                             $customer_wallet->transaction_type='credited';
-                            $customer_wallet->transaction_detail='Comission Credited';
+                            $customer_wallet->transaction_detail='Level Income Credited';
                             $customer_wallet->payment_details='';
                             $customer_wallet->balance= $refferal_customer->balance;
                             $customer_wallet->approval=0;
