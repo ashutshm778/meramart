@@ -86,7 +86,7 @@
                                                 <td class="text-center"><img src="{{asset('public/'.api_asset($data->image))}}" style="height:100px;"></td>
                                                 <td class="text-center">
                                                     @foreach($data->category_id as $cat)
-                                                        {{App\Models\Admin\Category::where('id',$cat)->first()->name}} <br>
+                                                        {{optional(App\Models\Admin\Category::where('id',$cat)->first())->name}} <br>
                                                     @endforeach
                                                 </td>
                                                 <td class="text-center">
