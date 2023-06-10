@@ -259,7 +259,6 @@ class OrderController extends Controller
                         array_push($other_side_id, $customer_referral->id);
                     }
                 }
-
                 if($other_side >= 20){
                     return 'You are eligible for suter distributor';
                 }
