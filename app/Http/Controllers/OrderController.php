@@ -186,7 +186,7 @@ class OrderController extends Controller
                     }
                 }
             }
-            if (!empty($customer->referral_code)) {
+            if (!empty($customer->referral_code) && (Order::where('user_id',Auth::guard('customer')->user()->id)->get()->count() > 1)) {
 
                 $customer->balance = $customer->balance + 300;
                 $customer->save();
@@ -261,6 +261,8 @@ class OrderController extends Controller
                 }
                 if($other_side >= 20){
                     return 'You are eligible for suter distributor';
+                }else{
+                    return 'You are not eligible for suter distributor';
                 }
             }
         }
