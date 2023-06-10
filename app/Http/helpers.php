@@ -589,4 +589,31 @@ if (! function_exists('repurchase_commissions')) {
     }
 }
 
+if (! function_exists('reward_users')) {
+    function reward_users()
+    {
+        return [
+          50,100,200,500,1000,2000,5000,10000,20000,50000,100000,300000,500000,1000000,2000000,5000000
+        ];
+    }
+}
+
+if (! function_exists('reward_user_one_site')) {
+    function reward_user_one_site()
+    {
+        return [
+         30,60,120,300,600,1200,3000,6000,12000,30000,60000,180000,300000,600000,1200000,3000000
+        ];
+    }
+}
+
+if (! function_exists('reward_user_other_site')) {
+    function reward_user_other_site()
+    {
+        return [
+         20,40,80,200,400,800,2000,4000,8000,20000,40000,120000,200000,400000,800000,2000000
+        ];
+    }
+}
+
 ?>

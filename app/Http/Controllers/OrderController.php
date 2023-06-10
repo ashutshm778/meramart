@@ -236,4 +236,34 @@ class OrderController extends Controller
             }
         }
     }
+
+    public function check_rewards()
+    {
+        $customer=Auth::guard('customer')->user();
+        if (!empty($customer->referral_code)) {
+            $customer_data = Customer::where('refered_by', $customer->referral_code)->get();
+            if ($customer_data->count() == 50) {
+                $one_side = '';
+                foreach ($customer_data as $customer_referral) {
+                    $customer_referral_data = Customer::where('refered_by', $customer_referral->referral_code)->get();
+                    if ($customer_referral_data->count() == 30) {
+                        $one_side = $customer_referral_data->id;
+                    }
+                }
+                $other_side = 0;
+                $other_side_id = [];
+                foreach ($customer_data->where('id', '!=', $one_side) as $customer_referral) {
+                    if (!empty($one_side) && ($other_side < 21)) {
+                        $customer_referral_data = Customer::where('refered_by', $customer_referral->referral_code)->get();
+                        $other_side = $other_side + $customer_referral_data->count();
+                        array_push($other_side_id, $customer_referral->id);
+                    }
+                }
+
+                if($other_side >= 20){
+                    return 'You are eligible for suter distributor';
+                }
+            }
+        }
+    }
 }

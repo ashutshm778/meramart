@@ -70,6 +70,9 @@ Route::group(['middleware' => 'auth:customer'], function () {
     Route::post('add-to-wishlist',[WishlistController::class,'store'])->name('add.to.wishlist');
     Route::post('delete-to-wishlist',[WishlistController::class,'delete'])->name('delete.to.wishlist');
 
+    Route::get('check_reward',[OrderController::class,'check_reward'])->name('check_reward');
+
+
 });
 
 
