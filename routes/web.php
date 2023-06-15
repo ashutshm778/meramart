@@ -89,12 +89,12 @@ Route::get('send-otp/{phone}', [FrontController::class, 'sendOtp'])->name('send.
 Route::get('verify-otp/{phone}/{otp}', [FrontController::class, 'verifyOtp'])->name('verify.otp');
 
 //Business Person Register
-
+if(featureActivation('distributor') == '1' || featureActivation('wholeseller') == '1'){
     Route::view('business-person-request-form', 'frontend.auth.business_person_request_form')->name('business.person.request.form');
     Route::post('business-person-request-save', [FrontController::class, 'businessPersonRequestSave'])->name('business.person.request.save');
     Route::view('business-person-request-details', 'frontend.auth.business_person_request_details')->name('business.person.request.details');
     Route::post('business-person-request-details-save', [FrontController::class, 'businessPersonRequestDetailSave'])->name('business.person.request.details.save');
-
+}
 
 //Login
 if(featureActivation('retailer') == '1' || featureActivation('distributor') == '1' || featureActivation('wholeseller') == '1'){
