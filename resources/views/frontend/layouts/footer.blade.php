@@ -231,6 +231,60 @@
 <div id="wishlist_toast" class="wishlist_toast">
     <div class="desc">You Have Add To Wishlist Successfully</div>
 </div>
+<style>
+.bs-modal-sm{
+    width: 600px !important;
+}
+</style>
+<div class="modal fade" id="login_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog bs-modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <button type="button" class="btn-close qty_close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-body" id="modal_body">
+                <div class="ec-register-wrapper">
+                    <div class="ec-register-container">
+                        <div class="ec-register-form">
+                            <h2>Login</h2>
+                            <form id="valid_form" action="{{route('customer.login')}}" method="post">
+                                @csrf
+                                <span class="ec-register-wrap col-md-12">
+                                    <label>Phone Number<span style="color:red">*<span></label> <br>
+                                    <input type="number" class="form-control" id="phone" name="phone" value="{{old('phone')}}" placeholder="" required>
+                                    @if ($errors->has('phone'))
+                                        <span class="text-danger">{{ $errors->first('phone') }}</span>
+                                    @endif
+                                </span>
+
+                                <span class="ec-register-wrap col-md-12">
+                                    <label>Password<span style="color:red">*<span></label> <br>
+                                    <input type="password" id="pasword" class="form-control" name="password" placeholder="" required />
+                                    @if ($errors->has('password'))
+                                        <span class="text-danger">{{ $errors->first('password') }}</span>
+                                    @endif
+                                </span>
+
+                                <span class="ec-register-wrap ec-register-btn">
+                                    <button class="btn btn-primary mt-4" type="submit">Login</button>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p class="mt-2">Don't have an account ?  <a href="{{ route('customer.forgot_password') }}"> Register</a></p>
+                                        </div>
+                                        <div class="col-md-6 text-right">
+                                             <p class="mt-2">Forget Password ? <a href="{{ route('customer.forgot_password') }}"> Click Here</a></p>
+                                        </div>
+                                    </div>
+                                </span>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 {{-- <!-- Recent Purchase Popup  -->
     <div class="recent-purchase">
@@ -289,6 +343,8 @@
                 $(element).removeClass('is-invalid');
             }
         });
+
+        $('#login_modal').modal('show');
     });
 
     function open_product_model(product_id) {

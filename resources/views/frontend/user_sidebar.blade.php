@@ -23,6 +23,16 @@
     transition: all 0.4s ease-in-out;
     letter-spacing: 1px;
 }
+
+@media all and (min-width: 480px) {
+    .desktop {display:block;}
+    .mobile {display:none;}
+}
+
+@media all and (max-width: 479px) {
+    .desktop {display:none;}
+    .mobile {display:block;}
+}
         </style>
         <!-- Sidebar Category Block -->
         <div class="ec-sidebar-block">
@@ -32,8 +42,12 @@
                     <img class="v-img" src="@if(Auth::guard('customer')->user()->photo) {{asset('public/public/frontend/user_profile/'.Auth::guard('customer')->user()->photo)}} @else {{asset('public/public/frontend/assets/images/149071.png')}} @endif" alt="vendor image">
                     <h5>{{Auth::guard('customer')->user()->first_name}} {{Auth::guard('customer')->user()->last_name}}</h5>
                     @if(featureActivation('mlm') == '1' && !empty(Auth::guard('customer')->user()->refered_by))
-                      @if(Auth::guard('customer')->user()->verify_status==1)  <span class="in-stock">{{'Active'}} </span><a href="https://web.whatsapp.com/send?text=https://themeramart.com/user-register-mlm?referral_code={{Auth::guard('customer')->user()->referral_code}}" data-action="share/whatsapp/share" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" class="theme_btns theme_btn_bg">
+                      @if(Auth::guard('customer')->user()->verify_status==1)
+                       <a  href="https://web.whatsapp.com/send?text=https://themeramart.com/user-register-mlm?referral_code={{Auth::guard('customer')->user()->referral_code}}" data-action="share/whatsapp/share" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" class="theme_btns theme_btn_bg desktop">
                         <i class="ecicon eci-whatsapp"></i> Share Referral Link</a>
+                        @php $text=urlencode('https://themeramart.com/user-register-mlm?referral_code='.Auth::guard('customer')->user()->referral_code) @endphp
+                        <a href="whatsapp://send?text={{$text}}" data-action="share/whatsapp/share" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" class="theme_btns theme_btn_bg mobile">
+                            <i class="ecicon eci-whatsapp"></i> Share Referral Link</a>
                       @else <span class="out-of-stock" >{{'InActive'}} @endif</span>
                     @endif
 
