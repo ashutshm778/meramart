@@ -103,7 +103,7 @@
                                 </span>
                                 <span class="ec-register-wrap ec-register-half">
                                     <label>Referral Code<span style="color:red">*<span></label> <br>
-                                    <input type="text" class="form-control" name="referral_code" value="{{old('referral_code')}}" placeholder="" required />
+                                    <input type="text" class="form-control" name="referral_code" value="{{request('referral_code')}}" placeholder="" required />
                                     @if ($errors->has('referral_code'))
                                         <span class="text-danger">{{ $errors->first('referral_code') }}</span>
                                     @endif

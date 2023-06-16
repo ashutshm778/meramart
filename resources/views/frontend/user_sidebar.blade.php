@@ -1,5 +1,29 @@
 <div class="ec-shop-leftside ec-vendor-sidebar col-lg-3 col-md-12">
     <div class="ec-sidebar-wrap">
+        <style>
+
+             .eci-whatsapp:before {
+    content: "\f232";
+    color: rgb(235, 249, 235);
+}
+.theme_btns {
+    overflow: hidden;
+    color: white !important;
+    background: #28a745;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 11px 15px 11px 15px;
+    display: inline-block;
+    border-radius: 4px;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.4s ease-in-out;
+    letter-spacing: 1px;
+}
+        </style>
         <!-- Sidebar Category Block -->
         <div class="ec-sidebar-block">
             <div class="ec-vendor-block">
@@ -8,8 +32,11 @@
                     <img class="v-img" src="@if(Auth::guard('customer')->user()->photo) {{asset('public/public/frontend/user_profile/'.Auth::guard('customer')->user()->photo)}} @else {{asset('public/public/frontend/assets/images/149071.png')}} @endif" alt="vendor image">
                     <h5>{{Auth::guard('customer')->user()->first_name}} {{Auth::guard('customer')->user()->last_name}}</h5>
                     @if(featureActivation('mlm') == '1' && !empty(Auth::guard('customer')->user()->refered_by))
-                      @if(Auth::guard('customer')->user()->verify_status==1)  <span class="in-stock">{{'Active'}} </span> @else <span class="out-of-stock" >{{'InActive'}} @endif</span>
+                      @if(Auth::guard('customer')->user()->verify_status==1)  <span class="in-stock">{{'Active'}} </span><a href="https://web.whatsapp.com/send?text=https://themeramart.com/user-register-mlm?referral_code={{Auth::guard('customer')->user()->referral_code}}" data-action="share/whatsapp/share" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" class="theme_btns theme_btn_bg">
+                        <i class="ecicon eci-whatsapp"></i> Share Referral Link</a>
+                      @else <span class="out-of-stock" >{{'InActive'}} @endif</span>
                     @endif
+
                 </div>
                 <div class="ec-vendor-block-items">
                     <ul>
