@@ -207,14 +207,14 @@
     </div>
 </div>
 
-<div class="ec-right-bottom">
+{{-- <div class="ec-right-bottom">
     <div class="ec-box">
         <div class="ec-button rotateBackward">
             <a href="https://wa.me/+917307098502" target="_blank"> <img
                     src="{{ asset('public/frontend/assets/images/whatsapp.png') }}" alt="whatsapp icon"></a>
         </div>
     </div>
-</div>
+</div> --}}
 
 <div class="modal fade" id="ec_quickview_modal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
