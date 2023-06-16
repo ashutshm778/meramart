@@ -343,7 +343,7 @@
                 $(element).removeClass('is-invalid');
             }
         });
-      @if(empty(Auth::guard('customer')->user()->id))
+      @if(empty(Auth::guard('customer')->user()->id) && (request()->route()->getName()=='index'))
         $('#login_modal').modal('show');
       @endif
     });
