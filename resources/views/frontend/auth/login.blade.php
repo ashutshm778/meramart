@@ -75,7 +75,7 @@
                                             <hr>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <p class="mt-2">Don't have an account ?  <a href="{{ route('customer.forgot_password') }}"> Register</a></p>
+                                                    <p class="mt-2">Don't have an account ?  <a href="{{ route('user.register.mlm') }}"> Register</a></p>
                                                 </div>
                                                 <div class="col-md-6 text-right">
                                                      <p class="mt-2">Forget Password ? <a href="{{ route('customer.forgot_password') }}"> Click Here</a></p>
