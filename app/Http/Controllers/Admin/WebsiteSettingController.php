@@ -68,6 +68,13 @@ class WebsiteSettingController extends Controller
             [
                 'image'=>$request->address
             ]);
+        }else{
+            WebsiteSetting::updateOrCreate([
+                'type'=>'address'
+            ],
+            [
+                'image'=>''
+            ]);
         }
 
         if($request->footer_description){
