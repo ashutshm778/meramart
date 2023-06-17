@@ -154,7 +154,7 @@
                                                 </td>
                                                 <td class="text-left"><b>MC:</b>
                                                     @foreach ($data->category_id as $category)
-                                                        {{App\Models\Admin\Category::where('id',$category)->first()->name}}/
+                                                        {{optional(App\Models\Admin\Category::where('id',$category)->first())->name}}/
                                                     @endforeach <br>
                                                     <b>S.C:</b>
                                                     @foreach ($data->subcategory_id as $subcategory)
@@ -163,7 +163,7 @@
                                                     @if($data->subsubcategory_id)
                                                         <b>S.S.C:</b>
                                                         @foreach ($data->subsubcategory_id as $subsubcategory)
-                                                            {{App\Models\Admin\SubSubCategory::where('id',$subsubcategory)->first()->name}}/
+                                                            {{optional(App\Models\Admin\SubSubCategory::where('id',$subsubcategory))->first()->name}}/
                                                         @endforeach
                                                     @endif
                                                     <b>Brand:</b> {{$data->brand->name}}

@@ -85,7 +85,7 @@
                                                 <td class="text-center">{{implode('/',$data->value)}}</td>
                                                 <td class="text-center">
                                                     @foreach($data->category_id as $cat)
-                                                        {{App\Models\Admin\Category::where('id',$cat)->first()->name}} <br>
+                                                        {{optional(App\Models\Admin\Category::where('id',$cat)->first())->name}} <br>
                                                     @endforeach
                                                 </td>
                                                 <td class="text-center">
