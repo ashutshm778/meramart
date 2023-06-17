@@ -15,16 +15,18 @@
                     <div class="col-sm-12 col-lg-4 ec-footer-contact">
                         <div class="ec-footer-widget">
                             <div class="box-contact">
+                                @php
+                                  $phone = App\Models\Admin\WebsiteSetting::where('type', 'phone')->first();
+                                @endphp
+                                @if(!empty($phone))
                                 <div class="box-phone">
                                     <i class="ecicon eci-mobile-phone"></i>
                                     <div class="content">
-                                        @php
-                                            $phone = App\Models\Admin\WebsiteSetting::where('type', 'phone')->first();
-                                        @endphp
                                         <h2>CALL US FREE</h2>
                                         {{ optional($phone)->image }}
                                     </div>
                                 </div>
+                                @endif
                                 @php
                                     $footer_description = App\Models\Admin\WebsiteSetting::where('type', 'footer_description')->first();
                                 @endphp
@@ -48,7 +50,6 @@
                                 <ul class="align-items-center">
                                     <li class="ec-footer-link">Varanasi, Uttar Pradesh, India (221010)</li>
                                 </ul>
-
                             </div> --}}
                         </div>
                     </div>
