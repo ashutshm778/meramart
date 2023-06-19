@@ -639,12 +639,12 @@
             }
         });
     }
-    @if (!empty(Auth::guard('customer')->user()))
-      @if(Auth::guard('customer')->user()->verify_status == 1)
+    @if(!empty(Auth::guard('customer')->user()))
+
         function copy_text() {
-            var text = "{{ Auth::guard('customer')->user()->referral_code }}"";
+            var text = "https://themeramart.com/user-register-mlm?referral_code={{ Auth::guard('customer')->user()->referral_code }}";
             navigator.clipboard.writeText(text);
         }
-        @endif
+
     @endif
 </script>
