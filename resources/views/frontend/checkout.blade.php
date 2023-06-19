@@ -380,7 +380,7 @@
             },
             success: function(data){
                // console.log(data);
-                window.location.href = "{{route('order.summary')}}";
+                //window.location.href = "{{route('order.summary')}}";
             }
         });
     }
