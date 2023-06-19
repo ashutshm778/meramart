@@ -643,7 +643,11 @@
      @if(Auth::guard('customer')->user()->verify_status==1)
         function copy_text() {
             var text = "https://themeramart.com/user-register-mlm?referral_code={{ Auth::guard('customer')->user()->referral_code }}";
-            navigator.clipboard.writeText(text);
+            navigator.clipboard.writeText(text).then(function() {
+  alert('Async: Copying to clipboard was successful!');
+}, function(err) {
+    alert('Async: Could not copy text: ', err);
+});
         }
      @endif
     @endif
