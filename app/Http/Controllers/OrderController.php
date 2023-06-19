@@ -21,6 +21,10 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
+
+        $carts = Cart::where('user_id', $user_id)->get();
+
+        if($carts->count() > 0){
         $user_id = Auth::guard('customer')->user()->id;
         $order_id = Order::latest()->first();
         if ($order_id) {
@@ -46,9 +50,6 @@ class OrderController extends Controller
         $order->payment_details = '';
         $order->payment_status = 'pending';
         $order->remark = '';
-
-        $carts = Cart::where('user_id', $user_id)->get();
-
 
         if ($order->save()) {
             foreach ($carts as $cart) {
@@ -235,6 +236,9 @@ class OrderController extends Controller
                 }
             }
         }
+      }else{
+        return 0;
+      }
     }
 
     public function check_rewards()

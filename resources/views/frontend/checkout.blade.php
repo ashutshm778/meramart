@@ -354,11 +354,11 @@
                 $('#country').val('')
                 $('#id').val('')
                 $('#name').val('')
-                alert('You have Enter Wrong Pincode!')
+                alert('You have Enter Wrong Pincode!');
             }
         }).fail(function()
         {
-            alert('You have Enter Wrong Pincode!')
+            alert('You have Enter Wrong Pincode!');
         });
     }
 
@@ -379,7 +379,10 @@
                 payment_type:type,
             },
             success: function(data){
-               // console.log(data);
+               if(data==0){
+                  alert('Cart Empty!');
+                  window.location.href = "{{route('index')}}";
+               }
                 window.location.href = "{{route('order.summary')}}";
             }
         });
