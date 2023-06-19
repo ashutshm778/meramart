@@ -644,7 +644,6 @@
         function copy_text() {
             var text = "https://themeramart.com/user-register-mlm?referral_code={{ Auth::guard('customer')->user()->referral_code }}";
             navigator.clipboard.writeText(text);
-            alert('Linked Copy Successfully')
         }
      @endif
     @endif
