@@ -647,4 +647,11 @@
         }
     @endif
     @endif
+    navigator.permissions.query({ name: "clipboard-write" }).then((result) => {
+  if (result.state == "granted" || result.state == "prompt") {
+    alert("Write access granted!");
+  }else{
+    alert("Write access not granted!");
+  }
+});
 </script>
