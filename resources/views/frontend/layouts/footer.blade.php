@@ -16,16 +16,16 @@
                         <div class="ec-footer-widget">
                             <div class="box-contact">
                                 @php
-                                  $phone = App\Models\Admin\WebsiteSetting::where('type', 'phone')->first();
+                                    $phone = App\Models\Admin\WebsiteSetting::where('type', 'phone')->first();
                                 @endphp
-                                @if(!empty($phone))
-                                <div class="box-phone">
-                                    <i class="ecicon eci-mobile-phone"></i>
-                                    <div class="content">
-                                        <h2>CALL US FREE</h2>
-                                        {{ optional($phone)->image }}
+                                @if (!empty($phone))
+                                    <div class="box-phone">
+                                        <i class="ecicon eci-mobile-phone"></i>
+                                        <div class="content">
+                                            <h2>CALL US FREE</h2>
+                                            {{ optional($phone)->image }}
+                                        </div>
                                     </div>
-                                </div>
                                 @endif
                                 @php
                                     $footer_description = App\Models\Admin\WebsiteSetting::where('type', 'footer_description')->first();
@@ -233,9 +233,9 @@
     <div class="desc">You Have Add To Wishlist Successfully</div>
 </div>
 <style>
-.bs-modal-sm{
-    width: 600px !important;
-}
+    .bs-modal-sm {
+        width: 600px !important;
+    }
 </style>
 <div class="modal fade" id="login_modal" tabindex="-1" role="dialog">
     <div class="modal-dialog bs-modal-sm modal-dialog-centered" role="document">
@@ -246,11 +246,12 @@
                     <div class="ec-register-container">
                         <div class="ec-register-form">
                             <h2>Login</h2>
-                            <form id="valid_form" action="{{route('customer.login')}}" method="post">
+                            <form id="valid_form" action="{{ route('customer.login') }}" method="post">
                                 @csrf
                                 <span class="ec-register-wrap col-md-12">
                                     <label>Phone Number<span style="color:red">*<span></label> <br>
-                                    <input type="number" class="form-control" id="phone" name="phone" value="{{old('phone')}}" placeholder="" required>
+                                    <input type="number" class="form-control" id="phone" name="phone"
+                                        value="{{ old('phone') }}" placeholder="" required>
                                     @if ($errors->has('phone'))
                                         <span class="text-danger">{{ $errors->first('phone') }}</span>
                                     @endif
@@ -258,7 +259,8 @@
 
                                 <span class="ec-register-wrap col-md-12">
                                     <label>Password<span style="color:red">*<span></label> <br>
-                                    <input type="password" id="pasword" class="form-control" name="password" placeholder="" required />
+                                    <input type="password" id="pasword" class="form-control" name="password"
+                                        placeholder="" required />
                                     @if ($errors->has('password'))
                                         <span class="text-danger">{{ $errors->first('password') }}</span>
                                     @endif
@@ -269,10 +271,12 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <p class="mt-2">Don't have an account ?  <a href="{{ route('user.register.mlm') }}"> Register</a></p>
+                                            <p class="mt-2">Don't have an account ? <a
+                                                    href="{{ route('user.register.mlm') }}"> Register</a></p>
                                         </div>
                                         <div class="col-md-6 text-right">
-                                             <p class="mt-2">Forget Password ? <a href="{{ route('customer.forgot_password') }}"> Click Here</a></p>
+                                            <p class="mt-2">Forget Password ? <a
+                                                    href="{{ route('customer.forgot_password') }}"> Click Here</a></p>
                                         </div>
                                     </div>
                                 </span>
@@ -344,9 +348,10 @@
                 $(element).removeClass('is-invalid');
             }
         });
-      @if(empty(Auth::guard('customer')->user()->id) && (request()->route()->getName()=='index'))
-        $('#login_modal').modal('show');
-      @endif
+        @if (empty(Auth::guard('customer')->user()->id) &&
+                request()->route()->getName() == 'index')
+            $('#login_modal').modal('show');
+        @endif
     });
 
     function open_product_model(product_id) {
@@ -403,7 +408,7 @@
                 if (new_qty <= range_qty) {
                     $('.qty_value_' + product_id).val(new_qty);
                     getVariantPrice();
-                    @if(Auth::guard('customer')->check())
+                    @if (Auth::guard('customer')->check())
                         change_qty(product_id, new_qty)
                     @endif
                 } else {
@@ -412,8 +417,8 @@
             } else {
                 $('.qty_value_' + product_id).val(new_qty);
                 getVariantPrice();
-                @if(Auth::guard('customer')->check())
-                 change_qty(product_id, new_qty)
+                @if (Auth::guard('customer')->check())
+                    change_qty(product_id, new_qty)
                 @endif
             }
         } else {
@@ -421,8 +426,8 @@
             if (new_qty >= range_qty) {
                 $('.qty_value_' + product_id).val(new_qty);
                 getVariantPrice();
-                @if(Auth::guard('customer')->check())
-                  change_qty(product_id, new_qty)
+                @if (Auth::guard('customer')->check())
+                    change_qty(product_id, new_qty)
                 @endif
             } else {
                 alert('Minimum Quantity Reached');
@@ -584,7 +589,7 @@
     }
 
     $('#product_detail_form input').on('change', function() {
-       // getVariantPrice();
+        // getVariantPrice();
     });
 
     function selectVaraint(value, id) {
@@ -600,18 +605,18 @@
                 $('#product_variant_div').empty();
                 $('#product_variant_div').html(data);
                 $(".single-product-cover").slick({
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    arrows: !1,
-                    fade: !1,
-                    asNavFor: ".single-nav-thumb"
-                }),
-                $(".single-nav-thumb").slick({
-                    slidesToShow: 4,
-                    slidesToScroll: 1,
-                    asNavFor: ".single-product-cover",
-                    focusOnSelect: !0,
-                })
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        arrows: !1,
+                        fade: !1,
+                        asNavFor: ".single-nav-thumb"
+                    }),
+                    $(".single-nav-thumb").slick({
+                        slidesToShow: 4,
+                        slidesToScroll: 1,
+                        asNavFor: ".single-product-cover",
+                        focusOnSelect: !0,
+                    })
 
             }
         });
@@ -625,7 +630,7 @@
             data: {
                 color: element.value,
                 product_group_id: id,
-                attr:attr
+                attr: attr
             },
             success: function(data) {
                 $('#product_variant_div').empty();
@@ -634,15 +639,14 @@
             }
         });
     }
-
-    @if(Auth::guard('customer')->user()->verify_status==1)
-    function copy_text(){
-    var text = '{{Auth::guard('customer')->user()->referral_code}}';
-    navigator.clipboard.writeText(text).then(function() {
-  console.log('Async: Copying to clipboard was successful!');
-}, function(err) {
-  console.error('Async: Could not copy text: ', err);
-});
-}
-   @endif
+    @if (Auth::guard('customer')->user()->verify_status == 1)
+        function copy_text() {
+            var text = '{{ Auth::guard('customer')->user()->referral_code }}';
+            navigator.clipboard.writeText(text).then(function() {
+                console.log('Async: Copying to clipboard was successful!');
+            }, function(err) {
+                console.error('Async: Could not copy text: ', err);
+            });
+        }
+    @endif
 </script>
