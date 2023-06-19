@@ -5,6 +5,24 @@
     label {
         margin-bottom: 0px;
     }
+    .ajax-loader {
+            visibility: hidden;
+            background-color: rgba(255, 255, 255, 0.7);
+            position: fixed;
+            z-index: +100 !important;
+            width: 100%;
+            height: 100%;
+        }
+        .ajax-loader img {
+            position: relative;
+            top: 50%;
+            left: 50%;
+        }
+
+        .img-responsive {
+            width: auto;
+            height: auto;
+        }
  </style>
 
     <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
@@ -28,6 +46,9 @@
     </div>
     <section class="ec-page-content checkout_page section-space-p">
         <div class="container">
+            <div class="ajax-loader">
+                <img src="{{ static_asset('assets/img/ajax-loader.gif') }}" class="img-responsive" />
+            </div>
             <div class="row">
                 <div class="ec-checkout-leftside col-lg-8 col-md-12 ">
                     <div class="ec-checkout-content">
@@ -343,6 +364,7 @@
 
     function make_order(type)
     {
+        $('.ajax-loader').css("visibility", "visible");
         var shipping_address_id = $('input[name="address_select"]:checked').val();
         $.ajaxSetup({
             headers: {
@@ -358,6 +380,7 @@
             },
             success: function(data){
                // console.log(data);
+               $('.ajax-loader').css("visibility", "hidden");
                 window.location.href = "{{route('order.summary')}}";
             }
         });
