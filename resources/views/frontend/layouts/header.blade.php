@@ -313,6 +313,7 @@
 
                     <li><a href="{{ route('about') }}">About Us</a></li>
                     <li><a href="{{ route('contact') }}">Contact Us</a></li>
+                    <li><a href="{{ route('customer.logout') }}">Logout</a></li>
                 </ul>
             </div>
             <div class="header-res-lan-curr">

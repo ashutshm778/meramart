@@ -150,9 +150,8 @@
     <div class="container">
         <div class="ec-nav-panel">
             <div class="ec-nav-panel-icons">
-                <a href="#ec-mobile-menu" class="navbar-toggler-btn ec-header-btn ec-side-toggle">
-                    <img src="{{ asset('public/frontend/assets/images/icons/menu.svg') }}" class="svg_img header_svg"
-                        alt="" />
+                <a href="#" onclick="copy_text()" class="navbar-toggler-btn ec-header-btn ec-side-toggle">
+                    <i class="ecicon eci-copy"></i>
                 </a>
             </div>
             <div class="ec-nav-panel-icons">
@@ -635,4 +634,12 @@
         });
     }
 
+function copy_text(){
+    var text = '';
+    navigator.clipboard.writeText(text).then(function() {
+  console.log('Async: Copying to clipboard was successful!');
+}, function(err) {
+  console.error('Async: Could not copy text: ', err);
+});
+}
 </script>
