@@ -52,7 +52,6 @@
                             <button onclick="copy_text()" >Click to copy  &nbsp;<i class="ecicon eci-copy"></i> </button>
                       @else <span class="out-of-stock" >{{'InActive'}} @endif</span>
                     @endif
-
                 </div>
                 <div class="ec-vendor-block-items">
                     <ul>
