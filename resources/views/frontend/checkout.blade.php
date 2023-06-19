@@ -44,11 +44,11 @@
             </div>
         </div>
     </div>
+    <div class="ajax-loader">
+        <img src="#" class="img-responsive" />
+    </div>
     <section class="ec-page-content checkout_page section-space-p">
         <div class="container">
-            <div class="ajax-loader">
-                <img src="{{ static_asset('assets/img/ajax-loader.gif') }}" class="img-responsive" />
-            </div>
             <div class="row">
                 <div class="ec-checkout-leftside col-lg-8 col-md-12 ">
                     <div class="ec-checkout-content">
@@ -380,7 +380,6 @@
             },
             success: function(data){
                // console.log(data);
-               $('.ajax-loader').css("visibility", "hidden");
                 window.location.href = "{{route('order.summary')}}";
             }
         });
