@@ -313,7 +313,7 @@
 
                     <li><a href="{{ route('about') }}">About Us</a></li>
                     <li><a href="{{ route('contact') }}">Contact Us</a></li>
-                    @if(empty(Auth::guard('customer')->user()->id))
+                    @if(!empty(Auth::guard('customer')->user()->id))
                     <li><a href="{{ route('customer.logout') }}">Logout</a></li>
                     @endif
                 </ul>
