@@ -634,5 +634,14 @@
             }
         });
     }
-
+    @if(Auth::guard('customer')->user()->verify_status==1)
+    function copy_text(){
+    var text = '{{Auth::guard('customer')->user()->referral_code}}';
+    navigator.clipboard.writeText(text).then(function() {
+  console.log('Async: Copying to clipboard was successful!');
+}, function(err) {
+  console.error('Async: Could not copy text: ', err);
+});
+}
+   @endif
 </script>
