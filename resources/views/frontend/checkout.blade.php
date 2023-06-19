@@ -379,11 +379,12 @@
                 payment_type:type,
             },
             success: function(data){
-               if(data==0){
+               if(data=='no'){
                   alert('Cart Empty!');
                   window.location.href = "{{route('index')}}";
-               }
+               }else{
                 window.location.href = "{{route('order.summary')}}";
+               }
             }
         });
     }
