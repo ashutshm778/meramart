@@ -634,6 +634,7 @@
             }
         });
     }
+
     @if(Auth::guard('customer')->user()->verify_status==1)
     function copy_text(){
     var text = '{{Auth::guard('customer')->user()->referral_code}}';
