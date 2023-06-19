@@ -639,7 +639,8 @@
             }
         });
     }
-    @if (Auth::guard('customer')->user()->verify_status == 1)
+    @if (!empty(Auth::guard('customer')->user()))
+      @if(Auth::guard('customer')->user()->verify_status == 1)
         function copy_text() {
             var text = '{{ Auth::guard('customer')->user()->referral_code }}';
             navigator.clipboard.writeText(text).then(function() {
@@ -648,5 +649,6 @@
                 console.error('Async: Could not copy text: ', err);
             });
         }
+        @endif
     @endif
 </script>
