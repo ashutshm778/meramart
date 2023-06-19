@@ -22,10 +22,11 @@ class OrderController extends Controller
     public function store(Request $request)
     {
 
+        $user_id = Auth::guard('customer')->user()->id;
         $carts = Cart::where('user_id', $user_id)->get();
 
         if($carts->count() > 0){
-        $user_id = Auth::guard('customer')->user()->id;
+
         $order_id = Order::latest()->first();
         if ($order_id) {
             $order_id = $order_id->order_id + 1;
