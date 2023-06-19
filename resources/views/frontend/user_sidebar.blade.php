@@ -48,7 +48,7 @@
                         @php $text=urlencode('https://themeramart.com/user-register-mlm?referral_code='.Auth::guard('customer')->user()->referral_code) @endphp
                         <a href="whatsapp://send?text={{$text}}" data-action="share/whatsapp/share" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" class="theme_btns theme_btn_bg mobile">
                             <i class="ecicon eci-whatsapp"></i> Share Referral Link</a>
-                            <a href="#" onclick="copy_text()" ><i class="ecicon eci-copy"></i> </a>
+                            <button onclick="copy_text()" ><i class="ecicon eci-copy"></i> </button>
                       @else <span class="out-of-stock" >{{'InActive'}} @endif</span>
                     @endif
 
