@@ -106,7 +106,9 @@ Route::prefix("admin")->group(function(){
         //Customers
         if(featureActivation('retailer') == '1'){
             Route::get('customers-index',[CustomerController::class,'index'])->name('customers.index');
+
         }
+        Route::post('customers-verification', [CustomerController::class,'updateVerificationStatus'])->name('customers.updateVerificationStatus');
 
         //App Setting
         Route::get('slider-index', [AppSettingController::class,'sliderIndex'])->name('slider.index');

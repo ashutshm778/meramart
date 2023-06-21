@@ -6,7 +6,7 @@
             <th class="text-center">Phone</th>
             <th class="text-center">Email</th>
             <th class="text-center">Date</th>
-            <th class="text-center">Action</th>
+            <th class="text-center">Veification Status</th>
         </tr>
     </thead>
     <tbody>
@@ -18,7 +18,10 @@
                 <td class="text-center">{{$customer->email}}</td>
                 <td class="text-center">{{$customer->created_at}}</td>
                 <td class="text-center">
-
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="is_active_{{$key}}" onchange="update_verification(this)" value="{{ $customer->id }}"  @if($customer->verify_status==1) checked @endif>
+                        <label class="custom-control-label" for="is_active_{{$key}}"></label>
+                    </div>
                 </td>
             </tr>
         @empty

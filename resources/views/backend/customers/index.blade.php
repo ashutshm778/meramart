@@ -73,7 +73,24 @@
                 }
             });
         }
-
+        function update_verification(el) {
+            if (el.checked) {
+                var status = 1;
+            } else {
+                var status = 0;
+            }
+            $.post("{{ route('admin.customers.updateVerificationStatus') }}", {
+                _token: '{{ csrf_token() }}',
+                id: el.value,
+                status: status
+            }, function(data) {
+                if (data == 1) {
+                    toastr.success('Customer Verified Successfully!')
+                } else {
+                    toastr.error('Customer UnVerified Successfully!')
+                }
+            });
+        }
     </script>
 
 @endsection

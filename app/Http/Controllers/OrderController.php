@@ -101,7 +101,7 @@ class OrderController extends Controller
                 if (empty($customer->referral_code)) {
                     if (featureActivation('mlm') == '1' && !empty(Auth::guard('customer')->user()->refered_by)) {
                         if ($customer->orders->sum('grand_total') > 3999) {
-                            $customer->verify_status = 1;
+                            //$customer->verify_status = 1;
                             $customer->referral_code = 'MM' . rand(1111, 9999);
                             $customer->save();
                             $level = 10;

@@ -45,4 +45,15 @@ class CustomerController extends Controller
         return view('backend.customers.index',compact('customers','search_key','search_date_range'),['page_title'=>'Customer List']);
     }
 
+    public function updateVerificationStatus(Request $request)
+    {
+        $customer = Customer::findOrFail($request->id);
+        $customer->verify_status = $request->status;
+        if ($customer->save()) {
+            return $customer->verify_status;
+        }
+        return 0;
+    }
+
+
 }
