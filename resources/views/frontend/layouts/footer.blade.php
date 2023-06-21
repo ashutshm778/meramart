@@ -667,7 +667,8 @@ if (navigator.clipboard && window.isSecureContext) {
         },
         function () {
             /* clipboard write failed */
-            console.warn(errorMessage)
+            console.warn(errorMessage);
+            alert('Copy');
         }
     )
 } else
