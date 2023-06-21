@@ -663,7 +663,8 @@ if (navigator.clipboard && window.isSecureContext) {
     navigator.clipboard.writeText(textToCopy).then(
         function () {
             /* clipboard successfully set */
-            console.log(successMessage)
+            console.log(successMessage);
+            alert('Copy');
         },
         function () {
             /* clipboard write failed */
