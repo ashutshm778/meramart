@@ -653,7 +653,7 @@
 
 
     function CopyToClipBoard(textToCopy) {
-        alert('Copy');
+
 var successMessage = 'Success! The text was copied to your clipboard';
 var errorMessage = 'Oops! Copy to clipboard failed. ';
 
@@ -665,6 +665,7 @@ if (navigator.clipboard && window.isSecureContext) {
         function () {
             /* clipboard successfully set */
             console.log(successMessage);
+            alert('Copy to clipboard');
 
         },
         function () {
