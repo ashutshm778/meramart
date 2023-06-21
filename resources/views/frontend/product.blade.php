@@ -2,7 +2,7 @@
     <div class="ec-product-inner">
         <div class="ec-pro-image-outer">
             <div class="ec-pro-image">
-                <a href="#" class="image">
+                <a href="{{ route('search',$productData->slug) }}?type=product" class="image">
                     @php
                         $gallery_images=explode(',',$productData->gallery_image);
                     @endphp
