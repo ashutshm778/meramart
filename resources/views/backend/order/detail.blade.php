@@ -21,7 +21,7 @@
                         <div class="card card-outline card-info">
                             <div class="invoice p-3 mb-3">
                                 <div class="row invoice-info">
-                                    <div class="col-sm-6 invoice-col">
+                                    <div class="col-sm-4 invoice-col">
                                         <address>
                                             <h4>Order Detail</h4>
                                             <b>ID:</b> {{$order->order_id}}<br>
@@ -38,10 +38,30 @@
                                                 </select>
                                             @else
                                                 <span class="badge bg-danger">{{ucwords($order->order_status)}}</span>
-                                            @endif
+                                            @endif<br>
                                         </address>
                                     </div>
-                                    <div class="col-sm-6 invoice-col d-flex justify-content-end">
+                                    <div class="col-sm-3 m-auto">
+                                        <form method="post" action="{{route('admin.order.payment.status')}}">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{$order->id}}" />
+                                            <div class="col-md-12 mb-3">
+                                                <b class="mb-2">Payment Status:</b>
+                                                <select id="payment_status" name="payment_status" class="form-control mt-2">
+                                                    <option >Select Status</option>
+                                                    <option value="success" @if($order->payment_status == 'success') selected @endif>Paid</option>
+                                                    <option value="pending" @if($order->payment_status == 'pending') selected @endif>Unpaid</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <textarea name="remark" class="form-control">{{$order->remark}}</textarea>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <button class="btn btn-outline-primary btn-sm mr-1 mb-1"> Submit</button>
+                                            </div>
+                                            </form>
+                                    </div>
+                                    <div class="col-sm-4 invoice-col d-flex justify-content-end">
                                         <address>
                                             <h4>Customer Detail</h4>
                                             <b>Name:</b> {{$order->customer->first_name}} {{$order->customer->last_name}}<br>

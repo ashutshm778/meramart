@@ -38,6 +38,19 @@ class OrderController extends Controller
         Order::where('id',$request->order_id)->update([
             'order_status'=>$request->status
         ]);
+
+
     }
+
+    public function paymentStatus(Request $request){
+
+        $order=Order::find($request->id);
+        $order->payment_status = $request->payment_status;
+        $order->remark = $request->remark;
+        $order->save();
+        return redirect()->back();
+
+     }
+
 
 }

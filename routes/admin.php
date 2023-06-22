@@ -191,6 +191,7 @@ Route::prefix("admin")->group(function(){
         Route::get('orders-index',[OrderController::class,'index'])->name('orders.index');
         Route::get('order-detail/{order_id}',[OrderController::class,'detail'])->name('order.detail');
         Route::post('order-product-status',[OrderController::class,'productStatus'])->name('order.product.status');
+        Route::post('order-payment-status',[OrderController::class,'paymentStatus'])->name('order.payment.status');
 
         //Dealer Order Request
         Route::get('dealer-order-list',[DealerOrderRequestController::class,'dealerOrderList'])->name('dealer.order.list');

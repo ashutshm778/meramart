@@ -46,6 +46,7 @@ Route::group(['middleware' => 'auth:customer'], function () {
     Route::view('track-order', 'frontend.track-order')->name('track_order');
     Route::view('wishlist', 'frontend.wishlist')->name('wishlist');
     Route::view('user-history', 'frontend.user-history')->name('user_history');
+    Route::get('user-history-details/{id}', [FrontController::class, 'user_history_detail'])->name('user_history_details');
     Route::view('user-wallet', 'frontend.user-wallet')->name('user_wallet');
     Route::view('user-commission', 'frontend.user-comission')->name('user_commission');
     Route::view('user-referral', 'frontend.user-referral')->name('user_referral');

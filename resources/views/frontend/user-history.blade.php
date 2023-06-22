@@ -56,7 +56,7 @@
                                                 <td><span>Pending</span></td>
                                                 <td><span>{{ucFirst($order_history->payment_status)}}</span></td>
                                                 <td>
-                                                    <span class="tbl-btn"><a class="btn btn-lg btn-primary" href="#">View</a></span>
+                                                    <span class="tbl-btn"><a class="btn btn-lg btn-primary" href="{{route('user_history_details',$order_history->id)}}">View</a></span>
                                                 </td>
                                             </tr>
                                         @endforeach
