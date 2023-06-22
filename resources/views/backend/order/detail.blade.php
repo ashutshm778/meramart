@@ -79,6 +79,7 @@
                                                 <tr>
                                                     <th><input type="checkbox" id="all_select"></th>
                                                     <th>S.N</th>
+                                                    <th>Product Image</th>
                                                     <th>Product Name</th>
                                                     <th>Price</th>
                                                     <th>Discount</th>
@@ -103,6 +104,7 @@
                                                             @endif
                                                         </td>
                                                         <td>{{$key+1}}</td>
+                                                        <td><img src="" ></td>
                                                         <td>{{$order_detail->product->name}}</td>
                                                         <td>₹ {{$order_detail->mrp_price}}</td>
                                                         <td>₹ {{$order_detail->discounted_price}}</td>
