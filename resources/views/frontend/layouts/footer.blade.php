@@ -40,7 +40,7 @@
                                         $email = App\Models\Admin\WebsiteSetting::where('type', 'email')->first();
                                     @endphp
                                     <li><i class="ecicon eci-envelope-o"></i>{{ optional($email)->image }}</li>
-                                    <li><i class="ecicon eci-volume-control-phone"></i> {{ optional($phone)->image }}
+                                    {{-- <li><i class="ecicon eci-volume-control-phone"></i> {{ optional($phone)->image }} --}}
                                     </li>
                                 </ul>
                             </div>

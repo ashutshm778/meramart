@@ -279,7 +279,7 @@
   .ec-register-wrapper .ec-register-container .ec-register-form .btn {
     font-size: 16px;
     width: auto;
-    margin: 15px 0;
+    margin: 0px 0 15px;
     height: 44px;
     min-width: unset;
   }
@@ -3028,23 +3028,17 @@
     background-color: rgb(255, 103, 103);
   }
 
-  .header-top-social ul li a
-  {
-    margin: 0 5px;
-    width: 35px;
-    display: block;
-    height: 35px;
-    border-radius: 30px;
-    border: 1px solid #eeeeee;
-    background: #f7f7f7;
-        color: #777;
-  }
 
   .header-top-social ul li a i
   {
     font-size: 18px;
     padding: 9px;
   }
+
+  .header-top-call i {
+    color: #fff;
+    padding-right: 7px;
+}
 
   .header-top-social ul li .hdr-facebook:hover {
     background: #3b5998;

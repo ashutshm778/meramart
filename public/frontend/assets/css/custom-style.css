@@ -111,9 +111,98 @@
     line-height: 27px;
 }
 
+.ec-register-wrapper .ec-register-container .ec-register-form .agree-label input{
+    width: 15px;
+}
+
+.ec-register-wrapper .ec-register-container .ec-register-form .agree-label {
+    margin-top: 0px;
+    float: left;
+    display: flex;
+    padding-left: 15px;
+}
+
+.ec-register-wrapper .ec-register-container .ec-register-form .agree-label label
+{
+    padding-left: 5px;
+    padding-top: 17px;
+}
+
+.ec-register-wrapper .ec-register-container .ec-register-form .social-option {
+    margin-top: 10px;
+    position: relative;
+}
+
+.ec-register-wrapper .ec-register-container .ec-register-form .social-option::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 0;
+    width: 37%;
+    height: 1px;
+    background-color: #d5d5d5;
+}
+
+.ec-register-wrapper .ec-register-container .ec-register-form .social-option::after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    right: 0;
+    width: 37%;
+    height: 1px;
+    background-color: #d5d5d5;
+}
+
+.ec-register-wrapper .ec-register-container .ec-register-form .social-option h3 {
+    font-size: 16px;
+    color: #000;
+    font-weight: 400;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.ec-register-wrapper .ec-register-container .ec-register-form .social-option ul {
+    list-style: none;
+    margin: 0 0 20px;
+    padding: 0;
+    text-align: center;
+}
+
+.ec-register-wrapper .ec-register-container .ec-register-form .social-option ul li {
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+.ec-register-wrapper .ec-register-container .ec-register-form .social-option ul li:nth-child(1) a {
+    background-color: #3b5998;
+}
+.ec-register-wrapper .ec-register-container .ec-register-form .social-option ul li a {
+    padding: 14px 35px;
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    border-radius: 50px;
+}
+
+.ec-register-wrapper .ec-register-container .ec-register-form .social-option ul li:nth-child(2) a {
+    background-color: #55acee;
+}
+
+.ec-register-wrapper .ec-register-container .ec-register-form .social-option  ul li:nth-child(1) a:hover {
+    background-color: var(--main-color);
+    -webkit-animation: tada 1s linear;
+    animation: tada 1s linear;
+}
+
+.ec-register-wrapper .ec-register-container .ec-register-form .social-option  ul li:nth-child(2) a:hover {
+    background-color: var(--main-color);
+    -webkit-animation: tada 1s linear;
+    animation: tada 1s linear;
+}
+
 .aiz-megabox
 {
-    border: 1px solid #ddd;
+    border:none;
     border-radius: 10px;
 }
 

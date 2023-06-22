@@ -18267,8 +18267,8 @@ button.btn-close.qty_close {
 .ec-product-inner .ec-pro-image .image {
   position: relative;
   display: block;
-  overflow: hidden;
-  pointer-events: none;
+  /* overflow: hidden;
+  pointer-events: none; */
 }
 .ec-product-inner .ec-pro-image .image img {
     z-index: 1;
