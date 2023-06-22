@@ -61,6 +61,7 @@
                                                         <thead>
                                                             <tr>
                                                                 <th>S.N</th>
+                                                                <th>Product Image</th>
                                                                 <th>Product Name</th>
                                                                 <th>Price</th>
                                                                 <th>Discount</th>
@@ -79,6 +80,7 @@
                                                                 <tr>
 
                                                                     <td>{{$key+1}}</td>
+                                                                    <td><img src="{{asset('public/'.api_asset($order_detail->product->thumbnail_image))}}" style="height:80px;"></td>
                                                                     <td>{{$order_detail->product->name}}</td>
                                                                     <td>₹ {{$order_detail->mrp_price}}</td>
                                                                     <td>₹ {{$order_detail->discounted_price}}</td>
