@@ -65,14 +65,14 @@ class OrderController extends Controller
 
         if (empty($customer->referral_code)) {
 
-            if (featureActivation('mlm') == '1' && !empty(Auth::guard('customer')->user()->refered_by)) {
+            if (featureActivation('mlm') == '1' && !empty($customer->refered_by)) {
 
                 if ($customer->orders->sum('grand_total') > 3999) {
                     $customer->verify_status = 1;
                     $customer->referral_code = 'MM' . rand(1111, 9999);
                     $customer->save();
                     $level = 10;
-                    $referral_code = Auth::guard('customer')->user()->refered_by;
+                    $referral_code = $customer->refered_by;
                     for ($i = 1; $i <= $level; $i++) {
                         $refferal_customer = Customer::where('referral_code', $referral_code)->first();
 
@@ -155,7 +155,7 @@ class OrderController extends Controller
                 }
             }
         }
-        if (!empty($customer->referral_code) && (Order::where('user_id', Auth::guard('customer')->user()->id)->get()->count() > 1)) {
+        if (!empty($customer->referral_code) && (Order::where('user_id', $customer->id)->get()->count() > 1)) {
 
             $customer->balance = $customer->balance + 300;
             $customer->save();
@@ -172,7 +172,7 @@ class OrderController extends Controller
 
 
             $level = 3;
-            $referral_code = Auth::guard('customer')->user()->refered_by;
+            $referral_code = $customer->refered_by;
             for ($i = 1; $i <= $level; $i++) {
                 $refferal_customer = Customer::where('referral_code', $referral_code)->first();
 
