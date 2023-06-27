@@ -37,10 +37,9 @@
         <!-- Sidebar Category Block -->
         <div class="ec-sidebar-block">
             <div class="ec-vendor-block">
-                <div class="ec-vendor-block-bg"></div>
                 <div class="ec-vendor-block-detail">
-                    <img class="v-img" src="@if(Auth::guard('customer')->user()->photo) {{asset('public/public/frontend/user_profile/'.Auth::guard('customer')->user()->photo)}} @else {{asset('public/public/frontend/assets/images/149071.png')}} @endif" alt="vendor image">
-                    <h5>{{Auth::guard('customer')->user()->first_name}} {{Auth::guard('customer')->user()->last_name}}</h5>
+                    <img src="@if(Auth::guard('customer')->user()->photo) {{asset('public/public/frontend/user_profile/'.Auth::guard('customer')->user()->photo)}} @else {{asset('public/public/frontend/assets/images/149071.png')}} @endif" alt="vendor image">
+                    <h5 class="pt-3">{{Auth::guard('customer')->user()->first_name}} {{Auth::guard('customer')->user()->last_name}}</h5>
                     @if(featureActivation('mlm') == '1' && !empty(Auth::guard('customer')->user()->refered_by))
                       @if(Auth::guard('customer')->user()->verify_status==1)
                        <a  href="https://web.whatsapp.com/send?text=https://themeramart.com/user-register-mlm?referral_code={{Auth::guard('customer')->user()->referral_code}}" data-action="share/whatsapp/share" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" class="theme_btns theme_btn_bg desktop">

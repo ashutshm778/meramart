@@ -44,7 +44,7 @@
                 <div class="col-md-10">
                   <div class="row">
                     <div class="col-md-6">
-                        <div class="image-contain">
+                        <div class="image-contain d-lg-block d-md-block d-none">
                             <img src="{{asset('public/frontend/assets/images/login.png')}}" class="img-fluid" alt="">
                         </div>
                     </div>
@@ -69,17 +69,38 @@
                                                 <span class="text-danger">{{ $errors->first('password') }}</span>
                                             @endif
                                         </span>
-
+                                        <div class="row w-100">
+                                            <div class="col-md-6">
+                                                <div class="agree-label">
+                                                    <input type="checkbox" name="remember">
+                                                    <label for="chb1">Remember Me </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 text-right">
+                                                <p class="mt-2"><i class="ecicon eci-lock"></i> Forget Password ? <a href="{{ route('customer.forgot_password') }}"> Click Here</a></p>
+                                           </div>
+                                        </div>
                                         <span class="ec-register-wrap ec-register-btn">
                                             <button class="btn btn-primary" type="submit">Login</button>
-                                            <hr>
+
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-12">
+                                                  <p style="text-align: center;">Don't have an account? </p>
+
+                                                    <div class="social-option">
+                                                        <h3>Register Here</h3>
+                                                            <ul>
+                                                                <li><a href="{{ route('user.register') }}"> As User</a></li>
+                                                                <li><a href="{{ route('user.register.mlm') }}"> As MLM</a></li>
+                                                            </ul>
+                                                    </div>
+                                                </div>
+                                                {{-- <div class="col-md-6">
                                                     <p class="mt-2">Don't have an account ?  <a href="{{ route('user.register.mlm') }}"> Register</a></p>
                                                 </div>
                                                 <div class="col-md-6 text-right">
                                                      <p class="mt-2">Forget Password ? <a href="{{ route('customer.forgot_password') }}"> Click Here</a></p>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         </span>
 
