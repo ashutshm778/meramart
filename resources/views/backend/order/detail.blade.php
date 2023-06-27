@@ -47,7 +47,7 @@
                                             <input type="hidden" name="id" value="{{$order->id}}" />
                                             <div class="col-md-12 mb-3">
                                                 <b class="mb-2">Payment Status:</b>
-                                                <select id="payment_status" name="payment_status" class="form-control mt-2">
+                                                <select id="payment_status" name="payment_status" class="form-control mt-2" @if($order->payment_status == 'success') {{'disabled'}} @endif>
                                                     <option >Select Status</option>
                                                     <option value="success" @if($order->payment_status == 'success') selected @endif>Paid</option>
                                                     <option value="pending" @if($order->payment_status == 'pending') selected @endif>Unpaid</option>
