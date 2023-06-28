@@ -76,9 +76,9 @@ class OrderController extends Controller
                     for ($i = 1; $i <= $level; $i++) {
                         $refferal_customer = Customer::where('referral_code', $referral_code)->first();
 
-                        if (Customer::where('refered_by', $referral_code)->where('status',1)->get()->count() % 2 == 0) {
+                        if (Customer::where('refered_by', $referral_code)->where('verify_status',1)->get()->count() % 2 == 0) {
 
-                                $all_user_ids=Customer::where('refered_by', $referral_code)->where('status',1)->get()->pluck('id')->toArray();
+                                $all_user_ids=Customer::where('refered_by', $referral_code)->where('verify_status',1)->get()->pluck('id')->toArray();
                                 $all_commission_direct_user_id=CommissionDirect::where('user_id',$refferal_customer->id)->get()->pluck('direct_user_id')->toArray();
 
                                 $diff = array_diff($all_user_ids, $all_commission_direct_user_id);
