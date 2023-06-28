@@ -42,7 +42,7 @@
                                     </thead>
                                     <tbody>
                                         @php
-                                            $referral_users = App\Models\Customer::where('refered_by',Auth::guard('customer')->user()->referral_code)->orderby('id','desc')->paginate(10);
+                                            $referral_users = App\Models\Customer::where('refered_by',Auth::guard('customer')->user()->referral_code)->orderby('id','desc')->get();
                                         @endphp
                                         @foreach ($referral_users as $referral_user)
                                             <tr>

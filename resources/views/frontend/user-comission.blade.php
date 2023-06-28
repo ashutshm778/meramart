@@ -42,7 +42,7 @@
                                     </thead>
                                     <tbody>
                                         @php
-                                            $commission_histories = App\Models\Commission::where('user_id',Auth::guard('customer')->user()->id)->orderby('id','desc')->paginate(10);
+                                            $commission_histories = App\Models\Commission::where('user_id',Auth::guard('customer')->user()->id)->orderby('id','desc')->get();
                                         @endphp
                                         @foreach ($commission_histories as $commission_history)
                                             <tr>
