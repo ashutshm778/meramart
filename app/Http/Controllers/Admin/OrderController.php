@@ -96,12 +96,12 @@ class OrderController extends Controller
                                 }
 
 
-                                $refferal_customer->balance = $refferal_customer->balance + $commission_direct->commission;
+                                $refferal_customer->balance = $refferal_customer->balance + 600;
                                 $refferal_customer->save();
 
                                 $customer_wallet = new CustomerWallet;
                                 $customer_wallet->user_id = $refferal_customer->id;
-                                $customer_wallet->amount = $commission_direct->commission;
+                                $customer_wallet->amount = 600;
                                 $customer_wallet->transaction_type = 'credited';
                                 $customer_wallet->transaction_detail = 'Comission Credited For Two Direct';
                                 $customer_wallet->payment_details = '';
