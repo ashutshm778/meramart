@@ -76,15 +76,24 @@ class OrderController extends Controller
                     for ($i = 1; $i <= $level; $i++) {
                         $refferal_customer = Customer::where('referral_code', $referral_code)->first();
 
-                        if (Customer::where('refered_by', $referral_code)->get()->count() == 2) {
+                        if (Customer::where('refered_by', $referral_code)->where('status',1)->get()->count() % 2 == 0) {
 
-                            if (CommissionDirect::where('user_id', $refferal_customer->id)->where('direct', 2)->get()->count() < 1) {
+                                $all_user_ids=Customer::where('refered_by', $referral_code)->where('status',1)->get()->pluck('id')->toArray();
+                                $all_commission_direct_user_id=CommissionDirect::where('user_id',$refferal_customer->id)->get()->pluck('direct_user_id')->toArray();
 
-                                $commission_direct = new CommissionDirect;
-                                $commission_direct->user_id = $refferal_customer->id;
-                                $commission_direct->commission = 600;
-                                $commission_direct->direct = 2;
-                                $commission_direct->save();
+                                $diff = array_diff($all_user_ids, $all_commission_direct_user_id);
+
+                                foreach($diff as $userId){
+
+                                    $commission_direct = new CommissionDirect;
+                                    $commission_direct->user_id = $refferal_customer->id;
+                                    $commission_direct->order_id = $order->id;
+                                    $commission_direct->commission = 300;
+                                    $commission_direct->direct_type = 2;
+                                    $commission_direct->direct_user_id = $userId;
+                                    $commission_direct->save();
+
+                                }
 
 
                                 $refferal_customer->balance = $refferal_customer->balance + $commission_direct->commission;
@@ -99,11 +108,11 @@ class OrderController extends Controller
                                 $customer_wallet->balance = $refferal_customer->balance;
                                 $customer_wallet->approval = 0;
                                 $customer_wallet->save();
-                            }
+
                         }
 
                         if (Customer::where('refered_by', $referral_code)->get()->count() == 10) {
-                            if (CommissionDirect::where('user_id', $refferal_customer->id)->where('direct', 10)->get()->count() < 1) {
+
 
                                 $commission_direct = new CommissionDirect;
                                 $commission_direct->user_id = $refferal_customer->id;
@@ -124,7 +133,7 @@ class OrderController extends Controller
                                 $customer_wallet->balance = $refferal_customer->balance;
                                 $customer_wallet->approval = 0;
                                 $customer_wallet->save();
-                            }
+
                         }
 
                         if (!empty($refferal_customer->id)) {
