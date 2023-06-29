@@ -47,7 +47,7 @@
                                             <tr>
                                                 <td><span>{{$commission_history->created_at->format('d-M-Y h:i A')}}</span></td>
                                                 <td><span>{{$commission_history->direct_type}}</span></td>
-                                                <td><span>{{App\Models\Customer::find($commission_history->direct_user_id)->name}}</span></td>
+                                                <td><span>{{App\Models\Customer::find($commission_history->direct_user_id)->first_name}}</span></td>
                                                 <td> <span>{{$commission_history->commission}}</span></td>
                                             </tr>
                                         @endforeach
