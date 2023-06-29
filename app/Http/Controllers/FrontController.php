@@ -286,4 +286,8 @@ class FrontController extends Controller
         $direct_commission_histories = CommissionDirect::where('order_id',$id)->where('direct_type',2)->get();
         return view('frontend.user-direct-comission-user-list', compact('direct_commission_histories'));
     }
+    public function user_ten_direct_commission_list($id){
+        $direct_commission_histories = CommissionDirect::where('order_id',$id)->where('direct_type',10)->get();
+        return view('frontend.user-ten-direct-comission-user-list', compact('direct_commission_histories'));
+    }
 }

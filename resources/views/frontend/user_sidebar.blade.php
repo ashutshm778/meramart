@@ -65,7 +65,8 @@
                         <li><a href="{{route('user_wallet')}}">User Wallet</a></li>
                         <li><a href="{{route('user_commission')}}">Level Income</a></li>
                         <li><a href="{{route('user_referral')}}">Directs</a></li>
-                        <li><a href="{{route('user_direct_commission')}}">Pair Income</a></li>
+                        <li><a href="{{route('user_direct_commission')}}">Two Pair Income</a></li>
+                        <li><a href="{{route('user_ten_direct_commission')}}">Ten Pair Income</a></li>
                     </ul>
                 </div>
             </div>
