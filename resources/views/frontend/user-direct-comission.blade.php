@@ -31,7 +31,7 @@
                         <div class="ec-vendor-card-header">
                             <h5>Two Pair Income History</h5>
                             <div class="ec-header-btn">
-                                Total Amount : {{$direct_commission_histories->sum('commission')}}
+                                Total Amount : {{App\Models\CommissionDirect::where('user_id',Auth::guard('customer')->user()->id)->where('direct_type',2)->orderBy('id','desc')->get()->sum('commission')}}
                             </div>
                         </div>
                         <div class="ec-vendor-card-body">
