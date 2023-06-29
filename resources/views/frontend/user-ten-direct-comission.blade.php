@@ -6,7 +6,7 @@
                 <div class="col-12">
                     <div class="row ec_breadcrumb_inner">
                         <div class="col-md-6 col-sm-12">
-                            <h2 class="ec-breadcrumb-title">User History</h2>
+                            <h5>Ten Pair Income History</h5>
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <ul class="ec-breadcrumb-list">
@@ -25,8 +25,14 @@
                 @include('frontend.user_sidebar')
                 <div class="ec-shop-rightside col-lg-9 col-md-12">
                     <div class="ec-vendor-dashboard-card">
+                        @php
+                        $direct_commission_histories = App\Models\CommissionDirect::where('user_id',Auth::guard('customer')->user()->id)->where('direct_type',10)->groupBy('order_id')->orderBy('id','desc')->get();
+                        @endphp
                         <div class="ec-vendor-card-header">
                             <h5>Ten Pair Income History</h5>
+                            <div class="ec-header-btn">
+                                Total Amount : {{$direct_commission_histories->sum('commission')}}
+                            </div>
                         </div>
                         <div class="ec-vendor-card-body">
                             <div class="ec-vendor-card-table">
@@ -40,9 +46,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php
-                                            $direct_commission_histories = App\Models\CommissionDirect::where('user_id',Auth::guard('customer')->user()->id)->where('direct_type',10)->groupBy('order_id')->orderBy('id','desc')->get();
-                                        @endphp
+
                                         @foreach ($direct_commission_histories as $commission_history)
                                             <tr>
                                                 <td><span>{{$commission_history->created_at->format('d-M-Y h:i A')}}</span></td>
