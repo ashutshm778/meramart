@@ -35,20 +35,20 @@
                                         <tr>
                                             <th scope="col">Date</th>
                                             <th scope="col">Direct Type</th>
-                                            <th scope="col">User</th>
                                             <th scope="col">Commission Amount</th>
+                                            <th scope="col">View</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @php
-                                            $direct_commission_histories = App\Models\CommissionDirect::where('user_id',Auth::guard('customer')->user()->id)->orderby('id','desc')->get();
+                                            $direct_commission_histories = App\Models\CommissionDirect::where('user_id',Auth::guard('customer')->user()->id)->where('direct_type',2)->groupBy('order_id')->orderBy('id','desc')->get();
                                         @endphp
                                         @foreach ($direct_commission_histories as $commission_history)
                                             <tr>
                                                 <td><span>{{$commission_history->created_at->format('d-M-Y h:i A')}}</span></td>
                                                 <td><span>{{$commission_history->direct_type}}</span></td>
-                                                <td><span>{{App\Models\Customer::find($commission_history->direct_user_id)->first_name}}</span></td>
-                                                <td> <span>{{$commission_history->commission}}</span></td>
+                                                <td> <span>600</span></td>
+                                                <td> <a href="#" class="btn btn-primary">View</a></td>
                                             </tr>
                                         @endforeach
                                     </tbody>
