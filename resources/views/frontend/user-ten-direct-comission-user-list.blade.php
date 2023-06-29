@@ -26,31 +26,26 @@
                 <div class="ec-shop-rightside col-lg-9 col-md-12">
                     <div class="ec-vendor-dashboard-card">
                         <div class="ec-vendor-card-header">
-                            <h5>User Referral</h5>
+                            <h5>Pair Income History</h5>
                         </div>
                         <div class="ec-vendor-card-body">
                             <div class="ec-vendor-card-table">
                                 <table class="table ec-table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">First Name</th>
-                                            <th scope="col">Phone</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Earning</th>
-                                            <th scope="col">Register Date</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Direct Type</th>
+                                            <th scope="col">Commission Amount</th>
+                                            <th scope="col">User</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php
-                                            $referral_users = App\Models\Customer::where('refered_by',Auth::guard('customer')->user()->referral_code)->orderby('id','desc')->get();
-                                        @endphp
-                                        @foreach ($referral_users as $referral_user)
+                                        @foreach ($direct_commission_histories as $commission_history)
                                             <tr>
-                                                <td><span>{{$referral_user->first_name}}</span></td>
-                                                <td><span>{{$referral_user->phone}}</span></td>
-                                                <td><span>{{$referral_user->email}}</span></td>
-                                                <td> <span>{{$referral_user->balance}}</span></td>
-                                                <td><span>{{$referral_user->created_at->format('d-M-Y h:i A')}}</span></td>
+                                                <td><span>{{$commission_history->created_at->format('d-M-Y h:i A')}}</span></td>
+                                                <td><span>{{$commission_history->direct_type}}</span></td>
+                                                <td><span>{{$commission_history->commission}}</span></td>
+                                                <td>{{App\Models\Customer::find($commission_history->direct_user_id)->first_name}}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

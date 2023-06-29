@@ -24,9 +24,15 @@
             <div class="row">
                 @include('frontend.user_sidebar')
                 <div class="ec-shop-rightside col-lg-9 col-md-12">
+                    @php
+                     $direct_commission_histories = App\Models\CommissionDirect::where('user_id',Auth::guard('customer')->user()->id)->where('direct_type',2)->groupBy('order_id')->orderBy('id','desc')->get();
+                    @endphp
                     <div class="ec-vendor-dashboard-card">
                         <div class="ec-vendor-card-header">
-                            <h5>Direct Income History</h5>
+                            <h5>Two Pair Income History</h5>
+                            <div class="ec-header-btn">
+                                Total Amount : {{App\Models\CommissionDirect::where('user_id',Auth::guard('customer')->user()->id)->where('direct_type',2)->orderBy('id','desc')->get()->sum('commission')}}
+                            </div>
                         </div>
                         <div class="ec-vendor-card-body">
                             <div class="ec-vendor-card-table">
@@ -34,19 +40,19 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">Date</th>
-                                            <th scope="col">Direct</th>
+                                            <th scope="col">Direct Type</th>
                                             <th scope="col">Commission Amount</th>
+                                            <th scope="col">View</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php
-                                            $direct_commission_histories = App\Models\CommissionDirect::where('user_id',Auth::guard('customer')->user()->id)->orderby('id','desc')->paginate(10);
-                                        @endphp
+
                                         @foreach ($direct_commission_histories as $commission_history)
                                             <tr>
                                                 <td><span>{{$commission_history->created_at->format('d-M-Y h:i A')}}</span></td>
-                                                <td><span>{{$commission_history->direct}}</span></td>
-                                                <td> <span>{{$commission_history->commission}}</span></td>
+                                                <td><span>{{$commission_history->direct_type}}</span></td>
+                                                <td> <span>600</span></td>
+                                                <td> <a href="{{route('user_direct_commission_list',$commission_history->order_id)}}" class="btn btn-primary">View</a></td>
                                             </tr>
                                         @endforeach
                                     </tbody>

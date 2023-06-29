@@ -25,8 +25,14 @@
                 @include('frontend.user_sidebar')
                 <div class="ec-shop-rightside col-lg-9 col-md-12">
                     <div class="ec-vendor-dashboard-card">
+                        @php
+                        $commission_histories = App\Models\Commission::where('user_id',Auth::guard('customer')->user()->id)->orderby('id','desc')->get();
+                        @endphp
                         <div class="ec-vendor-card-header">
                             <h5>Comission History</h5>
+                            <div class="ec-header-btn">
+                                Total Amount : {{$commission_histories->sum('commission')}}
+                            </div>
                         </div>
                         <div class="ec-vendor-card-body">
                             <div class="ec-vendor-card-table">
@@ -41,9 +47,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php
-                                            $commission_histories = App\Models\Commission::where('user_id',Auth::guard('customer')->user()->id)->orderby('id','desc')->paginate(10);
-                                        @endphp
+
                                         @foreach ($commission_histories as $commission_history)
                                             <tr>
                                                 <td><span>{{$commission_history->created_at->format('d-M-Y h:i A')}}</span></td>

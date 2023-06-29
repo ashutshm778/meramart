@@ -52,6 +52,9 @@ Route::group(['middleware' => 'auth:customer'], function () {
     Route::view('user-referral', 'frontend.user-referral')->name('user_referral');
     Route::view('user-dashboard', 'frontend.user-dashboard')->name('user_dashboard');
     Route::view('user-direct-commission', 'frontend.user-direct-comission')->name('user_direct_commission');
+    Route::get('user-direct-commission-user-list/{id}',[FrontController::class,'user_direct_commission_list'])->name('user_direct_commission_list');
+    Route::view('user-ten-direct-commission', 'frontend.user-ten-direct-comission')->name('user_ten_direct_commission');
+    Route::get('user-ten-direct-commission-user-list/{id}',[FrontController::class,'user_ten_direct_commission_list'])->name('user_ten_direct_commission_list');
     Route::post('update-user-profile',[FrontController::class, 'updateUserProfile'])->name('update.user.profile');
     Route::view('manage-address','frontend.manage_address')->name('manage.address');
     Route::get('get-address-by-pincode/{pincode}',[PincodeController::class,'getAddressByPincode'])->name('get.address.by.pincode');

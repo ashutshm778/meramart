@@ -12,6 +12,7 @@ use App\Models\Admin\Offer;
 use Illuminate\Http\Request;
 use App\Models\Admin\Product;
 use App\Models\Admin\Category;
+use App\Models\CommissionDirect;
 use Craftsys\Msg91\Facade\Msg91;
 use App\Models\Admin\SubCategory;
 use App\Models\Admin\SubSubCategory;
@@ -279,5 +280,14 @@ class FrontController extends Controller
     public function user_history_detail($id){
         $order = Order::where('id',$id)->first();
         return view('frontend.user-history-details', compact('order'));
+    }
+
+    public function user_direct_commission_list($id){
+        $direct_commission_histories = CommissionDirect::where('order_id',$id)->where('direct_type',2)->get();
+        return view('frontend.user-direct-comission-user-list', compact('direct_commission_histories'));
+    }
+    public function user_ten_direct_commission_list($id){
+        $direct_commission_histories = CommissionDirect::where('order_id',$id)->where('direct_type',10)->get();
+        return view('frontend.user-ten-direct-comission-user-list', compact('direct_commission_histories'));
     }
 }

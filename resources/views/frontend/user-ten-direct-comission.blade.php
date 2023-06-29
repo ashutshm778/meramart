@@ -6,7 +6,7 @@
                 <div class="col-12">
                     <div class="row ec_breadcrumb_inner">
                         <div class="col-md-6 col-sm-12">
-                            <h2 class="ec-breadcrumb-title">User History</h2>
+                            <h5>Ten Pair Income History</h5>
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <ul class="ec-breadcrumb-list">
@@ -25,32 +25,34 @@
                 @include('frontend.user_sidebar')
                 <div class="ec-shop-rightside col-lg-9 col-md-12">
                     <div class="ec-vendor-dashboard-card">
+                        @php
+                        $direct_commission_histories = App\Models\CommissionDirect::where('user_id',Auth::guard('customer')->user()->id)->where('direct_type',10)->groupBy('order_id')->orderBy('id','desc')->get();
+                        @endphp
                         <div class="ec-vendor-card-header">
-                            <h5>User Referral</h5>
+                            <h5>Ten Pair Income History</h5>
+                            <div class="ec-header-btn">
+                                Total Amount : {{App\Models\CommissionDirect::where('user_id',Auth::guard('customer')->user()->id)->where('direct_type',10)->get()->sum('commission')}}
+                            </div>
                         </div>
                         <div class="ec-vendor-card-body">
                             <div class="ec-vendor-card-table">
                                 <table class="table ec-table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">First Name</th>
-                                            <th scope="col">Phone</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Earning</th>
-                                            <th scope="col">Register Date</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Direct Type</th>
+                                            <th scope="col">Commission Amount</th>
+                                            <th scope="col">View</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php
-                                            $referral_users = App\Models\Customer::where('refered_by',Auth::guard('customer')->user()->referral_code)->orderby('id','desc')->get();
-                                        @endphp
-                                        @foreach ($referral_users as $referral_user)
+
+                                        @foreach ($direct_commission_histories as $commission_history)
                                             <tr>
-                                                <td><span>{{$referral_user->first_name}}</span></td>
-                                                <td><span>{{$referral_user->phone}}</span></td>
-                                                <td><span>{{$referral_user->email}}</span></td>
-                                                <td> <span>{{$referral_user->balance}}</span></td>
-                                                <td><span>{{$referral_user->created_at->format('d-M-Y h:i A')}}</span></td>
+                                                <td><span>{{$commission_history->created_at->format('d-M-Y h:i A')}}</span></td>
+                                                <td><span>{{$commission_history->direct_type}}</span></td>
+                                                <td> <span>2560</span></td>
+                                                <td> <a href="{{route('user_ten_direct_commission_list',$commission_history->order_id)}}" class="btn btn-primary">View</a></td>
                                             </tr>
                                         @endforeach
                                     </tbody>
