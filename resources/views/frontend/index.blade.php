@@ -341,7 +341,7 @@
                                     <div class="ec-product-inner">
                                         <div class="ec-pro-image-outer">
                                             <div class="ec-pro-image">
-                                                <a href="#" class="image">
+                                                <a href="{{ route('search',$featured_category_product->slug) }}?type=product" class="image">
                                                     <img class="main-image" src="{{ asset('public/'.api_asset($featured_category_product->thumbnail_image)) }}" alt="Product" />
                                                 </a>
                                                 @if($featured_category_product_price['discount'])
