@@ -26,7 +26,7 @@
                 <div class="ec-shop-rightside col-lg-9 col-md-12">
                     <div class="ec-vendor-dashboard-card">
                         <div class="ec-vendor-card-header">
-                            <h5>Direct Income History</h5>
+                            <h5>Pair Income History</h5>
                         </div>
                         <div class="ec-vendor-card-body">
                             <div class="ec-vendor-card-table">
@@ -34,7 +34,8 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">Date</th>
-                                            <th scope="col">Direct</th>
+                                            <th scope="col">Direct Type</th>
+                                            <th scope="col">User</th>
                                             <th scope="col">Commission Amount</th>
                                         </tr>
                                     </thead>
@@ -45,7 +46,8 @@
                                         @foreach ($direct_commission_histories as $commission_history)
                                             <tr>
                                                 <td><span>{{$commission_history->created_at->format('d-M-Y h:i A')}}</span></td>
-                                                <td><span>{{$commission_history->direct}}</span></td>
+                                                <td><span>{{$commission_history->direct_type}}</span></td>
+                                                <td><span>{{App\Models\Customer::find($commission_history->direct_user_id)->name}}</span></td>
                                                 <td> <span>{{$commission_history->commission}}</span></td>
                                             </tr>
                                         @endforeach
