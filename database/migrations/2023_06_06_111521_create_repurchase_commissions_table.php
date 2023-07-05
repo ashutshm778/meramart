@@ -17,9 +17,8 @@ class CreateRepurchaseCommissionsTable extends Migration
             $table->id();
             $table->string('user_id');
             $table->string('order_id');
-            $table->string('direct_user_id');
-            $table->string('commission');
-            $table->string('direct_type');
+            $table->bigInteger('commission');
+            $table->string('level');
             $table->string('delete_status');
             $table->timestamps();
         });

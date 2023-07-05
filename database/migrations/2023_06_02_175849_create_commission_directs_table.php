@@ -16,8 +16,10 @@ class CreateCommissionDirectsTable extends Migration
         Schema::create('commission_directs', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
+            $table->string('order_id');
+            $table->string('direct_user_id');
             $table->bigInteger('commission');
-            $table->string('direct');
+            $table->string('direct_type');
             $table->string('delete_status');
             $table->timestamps();
         });
