@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DealerController;
+use App\Http\Controllers\Admin\PayoutController;
 use App\Http\Controllers\Admin\VendorController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\PincodeController;
@@ -209,6 +210,10 @@ Route::prefix("admin")->group(function(){
         Route::resource('coupons',CouponController::class);
         Route::get('coupons-status/{id}/{status}',[CouponController::class,'status'])->name('coupons.status');
         Route::post('get-coupon-product-table', [CouponController::class,'getCouponProductTable'])->name('get.coupon.product.table');
+
+        //Payout
+        Route::get('payout-index',[PayoutController::class,'index'])->name('payout.index');
+        Route::post('payout-store',[PayoutController::class,'store'])->name('payout.store');
 
         //Setup & Configuration
         Route::get('feature-activation-index',[FeatureActivationController::class,'index'])->name('feature.activation.index');

@@ -223,6 +223,14 @@
                         </a>
                     </li>
                 @endif
+
+                <li class="nav-item">
+                    <a href="{{route('admin.payout.index')}}" class="nav-link @if(Route::currentRouteName() == 'admin.payout.index') active @endif">
+                        <i class="nav-icon fas fa-money-bill"></i>
+                        <p>Payout</p>
+                    </a>
+                </li>
+
                 @if(featureActivation('distributor') == '1' || featureActivation('wholesaller') == '1')
                     <li class="nav-item @if(Route::currentRouteName() == 'admin.business.person.request.index' || Route::currentRouteName() == 'admin.business.person.request.edit') menu-is-opening menu-open @endif">
                         <a href="#" class="nav-link @if(Route::currentRouteName() == 'admin.business.person.request.index' || Route::currentRouteName() == 'admin.business.person.request.edit') active @endif">

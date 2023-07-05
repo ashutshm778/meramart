@@ -9,10 +9,13 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PayoutController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\AizUploadController;
+use App\Http\Controllers\RepurchaseController;
+use App\Http\Controllers\LevelIncomeController;
 use App\Http\Controllers\Admin\PincodeController;
 use App\Http\Controllers\CustomerAddressController;
 /*
@@ -76,6 +79,16 @@ Route::group(['middleware' => 'auth:customer'], function () {
 
     Route::get('check_reward',[OrderController::class,'check_reward'])->name('check_reward');
 
+    //Payout
+    Route::get('received-amount',[PayoutController::class,'index'])->name('payout.amount');
+
+    //Repurchase Commission
+    Route::get('repurchase-commission-list',[RepurchaseController::class,'index'])->name('repurchse.commission.list');
+
+    //Level Income
+    Route::get('level-income-index',[LevelIncomeController::class,'index'])->name('level.income.index');
+    Route::get('level-team-list/{level}',[LevelIncomeController::class,'teamList'])->name('level.team.list');
+
 
 });
 
@@ -101,7 +114,7 @@ if(featureActivation('distributor') == '1' || featureActivation('wholeseller') =
 }
 
 //Login
-if(featureActivation('retailer') == '1' || featureActivation('distributor') == '1' || featureActivation('wholeseller') == '1'){
+if(featureActivation('retailer') == '1' || featureActivation('distributor') == '1' || featureActivation('wholeseller') == '1' || featureActivation('mlm') == '1'){
     Route::view('user-login', 'frontend.auth.login')->name('user.login');
     Route::post('customer-login', [FrontController::class, 'attemptLogin'])->name('customer.login');
 }

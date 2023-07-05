@@ -135,6 +135,7 @@
         var otp=$('#otp').val('');
 
         $.get("{{route('send.otp','')}}"+"/"+phone, function(data) {
+            console.log(data);
             if(data != 1)
             {
                 $('#phone').addClass('is-invalid');

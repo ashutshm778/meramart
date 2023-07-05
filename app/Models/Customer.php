@@ -21,6 +21,7 @@ class Customer extends Authenticatable
         'password',
         'photo',
         'referral_code',
+        'payout',
         'refered_by',
         'verify_status',
     ];

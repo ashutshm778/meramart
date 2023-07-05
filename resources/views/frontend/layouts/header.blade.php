@@ -89,7 +89,7 @@
                     <div class="align-self-center ec-header-cart">
                         <div class="ec-header-bottons">
                             <!-- Header User Start -->
-                            @if(featureActivation('retailer') == '1' || featureActivation('distributor') == '1' || featureActivation('wholeseller') == '1')
+                            @if(featureActivation('retailer') == '1' || featureActivation('distributor') == '1' || featureActivation('wholeseller') == '1' || featureActivation('mlm') == '1')
                                 <div class="ec-header-user dropdown">
                                     <button class="dropdown-toggle" data-bs-toggle="dropdown"><img
                                             src="{{ asset('public/frontend/assets/images/icons/user.svg') }}"
@@ -103,7 +103,7 @@
                                             <li><a class="dropdown-item" href="{{ route('customer.logout') }}">Logout</a>
                                             </li>
                                         @else
-                                            @if(featureActivation('retailer') == '1' || featureActivation('distributor') == '1' || featureActivation('wholeseller') == '1')
+                                            @if(featureActivation('retailer') == '1' || featureActivation('distributor') == '1' || featureActivation('wholeseller') == '1' || featureActivation('mlm') == '1')
                                             <li><a class="dropdown-item" href="{{ route('user.login') }}">Login</a></li>
                                             @endif
                                             @if(featureActivation('retailer') == '1')

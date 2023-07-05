@@ -63,10 +63,17 @@
                         <li><a href="{{route('cart')}}">Cart</a></li>
                         <li><a href="{{route('track_order')}}">Track Order</a></li>
                         <li><a href="{{route('user_wallet')}}">User Wallet</a></li>
-                        <li><a href="{{route('user_commission')}}">Level Income</a></li>
+                        <li><a href="{{route('payout.amount')}}">Received & Pending Amount</a></li>
+                        <li><a href="{{route('user_commission')}}">Level Income History</a></li>
+                        <li><a href="{{route('level.income.index')}}">Level Team</a></li>
+                        <li><a href="{{route('repurchse.commission.list')}}">Repurchase Wallet</a></li>
+                        <li><a href="{{route('repurchse.commission.list')}}">Repurchase Wallet</a></li>
+                        <li><a href="{{route('user_commission')}}">Tree</a></li>
                         <li><a href="{{route('user_referral')}}">Directs</a></li>
-                        <li><a href="{{route('user_direct_commission')}}">Two Pair Income</a></li>
-                        <li><a href="{{route('user_ten_direct_commission')}}">Ten Pair Income</a></li>
+                        <li><a href="{{route('user_direct_commission')}}">Direct Pair Income</a></li>
+                        <li><a href="{{route('user_ten_direct_commission')}}">Bonanza Pair Income</a></li>
+                        <li><a href="{{route('user_ten_direct_commission')}}">Reward Income</a></li>
+                        <li><a href="{{route('user_ten_direct_commission')}}">Franchise Income</a></li>
                     </ul>
                 </div>
             </div>
