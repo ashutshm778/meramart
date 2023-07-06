@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DealerController;
 use App\Http\Controllers\Admin\PayoutController;
+use App\Http\Controllers\Admin\RewardController;
 use App\Http\Controllers\Admin\VendorController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\PincodeController;
@@ -110,6 +111,7 @@ Route::prefix("admin")->group(function(){
             Route::get('customer-payout/{customer_id}',[CustomerController::class,'payout'])->name('customer.payout');
             Route::get('customer-level-income/{customer_id}',[CustomerController::class,'levelIncome'])->name('customer.level.income');
             Route::get('customer-level-team/{customer_id}/{level}',[CustomerController::class,'levelTeam'])->name('customer.level.team');
+            Route::get('customer-reward-list/{customer_id}',[CustomerController::class,'customerRewardList'])->name('customer.reward.list');
 
         }
         Route::post('customers-verification', [CustomerController::class,'updateVerificationStatus'])->name('customers.updateVerificationStatus');
@@ -221,6 +223,9 @@ Route::prefix("admin")->group(function(){
         //Setup & Configuration
         Route::get('feature-activation-index',[FeatureActivationController::class,'index'])->name('feature.activation.index');
         Route::post('feature-activation-store',[FeatureActivationController::class,'store'])->name('feature.activation.store');
+
+        //Reward
+        Route::resource('reward', RewardController::class);
 
         // Upload multiple Images
         Route::post('/aiz-uploader', [AizUploadController::class, 'show_uploader']);
