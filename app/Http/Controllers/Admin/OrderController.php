@@ -63,6 +63,20 @@ class OrderController extends Controller
         $commission_repurchase_data = repurchase_commissions();
 
 
+        if(empty($customer->referral_code)){
+            if ($customer->orders->sum('grand_total') > 3999) {
+                $referral_code = $customer->refered_by;
+                do {
+                    $refferal_customer = Customer::where('referral_code', $referral_code)->first();
+                    $refferal_customer->pv = $refferal_customer->pv + 1;
+                    $refferal_customer->save();
+
+                    $referral_code = $refferal_customer->refered_by;
+                  } while (!empty(Customer::where('referral_code', $referral_code)->first()));
+
+            }
+        }
+
 
 
         if (empty($customer->referral_code)) {

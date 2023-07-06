@@ -14,7 +14,7 @@ class AddPvColumnToCustomerTable extends Migration
     public function up()
     {
         Schema::table('customers', function (Blueprint $table) {
-            //
+            $table->string('pv')->default(0)->after('balance');
         });
     }
 
