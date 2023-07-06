@@ -67,7 +67,6 @@
                         <li><a href="{{route('user_commission')}}">Level Income History</a></li>
                         <li><a href="{{route('level.income.index')}}">Level Team</a></li>
                         <li><a href="{{route('repurchse.commission.list')}}">Repurchase Wallet</a></li>
-                        <li><a href="{{route('repurchse.commission.list')}}">Repurchase Wallet</a></li>
                         <li><a href="{{route('user_commission')}}">Tree</a></li>
                         <li><a href="{{route('user_referral')}}">Directs</a></li>
                         <li><a href="{{route('user_direct_commission')}}">Direct Pair Income</a></li>
