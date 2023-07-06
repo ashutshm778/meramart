@@ -7,6 +7,7 @@
             <th class="text-center">Email</th>
             <th class="text-center">Date</th>
             {{-- <th class="text-center">Veification Status</th> --}}
+            <th class="text-center">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -23,6 +24,10 @@
                         <label class="custom-control-label" for="is_active_{{$key}}"></label>
                     </div>
                 </td> --}}
+                <td class="text-center">
+                    <a href="{{route('admin.customer.payout',encrypt($customer->id))}}" class="btn btn-outline-success btn-sm mr-1 mb-1" title="Payouts"><i class="fas fa-money-bill"></i></a>
+                    <a href="{{route('admin.customer.level.income',encrypt($customer->id))}}" class="btn btn-outline-primary btn-sm mr-1 mb-1" title="Level Income" style="width: 34px;"><i class="fas fa-level-up-alt"></i></a>
+                </td>
             </tr>
         @empty
             <tr class="footable-empty">

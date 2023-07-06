@@ -107,6 +107,9 @@ Route::prefix("admin")->group(function(){
         //Customers
         if(featureActivation('retailer') == '1'){
             Route::get('customers-index',[CustomerController::class,'index'])->name('customers.index');
+            Route::get('customer-payout/{customer_id}',[CustomerController::class,'payout'])->name('customer.payout');
+            Route::get('customer-level-income/{customer_id}',[CustomerController::class,'levelIncome'])->name('customer.level.income');
+            Route::get('customer-level-team/{customer_id}/{level}',[CustomerController::class,'levelTeam'])->name('customer.level.team');
 
         }
         Route::post('customers-verification', [CustomerController::class,'updateVerificationStatus'])->name('customers.updateVerificationStatus');

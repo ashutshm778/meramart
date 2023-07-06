@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Carbon\Carbon;
 use App\Models\Customer;
+use App\Models\Commission;
+use App\Models\Admin\Payout;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -55,5 +57,32 @@ class CustomerController extends Controller
         return 0;
     }
 
+    public function payout($customer_id){
+        $customer = Customer::find(decrypt($customer_id));
+        $payouts = Payout::where('customer_id',decrypt($customer_id))->paginate(10);
+
+        return view('backend.customers.payout',compact('payouts','customer'),['page_title'=>'Payout List']);
+    }
+
+    public function levelIncome($customer_id){
+        $customer = Customer::find(decrypt($customer_id));
+        $levels = [1,2,3,4,5,6,7,8,9,10];
+        $commissions = commissions();
+        $final_arr = [];
+        foreach($levels as $key=>$level){
+            $teams = Commission::where('user_id',decrypt($customer_id))->where('level',$level)->get();
+            $total_team = $teams->count();
+            $my_income = $teams->sum('commission');
+            array_push($final_arr,['level'=>$level,'income'=>$commissions[$key],'total_team'=>$total_team,'my_income'=>$my_income]);
+        }
+
+        return view('backend.customers.level_income',compact('final_arr','customer'),['page_title'=>'Level Income']);
+    }
+
+    public function levelTeam($customer_id,$level){
+        $customer = Customer::find(decrypt($customer_id));
+        $teams = Commission::where('user_id',decrypt($customer_id))->with('order.customer')->where('level',$level)->get();
+        return view('backend.customers.level_team',compact('teams','customer'));
+    }
 
 }

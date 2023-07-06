@@ -217,7 +217,7 @@
 
                 @if(featureActivation('retailer') == '1')
                     <li class="nav-item">
-                        <a href="{{route('admin.customers.index')}}" class="nav-link @if(Route::currentRouteName() == 'admin.customers.index') active @endif">
+                        <a href="{{route('admin.customers.index')}}" class="nav-link @if(Route::currentRouteName() == 'admin.customers.index' || Route::currentRouteName() == 'admin.customer.payout' || Route::currentRouteName() == 'admin.customer.level.income' || Route::currentRouteName() == 'admin.customer.level.team') active @endif">
                             <i class="nav-icon fas fa-users"></i>
                             <p>Customers</p>
                         </a>

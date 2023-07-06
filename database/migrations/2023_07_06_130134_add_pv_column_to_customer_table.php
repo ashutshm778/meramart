@@ -26,7 +26,7 @@ class AddPvColumnToCustomerTable extends Migration
     public function down()
     {
         Schema::table('customers', function (Blueprint $table) {
-            //
+            $table->dropColumn('pv');
         });
     }
 }
