@@ -187,8 +187,8 @@ class FrontController extends Controller
                     }else{
                         $otp=1234;
                         Session::put('otp',$otp);
-                        //$otp=rand(1111,9999);
-                        //Msg91::sms()->to('91'.$request->phone)->flow('61fbb9f27ca7fa28af01f169')->variable('user', $request->name)->variable('business_name', 'JMK Realstate')->variable('otp', $otp)->send();
+                          $otp=rand(1111,9999);
+                          Msg91::sms()->to('91'.$request->phone)->flow('61c566bb0840836b8241ca1d')->variable('USER', 'Mera Mart User')->variable('OTP', $otp)->send();
                         //Msg91::otp()->to($phone)->template('6114d04775025d197f1e0ad7')->send();
                         return 1;
                     }
@@ -204,8 +204,8 @@ class FrontController extends Controller
                 }else{
                     $otp=1234;
                     Session::put('otp',$otp);
-                    //$otp=rand(1111,9999);
-                    //Msg91::sms()->to('91'.$request->phone)->flow('61fbb9f27ca7fa28af01f169')->variable('user', $request->name)->variable('business_name', 'JMK Realstate')->variable('otp', $otp)->send();
+                      $otp=rand(1111,9999);
+                      Msg91::sms()->to('91'.$request->phone)->flow('61c566bb0840836b8241ca1d')->variable('USER', 'Mera Mart User')->variable('OTP', $otp)->send();
                     //Msg91::otp()->to($phone)->template('6114d04775025d197f1e0ad7')->send();
                     return 1;
                 }
