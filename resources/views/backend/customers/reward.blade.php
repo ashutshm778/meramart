@@ -1,6 +1,39 @@
 @extends('backend.include.header')
 @section('content')
+@php
 
+function check_rewards($total_id,$one_side_count,$other_side_count)
+{
+    $customer = Auth::guard('customer')->user();
+    if (!empty($customer->referral_code)) {
+        $customer_data = Customer::where('refered_by', $customer->referral_code)->first();
+        if ($customer_data->pv() >= $total_id) {
+            $one_side = '';
+            foreach ($customer_data as $customer_referral) {
+                $customer_referral_data = Customer::where('refered_by', $customer_referral->referral_code)->get();
+                if ($customer_referral_data->count() == $one_side_count) {
+                    $one_side = $customer_referral_data->id;
+                }
+            }
+            $other_side = 0;
+            $other_side_id = [];
+            foreach ($customer_data->where('id', '!=', $one_side) as $customer_referral) {
+                if (!empty($one_side) && ($other_side < $other_side_count)) {
+                    $customer_referral_data = Customer::where('refered_by', $customer_referral->referral_code)->get();
+                    $other_side = $other_side + $customer_referral_data->count();
+                    array_push($other_side_id, $customer_referral->id);
+                }
+            }
+            if ($other_side == $other_side_count) {
+                echo 'Achived';
+            } else {
+                echo 'Not Achived';
+            }
+        }
+    }
+}
+
+@endphp
     <div class="content-wrapper">
         <section class="content-header">
             <div class="container-fluid">
@@ -56,7 +89,7 @@
                                                 <td class="text-center">{{$reward->product_name}}</td>
                                                 <td class="text-center">{{$reward->amount}}</td>
                                                 <td class="text-center">
-                                                    <span class="text-danger">Not Achived</span>
+                                                    <span class="text-danger">{{check_rewards($reward->total_id,$reward->one_side_id,$reward->other_side_id)}}</span>
                                                 </td>
                                             </tr>
                                         @empty
