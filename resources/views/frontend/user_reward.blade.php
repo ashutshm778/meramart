@@ -6,11 +6,11 @@
     {
         $customer = Auth::guard('customer')->user();
         if (!empty($customer->referral_code)) {
-            $customer_data = Customer::where('refered_by', $customer->referral_code)->first();
+            $customer_data =  App\Models\Customer::where('refered_by', $customer->referral_code)->first();
             if ($customer_data->pv() >= $total_id) {
                 $one_side = '';
                 foreach ($customer_data as $customer_referral) {
-                    $customer_referral_data = Customer::where('refered_by', $customer_referral->referral_code)->get();
+                    $customer_referral_data =  App\Models\Customer::where('refered_by', $customer_referral->referral_code)->get();
                     if ($customer_referral_data->count() == $one_side_count) {
                         $one_side = $customer_referral_data->id;
                     }
@@ -19,7 +19,7 @@
                 $other_side_id = [];
                 foreach ($customer_data->where('id', '!=', $one_side) as $customer_referral) {
                     if (!empty($one_side) && ($other_side < $other_side_count)) {
-                        $customer_referral_data = Customer::where('refered_by', $customer_referral->referral_code)->get();
+                        $customer_referral_data =  App\Models\Customer::where('refered_by', $customer_referral->referral_code)->get();
                         $other_side = $other_side + $customer_referral_data->count();
                         array_push($other_side_id, $customer_referral->id);
                     }
