@@ -217,7 +217,7 @@
 
                 @if(featureActivation('retailer') == '1')
                     <li class="nav-item">
-                        <a href="{{route('admin.customers.index')}}" class="nav-link @if(Route::currentRouteName() == 'admin.customers.index' || Route::currentRouteName() == 'admin.customer.payout' || Route::currentRouteName() == 'admin.customer.level.income' || Route::currentRouteName() == 'admin.customer.level.team') active @endif">
+                        <a href="{{route('admin.customers.index')}}" class="nav-link @if(Route::currentRouteName() == 'admin.customers.index' || Route::currentRouteName() == 'admin.customer.payout' || Route::currentRouteName() == 'admin.customer.level.income' || Route::currentRouteName() == 'admin.customer.level.team' || Route::currentRouteName() == 'admin.customer.reward.list') active @endif">
                             <i class="nav-icon fas fa-users"></i>
                             <p>Customers</p>
                         </a>
@@ -440,8 +440,8 @@
                     </li>
                 @endif
 
-                <li class="nav-item @if(Route::currentRouteName() == 'admin.website.setting.index' || Route::currentRouteName() == 'admin.website.setting.create' || Route::currentRouteName() == 'admin.website.setting.data') menu-is-opening menu-open @endif">
-                    <a href="#" class="nav-link @if(Route::currentRouteName() == 'admin.website.setting.index' || Route::currentRouteName() == 'admin.website.setting.create' || Route::currentRouteName() == 'admin.website.setting.data') active @endif">
+                <li class="nav-item @if(Route::currentRouteName() == 'admin.website.setting.index' || Route::currentRouteName() == 'admin.website.setting.create' || Route::currentRouteName() == 'admin.website.setting.data' || Route::currentRouteName() == 'admin.reward.index' || Route::currentRouteName() == 'admin.reward.create' || Route::currentRouteName() == 'admin.reward.edit') menu-is-opening menu-open @endif">
+                    <a href="#" class="nav-link @if(Route::currentRouteName() == 'admin.website.setting.index' || Route::currentRouteName() == 'admin.website.setting.create' || Route::currentRouteName() == 'admin.website.setting.data' || Route::currentRouteName() == 'admin.reward.index' || Route::currentRouteName() == 'admin.reward.create' || Route::currentRouteName() == 'admin.reward.edit') active @endif">
                         <i class="nav-icon fa fa-globe" aria-hidden="true"></i>
                         <p>Website Setting
                             <i class="fas fa-angle-left right"></i>
@@ -464,6 +464,12 @@
                             <a href="{{route('admin.website.setting.data')}}" class="nav-link @if(Route::currentRouteName() == 'admin.website.setting.data') active @endif">
                                 <i class="nav-icon fas fa-long-arrow-alt-right"></i>
                                 <p>Manage Data</p>
+                            </a>
+                        </li>
+                        <li class="nav-item" >
+                            <a href="{{route('admin.reward.index')}}" class="nav-link @if(Route::currentRouteName() == 'admin.reward.index' || Route::currentRouteName() == 'admin.reward.create' || Route::currentRouteName() == 'admin.reward.edit') active @endif">
+                                <i class="nav-icon fas fa-long-arrow-alt-right"></i>
+                                <p>Reward</p>
                             </a>
                         </li>
                     </ul>

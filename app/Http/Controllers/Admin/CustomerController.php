@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Customer;
 use App\Models\Commission;
 use App\Models\Admin\Payout;
+use App\Models\Admin\Reward;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -83,6 +84,13 @@ class CustomerController extends Controller
         $customer = Customer::find(decrypt($customer_id));
         $teams = Commission::where('user_id',decrypt($customer_id))->with('order.customer')->where('level',$level)->get();
         return view('backend.customers.level_team',compact('teams','customer'));
+    }
+
+    public function customerRewardList($customer_id){
+        $customer = Customer::find(decrypt($customer_id));
+        $rewards = Reward::all();
+
+        return view('backend.customers.reward',compact('customer','rewards'),['page_title'=>'Reward List']);
     }
 
 }
