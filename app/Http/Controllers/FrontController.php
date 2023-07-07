@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\Customer;
 use App\Models\Admin\Brnad;
 use App\Models\Admin\Offer;
+use App\Models\Admin\Reward;
 use Illuminate\Http\Request;
 use App\Models\Admin\Product;
 use App\Models\Admin\Category;
@@ -185,9 +186,8 @@ class FrontController extends Controller
                         Session::put('otp',$otp);
                         return 1;
                     }else{
-                        $otp=1234;
+                        $otp=rand(1111,9999);
                         Session::put('otp',$otp);
-                          $otp=rand(1111,9999);
                           Msg91::sms()->to('91'.$request->phone)->flow('64a6b9d1d6fc057c15503ab2')->variable('business_name', 'Mera Mart User')->variable('otp', $otp)->send();
                         //Msg91::otp()->to($phone)->template('6114d04775025d197f1e0ad7')->send();
                         return 1;
@@ -202,9 +202,8 @@ class FrontController extends Controller
                     Session::put('otp',$otp);
                     return 1;
                 }else{
-                    $otp=1234;
+                    $otp=rand(1111,9999);
                     Session::put('otp',$otp);
-                      $otp=rand(1111,9999);
                       Msg91::sms()->to('91'.$request->phone)->flow('64a6b9d1d6fc057c15503ab2')->variable('business_name', 'Mera Mart User')->variable('otp', $otp)->send();
                     //Msg91::otp()->to($phone)->template('6114d04775025d197f1e0ad7')->send();
                     return 1;
@@ -312,5 +311,9 @@ class FrontController extends Controller
     public function user_ten_direct_commission_list($id){
         $direct_commission_histories = CommissionDirect::where('order_id',$id)->where('direct_type',10)->get();
         return view('frontend.user-ten-direct-comission-user-list', compact('direct_commission_histories'));
+    }
+    public function user_reward(){
+        $rewards = Reward::all();
+        return view('frontend.user_reward',compact('rewards'));
     }
 }

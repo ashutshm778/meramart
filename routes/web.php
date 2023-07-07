@@ -58,6 +58,7 @@ Route::group(['middleware' => 'auth:customer'], function () {
     Route::get('user-direct-commission-user-list/{id}',[FrontController::class,'user_direct_commission_list'])->name('user_direct_commission_list');
     Route::view('user-ten-direct-commission', 'frontend.user-ten-direct-comission')->name('user_ten_direct_commission');
     Route::get('user-ten-direct-commission-user-list/{id}',[FrontController::class,'user_ten_direct_commission_list'])->name('user_ten_direct_commission_list');
+    Route::get('user-reward',[FrontController::class,'user_reward'])->name('user_reward');
     Route::post('update-user-profile',[FrontController::class, 'updateUserProfile'])->name('update.user.profile');
     Route::view('manage-address','frontend.manage_address')->name('manage.address');
     Route::get('get-address-by-pincode/{pincode}',[PincodeController::class,'getAddressByPincode'])->name('get.address.by.pincode');
