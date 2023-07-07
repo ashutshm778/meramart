@@ -7,7 +7,7 @@
         $customer = Auth::guard('customer')->user();
         if (!empty($customer->referral_code)) {
             $customer_data =  App\Models\Customer::where('refered_by', $customer->referral_code)->first();
-            if ($customer_data->pv() >= $total_id) {
+            if ($customer_data->pv >= $total_id) {
                 $one_side = '';
                 foreach ($customer_data as $customer_referral) {
                     $customer_referral_data =  App\Models\Customer::where('refered_by', $customer_referral->referral_code)->get();
