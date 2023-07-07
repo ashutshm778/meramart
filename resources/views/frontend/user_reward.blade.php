@@ -88,7 +88,7 @@
                                             <td class="text-center">{{$reward->product_name}}</td>
                                             <td class="text-center">{{$reward->amount}}</td>
                                             <td class="text-center">
-                                                <span class="text-danger">{{check_rewards($reward->total_id,$reward->one_side_id,$reward->other_side_id)}}</span>
+                                                <span class="text-danger">@php check_rewards($reward->total_id,$reward->one_side_id,$reward->other_side_id); @endphp</span>
                                             </td>
                                         </tr>
                                     @empty
