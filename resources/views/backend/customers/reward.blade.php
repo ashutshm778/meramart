@@ -6,21 +6,19 @@ function check_rewards($customer_id,$total_id,$one_side_count,$other_side_count)
     {
         $customer = App\Models\Customer::where('id', $customer_id)->first() ;
         if (!empty($customer->referral_code)) {
-            $customer_data =  App\Models\Customer::where('refered_by', $customer->referral_code)->first();
-            if ($customer_data->pv >= $total_id) {
+            if ($customer->pv >= $total_id) {
+                $customer_data =  App\Models\Customer::where('refered_by', $customer->referral_code)->get();
                 $one_side = '';
                 foreach ($customer_data as $customer_referral) {
-                    $customer_referral_data =  App\Models\Customer::where('refered_by', $customer_referral->referral_code)->get();
-                    if ($customer_referral_data->count() == $one_side_count) {
-                        $one_side = $customer_referral_data->id;
+                    if ($customer_referral->pv == $one_side_count) {
+                        $one_side = $customer_referral->id;
                     }
                 }
                 $other_side = 0;
                 $other_side_id = [];
                 foreach ($customer_data->where('id', '!=', $one_side) as $customer_referral) {
                     if (!empty($one_side) && ($other_side < $other_side_count)) {
-                        $customer_referral_data =  App\Models\Customer::where('refered_by', $customer_referral->referral_code)->get();
-                        $other_side = $other_side + $customer_referral_data->count();
+                        $other_side = $other_side + $customer_referral->pv;
                         array_push($other_side_id, $customer_referral->id);
                     }
                 }
