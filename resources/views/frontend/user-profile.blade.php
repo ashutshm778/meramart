@@ -105,6 +105,10 @@
                                                         <label class="form-label">Referral By</label>
                                                         <input type="text" class="form-control" value="{{Auth::guard('customer')->user()->refered_by}}" readonly>
                                                       </div>
+                                                      <div class="col-md-6">
+                                                        <label class="form-label">Referral By Name</label>
+                                                        <input type="text" class="form-control" value="{{App\Models\Customer::where('referral_code',Auth::guard('customer')->user()->refered_by)->first()->first_name}}" readonly>
+                                                      </div>
                                                 @endif
                                                 <div class="col-md-12 text-center">
                                                     <button type="submit" class="btn btn-primary">Update</button>
