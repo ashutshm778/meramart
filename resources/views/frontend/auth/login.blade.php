@@ -90,7 +90,7 @@
                                                     <div class="social-option">
                                                         <h3>Register Here</h3>
                                                             <ul>
-                                                                <li><a href="{{ route('user.register') }}"> As User</a></li>
+                                                                {{-- <li><a href="{{ route('user.register') }}"> As User</a></li> --}}
                                                                 <li><a href="{{ route('user.register.mlm') }}"> As MLM</a></li>
                                                             </ul>
                                                     </div>
