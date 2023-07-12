@@ -23,7 +23,7 @@
                     }
                 }
                 if ($other_side >= $other_side_count) {
-                    echo 'Not Achived';
+                    echo 'Achived';
                 } else {
                     echo 'Not Achived';
                 }
