@@ -2,15 +2,18 @@
 @section('content')
     @php
 
-    function check_rewards($total_id,$one_side_count,$other_side_count)
+    function check_rewards($reward_id,$total_id,$one_side_count,$other_side_count)
     {
+        if(!empty(App\Models\CustomerReward::where('user_id',Auth::guard('customer')->user()->id)->where('reward_id',$reward_id)->first())){
+           return 'Achived';
+        }
         $customer = Auth::guard('customer')->user();
         if (!empty($customer->referral_code)) {
-            if ($customer->pv >= $total_id) {
-                $customer_data =  App\Models\Customer::where('refered_by', $customer->referral_code)->get();
+            $customer_data =  App\Models\Customer::where('refered_by', $customer->referral_code)->get();
+
                 $one_side = '';
                 foreach ($customer_data as $customer_referral) {
-                    if ($customer_referral->pv == $one_side_count) {
+                    if (empty($one_side) && ($customer_referral->pv >= $one_side_count)) {
                         $one_side = $customer_referral->id;
                     }
                 }
@@ -19,18 +22,33 @@
                 foreach (App\Models\Customer::where('refered_by', $customer->referral_code)->where('id', '!=', $one_side)->get() as $customer_referrals) {
                     if (!empty($one_side) && ($other_side < $other_side_count)) {
                         $other_side = $other_side + $customer_referrals->pv;
-                        array_push($other_side_id, $customer_referrals->id);
+                        array_push($other_side_id,['customer_id'=>$customer_referrals->id,'pv'=>$customer_referrals->pv] );
                     }
                 }
                 if ($other_side >= $other_side_count) {
+                    $one_side_customer=App\Models\Customer::where('id',$one_side)->first();
+                    $one_side_customer->pv=$one_side_customer->pv-$one_side_count;
+                    $one_side_customer->save();
+
+                    foreach($other_side_id as $otherSideId){
+                        $other_side_customer=App\Models\Customer::where('id',$otherSideId['customer_id'] )->first();
+                        if($otherSideId['pv'] >= $other_side_count){
+                            $other_side_customer->pv=$other_side_customer->pv-$other_side_count;
+                        }else{
+                            $other_side_customer->pv=$other_side_customer->pv-$otherSideId['pv'];
+                        }
+                        $other_side_customer->save();
+                    }
+                    $customer_reward_achive=new App\Models\CustomerReward;
+                    $customer_reward_achive->user_id= $customer->id;
+                    $customer_reward_achive->reward_id=$reward_id;
+                    $customer_reward_achive->save();
                     echo 'Achived';
                 } else {
                     echo 'Not Achived';
                 }
-            }else {
-                    echo 'Not Achived';
-                }
-        }
+            }
+
     }
 
     @endphp
@@ -88,7 +106,7 @@
                                             <td class="text-center">{{$reward->product_name}}</td>
                                             <td class="text-center">{{$reward->amount}}</td>
                                             <td class="text-center">
-                                                <span class="text-danger">{{check_rewards($reward->total_id,$reward->one_side_id,$reward->other_side_id)}} </span>
+                                                <span >{{check_rewards($reward->id,$reward->total_id,$reward->one_side_id,$reward->other_side_id)}} </span>
                                             </td>
                                         </tr>
                                     @empty
