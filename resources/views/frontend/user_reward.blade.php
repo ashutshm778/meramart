@@ -16,14 +16,14 @@
                 }
                 $other_side = 0;
                 $other_side_id = [];
-                foreach ($customer_data->where('id', '!=', $one_side) as $customer_referral) {
+                foreach (App\Models\Customer::where('refered_by', $customer->referral_code)->where('id', '!=', $one_side) as $customer_referral) {
                     if (!empty($one_side) && ($other_side < $other_side_count)) {
                         $other_side = $other_side + $customer_referral->pv;
                         array_push($other_side_id, $customer_referral->id);
                     }
                 }
                 if ($other_side >= $other_side_count) {
-                    return  [$other_side,$other_side_id];
+                    echo 'Not Achived';
                 } else {
                     echo 'Not Achived';
                 }
