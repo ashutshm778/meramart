@@ -22,7 +22,7 @@
                         array_push($other_side_id, $customer_referral->id);
                     }
                 }
-                if ($other_side == $other_side_count) {
+                if ($other_side >= $other_side_count) {
                     return  [$other_side,$other_side_id];
                 } else {
                     echo 'Not Achived';
