@@ -16,10 +16,10 @@
                 }
                 $other_side = 0;
                 $other_side_id = [];
-                foreach (App\Models\Customer::where('refered_by', $customer->referral_code)->where('id', '!=', $one_side) as $customer_referral) {
+                foreach (App\Models\Customer::where('refered_by', $customer->referral_code)->where('id', '!=', $one_side) as $customer_referrals) {
                     if (!empty($one_side) && ($other_side < $other_side_count)) {
-                        $other_side = $other_side + $customer_referral->pv;
-                        array_push($other_side_id, $customer_referral->id);
+                        $other_side = $other_side + $customer_referrals->pv;
+                        array_push($other_side_id, $customer_referrals->id);
                     }
                 }
                 if ($other_side >= $other_side_count) {
