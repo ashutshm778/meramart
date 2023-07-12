@@ -22,6 +22,7 @@
                         array_push($other_side_id, $customer_referrals->id);
                     }
                 }
+                echo $other_side.','.$other_side_count;
                 if ($other_side >= $other_side_count) {
                     echo 'Achived';
                 } else {
