@@ -293,7 +293,13 @@ class FrontController extends Controller
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
-            'photo' => $name
+            'photo' => $name,
+            'address' => $request->address,
+            'bank_account_name' => $request->bank_account_name,
+            'branch' => $request->branch,
+            'ifsc_code' => $request->ifsc_code,
+            'account_number' => $request->account_number,
+            'bank_name' => $request->bank_name,
         ]);
 
         return back()->with('success', 'Profile Updated Successfully!');

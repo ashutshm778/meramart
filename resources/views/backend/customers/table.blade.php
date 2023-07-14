@@ -4,9 +4,10 @@
             <th class="text-center">#</th>
             <th class="text-center">Name</th>
             <th class="text-center">Phone</th>
-            <th class="text-center">Email</th>
+            <th class="text-center">Address</th>
+            <th class="text-center">Bank Detail</th>
             <th class="text-center">Date</th>
-            {{-- <th class="text-center">Veification Status</th> --}}
+           <th class="text-center">Veification Status</th>
             <th class="text-center">Action</th>
         </tr>
     </thead>
@@ -16,14 +17,25 @@
                 <td class="text-center">{{($key+1) + ($customers->currentPage() - 1)*$customers->perPage()}}</td>
                 <td>{{$customer->first_name}} {{$customer->last_name}}</td>
                 <td class="text-center">{{$customer->phone}}</td>
-                <td class="text-center">{{$customer->email}}</td>
+                <td class="text-center">{{$customer->address}}</td>
+                <td class="text-center">
+                    @if(!empty($customer->account_number))
+                    Bank Name:{{$customer->bank_name}}<br>
+                    Account Number:{{$customer->account_number}}<br>
+                    IFSC Code:{{$customer->ifsc_code}}
+                    @endif
+                </td>
                 <td class="text-center">{{$customer->created_at}}</td>
-                {{-- <td class="text-center">
+                <td class="text-center">
                     <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="is_active_{{$key}}" onchange="update_verification(this)" value="{{ $customer->id }}"  @if($customer->verify_status==1) checked @endif>
-                        <label class="custom-control-label" for="is_active_{{$key}}"></label>
+                         @if($customer->verify_status==1)
+                        <p style="color:green"> {{'Active'}}</p>
+                         @else
+                        <p style="color:red"> {{'InActive'}}</p>
+                          @endif
+
                     </div>
-                </td> --}}
+                </td>
                 <td class="text-center">
                     <a href="{{route('admin.customer.reward.list',encrypt($customer->id))}}" class="btn btn-outline-warning btn-sm mr-1 mb-1" title="Reward" style="width: 34px;"><i class="fas fa-award"></i></a>
                     <a href="{{route('admin.customer.payout',encrypt($customer->id))}}" class="btn btn-outline-success btn-sm mr-1 mb-1" title="Payouts"><i class="fas fa-money-bill"></i></a>

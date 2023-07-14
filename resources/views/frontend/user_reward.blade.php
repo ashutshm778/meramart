@@ -2,7 +2,7 @@
 @section('content')
     @php
 
-    function check_rewards($reward_id,$total_id,$one_side_count,$other_side_count)
+    function check_rewards($reward_id,$amount,$total_id,$one_side_count,$other_side_count)
     {
         if(!empty(App\Models\CustomerReward::where('user_id',Auth::guard('customer')->user()->id)->where('reward_id',$reward_id)->first())){
            return 'Achived';
@@ -43,6 +43,20 @@
                     $customer_reward_achive->user_id= $customer->id;
                     $customer_reward_achive->reward_id=$reward_id;
                     $customer_reward_achive->save();
+
+                    $customer->balance = $customer->balance + $amount;
+                    $customer->save();
+
+                    $customer_wallet = new App\Models\CustomerWallet;
+                    $customer_wallet->user_id =$customer->id;
+                    $customer_wallet->amount = $amount;
+                    $customer_wallet->transaction_type = 'credited';
+                    $customer_wallet->transaction_detail = 'Amount Credited For Reward';
+                    $customer_wallet->payment_details = '';
+                    $customer_wallet->balance = $customer->balance;
+                    $customer_wallet->approval = 0;
+                    $customer_wallet->save();
+
                     echo 'Achived';
                 } else {
                     echo 'Not Achived';
@@ -106,7 +120,7 @@
                                             <td class="text-center">{{$reward->product_name}}</td>
                                             <td class="text-center">{{$reward->amount}}</td>
                                             <td class="text-center">
-                                                <span >{{check_rewards($reward->id,$reward->total_id,$reward->one_side_id,$reward->other_side_id)}} </span>
+                                                <span >{{check_rewards($reward->id,$reward->amount,$reward->total_id,$reward->one_side_id,$reward->other_side_id)}} </span>
                                             </td>
                                         </tr>
                                     @empty

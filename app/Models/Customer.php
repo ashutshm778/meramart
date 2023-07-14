@@ -24,6 +24,13 @@ class Customer extends Authenticatable
         'payout',
         'refered_by',
         'verify_status',
+        'bank_account_name',
+        'branch',
+        'ifsc_code',
+        'account_number',
+        'bank_name',
+        'address',
+        'pv'
     ];
 
     protected $hidden = [

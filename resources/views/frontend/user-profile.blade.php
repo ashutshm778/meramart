@@ -110,6 +110,48 @@
                                                         <input type="text" class="form-control" value="{{App\Models\Customer::where('referral_code',Auth::guard('customer')->user()->refered_by)->first()->first_name}}" readonly>
                                                       </div>
                                                 @endif
+                                                <div class="col-md-12">
+                                                    <label class="form-label">Address</label>
+                                                    <input type="text" class="form-control" name="address" value="{{Auth::guard('customer')->user()->address}}">
+                                                    @if ($errors->has('address'))
+                                                        <span class="text-danger">{{ $errors->first('address') }}</span>
+                                                    @endif
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Bank Name</label>
+                                                    <input type="text" class="form-control" name="bank_name" value="{{Auth::guard('customer')->user()->bank_name}}">
+                                                    @if ($errors->has('bank_name'))
+                                                        <span class="text-danger">{{ $errors->first('bank_name') }}</span>
+                                                    @endif
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Branch Name</label>
+                                                    <input type="text" class="form-control" name="branch" value="{{Auth::guard('customer')->user()->branch}}">
+                                                    @if ($errors->has('branch'))
+                                                        <span class="text-danger">{{ $errors->first('branch') }}</span>
+                                                    @endif
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Account Number</label>
+                                                    <input type="text" class="form-control" name="account_number" value="{{Auth::guard('customer')->user()->account_number}}">
+                                                    @if ($errors->has('account_number'))
+                                                        <span class="text-danger">{{ $errors->first('account_number') }}</span>
+                                                    @endif
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Bank Account Name</label>
+                                                    <input type="text" class="form-control" name="bank_account_name" value="{{Auth::guard('customer')->user()->bank_account_name}}">
+                                                    @if ($errors->has('bank_account_name'))
+                                                        <span class="text-danger">{{ $errors->first('bank_account_name') }}</span>
+                                                    @endif
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">IFSC Code</label>
+                                                    <input type="text" class="form-control" name="ifsc_code" value="{{Auth::guard('customer')->user()->ifsc_code}}">
+                                                    @if ($errors->has('ifsc_code'))
+                                                        <span class="text-danger">{{ $errors->first('ifsc_code') }}</span>
+                                                    @endif
+                                                </div>
                                                 <div class="col-md-12 text-center">
                                                     <button type="submit" class="btn btn-primary">Update</button>
                                                 </div>

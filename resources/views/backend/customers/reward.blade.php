@@ -2,35 +2,15 @@
 @section('content')
 @php
 
-function check_rewards($customer_id,$total_id,$one_side_count,$other_side_count)
+function check_rewards($customer_id,$reward_id,$total_id,$one_side_count,$other_side_count)
     {
-        $customer = App\Models\Customer::where('id', $customer_id)->first() ;
-        if (!empty($customer->referral_code)) {
-            if ($customer->pv >= $total_id) {
-                $customer_data =  App\Models\Customer::where('refered_by', $customer->referral_code)->get();
-                $one_side = '';
-                foreach ($customer_data as $customer_referral) {
-                    if ($customer_referral->pv == $one_side_count) {
-                        $one_side = $customer_referral->id;
-                    }
-                }
-                $other_side = 0;
-                $other_side_id = [];
-                foreach ($customer_data->where('id', '!=', $one_side) as $customer_referral) {
-                    if (!empty($one_side) && ($other_side < $other_side_count)) {
-                        $other_side = $other_side + $customer_referral->pv;
-                        array_push($other_side_id, $customer_referral->id);
-                    }
-                }
-                if ($other_side == $other_side_count) {
-                    echo 'Achived';
-                } else {
-                    echo 'Not Achived';
-                }
-            }else {
-                    echo 'Not Achived';
-                }
+        if(!empty(App\Models\CustomerReward::where('user_id',$customer_id)->where('reward_id',$reward_id)->first())){
+           return 'Achived';
         }
+        else {
+                    echo 'Not Achived';
+             }
+
     }
 
 @endphp
@@ -89,7 +69,7 @@ function check_rewards($customer_id,$total_id,$one_side_count,$other_side_count)
                                                 <td class="text-center">{{$reward->product_name}}</td>
                                                 <td class="text-center">{{$reward->amount}}</td>
                                                 <td class="text-center">
-                                                    <span class="text-danger">{{check_rewards($customer->id,$reward->total_id,$reward->one_side_id,$reward->other_side_id)}}</span>
+                                                    <span class="text-danger">{{check_rewards($customer->id,$reward->id,$reward->total_id,$reward->one_side_id,$reward->other_side_id)}}</span>
                                                 </td>
                                             </tr>
                                         @empty
