@@ -49,7 +49,7 @@
                     <div class="ec-register-wrapper col-md-5">
                         <div class="ec-register-container">
                             <div class="ec-register-form">
-                                <form id="valid_form" action="#" method="post">
+                                <form id="valid_form" action="{{route('customer.password_reset')}}" method="post">
                                     @csrf
                                     <span class="ec-register-wrap col-md-12">
                                         <label>Phone Number<span style="color:red">*<span></label> <br>
@@ -60,8 +60,27 @@
                                         @endif
                                     </span>
 
-                                    <span class="ec-register-wrap ec-register-btn">
-                                        <button class="btn btn-primary" type="button" onclick="verifyOtp()">Reset Password</button>
+                                    <span class="ec-register-wrap col-md-12" id="otp_div" style="display:none;">
+                                        <label>OTP<span style="color:red">*<span></label> <br>
+                                        <input type="number" class="form-control" id="otp" name="otp" value="{{old('otp')}}" placeholder="" onchange="verifyOtp()" required />
+                                        <span class="error invalid-feedback" id="otp_error" style="display:none">Wrong OTP</span>
+                                        <span class="text-success" id="otp_success" style="display:none">Match OTP</span>
+                                        @if ($errors->has('otp'))
+                                            <span class="text-danger">{{ $errors->first('otp') }}</span>
+                                        @endif
+                                    </span>
+
+                                    <span class="ec-register-wrap ec-register-btn" id="reset_button" style="display:none;">
+
+                                        <span class="ec-register-wrap col-md-12">
+                                            <label>Password<span style="color:red">*<span></label> <br>
+                                            <input type="password"  class="form-control" name="password"  required />
+                                            @if ($errors->has('password'))
+                                                <span class="text-danger">{{ $errors->first('password') }}</span>
+                                            @endif
+                                        </span>
+
+                                        <button class="btn btn-primary" type="submit" >Reset Password</button>
                                         <hr>
                                         <div class="text-center">
                                             <p class="mt-2">Already have an account? <a href="{{ route('user.login') }}"> Login</a></p>
@@ -82,11 +101,12 @@
 
     function getOtp()
     {
-
+        $('#otp_div').hide();
+        $('#reset_button').hide();
         var phone=$('#phone').val();
         var otp=$('#otp').val('');
 
-        $.get("{{route('send.otp','')}}"+"/"+phone, function(data) {
+        $.get("{{route('send.forgototp','')}}"+"/"+phone, function(data) {
             if(data != 1)
             {
                 $('#phone').addClass('is-invalid');
@@ -98,6 +118,7 @@
                 $('#phone').removeClass('is-invalid');
                 $('#phone').addClass('is-valid');
                 $('#phone_error').css('display','none');
+                $('#otp_div').show();
             }
         });
 
@@ -105,32 +126,20 @@
 
     function verifyOtp()
     {
-        var validation = $("#valid_form").valid();
-        if (validation) {
-            var password=$('#pasword').val();
-            var confirm_password=$('#confirm_password').val();
-            if(password != confirm_password)
-            {
-                $('#confirm_password').addClass('is-invalid');
-                $('#confirm_password').removeClass('is-valid');
-                $('#confirm_password_error').css('display','block')
-                $('#confirm_password_error').text('Your Password Does Not Match')
-                return false;
-            }
-            $('#confirm_password').removeClass('is-invalid');
-            $('#confirm_password').addClass('is-valid');
-            $('#confirm_password_error').text('Your Password Matched')
-            $('#confirm_password_error').css('display','none')
+
             var phone=$('#phone').val();
             var otp=$('#otp').val();
+            $('#reset_button').hide();
             $.get("{{route('verify.otp',['',''])}}"+"/"+phone+"/"+otp, function(data)
             {
+                if(data==1){
                 $('#otp').removeClass('is-invalid');
                 $('#otp').addClass('is-valid');
                 $('#otp_success').css('display','block');
                 $('#otp_success').text('Match OTP');
                 $('#otp_error').css('display','none');
-                $('#valid_form').submit();
+                $('#reset_button').show();
+                }
             }).fail(function()
             {
                 $('#otp').addClass('is-invalid');
@@ -139,11 +148,6 @@
                 $('#otp_error').css('display','block');
                 $('#otp_error').text('Wrong OTP');
             });
-        }
-        else
-        {
-            return false;
-        }
 
     }
 

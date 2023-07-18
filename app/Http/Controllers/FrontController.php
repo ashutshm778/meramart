@@ -214,14 +214,37 @@ class FrontController extends Controller
         }
     }
 
+    public function sendForgotOtp(Request $request, $phone)
+    {
+        $data = Customer::where('phone', $phone)->first();
+        if(!empty($data)){
+        $otp=rand(1111,9999);
+        Session::put('otp',$otp);
+        Msg91::sms()->to('91'.$request->phone)->flow('64a6b9d1d6fc057c15503ab2')->variable('business_name', 'Mera Mart User')->variable('otp', $otp)->send();
+        return 1;
+       }else{
+        return 2;
+       }
+    }
+
     public function verifyOtp($phone, $otp)
     {
         // $phone = '91' . $phone;
         // $ver = Msg91::otp((int)$otp)->to($phone)->verify();
         if(Session::get('otp') != $otp){
             return response()->json(['msg'=>'Wrong OTP!'], 401);
+        }else{
+            return 1;
         }
     }
+
+    public function password_reset(Request $request){
+        $customer=Customer::where('phone',$request->phone)->first();
+        $customer->password=Hash::make($request->password);
+        $customer->save();
+        return back()->with('success', 'Your Password Reset Successfully!');
+    }
+
 
     public function search(Request $request, $slug)
     {

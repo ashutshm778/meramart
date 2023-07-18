@@ -106,6 +106,9 @@ if(featureActivation('mlm') == '1'){
 Route::get('send-otp/{phone}', [FrontController::class, 'sendOtp'])->name('send.otp');
 Route::get('verify-otp/{phone}/{otp}', [FrontController::class, 'verifyOtp'])->name('verify.otp');
 
+Route::get('send-forgot-otp/{phone}', [FrontController::class, 'sendForgotOtp'])->name('send.forgototp');
+Route::post('password/reset', [FrontController::class, 'password_reset'])->name('customer.password_reset');
+
 //Business Person Register
 if(featureActivation('distributor') == '1' || featureActivation('wholeseller') == '1'){
     Route::view('business-person-request-form', 'frontend.auth.business_person_request_form')->name('business.person.request.form');
