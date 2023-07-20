@@ -70,7 +70,7 @@
                         <li><a href="{{route('user_commission')}}">Tree</a></li>
                         <li><a href="{{route('user_referral')}}">Directs</a></li>
                         <li><a href="{{route('user_direct_commission')}}">Direct Pair Income</a></li>
-                        <li><a href="{{route('user_ten_direct_commission')}}">Bonanza Pair Income</a></li>
+                        <li><a href="{{route('user_ten_direct_commission')}}">Bonanza Income</a></li>
                         <li><a href="{{route('user_reward')}}">Reward Income</a></li>
                         <li><a href="{{route('user_ten_direct_commission')}}">Franchise Income</a></li>
                     </ul>

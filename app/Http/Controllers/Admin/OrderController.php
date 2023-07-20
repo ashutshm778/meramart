@@ -109,12 +109,12 @@ class OrderController extends Controller
                                 $commission_direct->direct_user_id = $userId;
                                 $commission_direct->save();
 
-                                $refferal_customer->balance = $refferal_customer->balance + 600;
+                                $refferal_customer->balance = $refferal_customer->balance + 300;
                                 $refferal_customer->save();
 
                                 $customer_wallet = new CustomerWallet;
                                 $customer_wallet->user_id = $refferal_customer->id;
-                                $customer_wallet->amount = 600;
+                                $customer_wallet->amount = 300;
                                 $customer_wallet->transaction_type = 'credited';
                                 $customer_wallet->transaction_detail = 'Comission Credited For Two Direct';
                                 $customer_wallet->payment_details = '';
@@ -143,12 +143,12 @@ class OrderController extends Controller
                                 $commission_direct->direct_user_id = $userId;
                                 $commission_direct->save();
 
-                                $refferal_customer->balance = $refferal_customer->balance + 2150;
+                                $refferal_customer->balance = $refferal_customer->balance + 256;
                                 $refferal_customer->save();
 
                                 $customer_wallet = new CustomerWallet;
                                 $customer_wallet->user_id = $refferal_customer->id;
-                                $customer_wallet->amount = 2560;
+                                $customer_wallet->amount = 256;
                                 $customer_wallet->transaction_type = 'credited';
                                 $customer_wallet->transaction_detail = 'Comission Credited For Ten Direct';
                                 $customer_wallet->payment_details = '';
