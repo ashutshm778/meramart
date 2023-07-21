@@ -361,7 +361,7 @@ class FrontController extends Controller
     public function referral_details(Request $request)
     {
         $data=Customer::where('referral_code', $request->referral_code)->first();
-        return 'Name: '.$data->name.'<br>User Id: '.$data->referral_code.' <br>Sponsor Id: '.$data->refered_by;
+        return 'Name: '.$data->first_name.'<br>User Id: '.$data->referral_code.' <br>Sponsor Id: '.$data->refered_by;
     }
 
     private function buildTree($referralCode = null)
