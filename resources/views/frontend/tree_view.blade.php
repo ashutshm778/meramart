@@ -261,7 +261,7 @@
             const orgChartData = [];
             if (node) {
                 orgChartData.push([{
-                    'v': node.v.toString(),
+                    'v': node.v ? node.v.toString() : '',
                     'f': node.f
                 }, node.p ? node.p.toString() : '', '']);
                 if (node.c && node.c.length > 0) {

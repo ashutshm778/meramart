@@ -356,7 +356,7 @@ class FrontController extends Controller
 
     private function getChildren($referralCode)
     {
-        return Customer::where('refered_by', $referralCode)->where('verify_status',1)->get();
+        return Customer::where('refered_by', $referralCode)->get();
     }
     public function referral_details(Request $request)
     {
