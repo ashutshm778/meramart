@@ -376,7 +376,7 @@ class FrontController extends Controller
                 'v' => $node->referral_code,
                 'f' =>'<div class=mytooltip><img src='.($node->verify_status == 1 ? asset('/public/green.png') : asset('/public/red.png')).' style=height:50px;width:50px;><a
                 href='.route('tree_view').'?referral_code='.$node->referral_code.'><span style=color:black>'.$node->referral_code.'</span><br><span
-                     style=color:black>'.$node->name.'</span></a><span class=mytext id=my'.$node->referral_code.'></span></div>' ,
+                     style=color:black>'.$node->first_name.'</span></a><span class=mytext id=my'.$node->referral_code.'></span></div>' ,
                 'p' => $node->refered_by ?: null,
             ];
         }
@@ -384,7 +384,7 @@ class FrontController extends Controller
             'v' => $node->referral_code,
             'f' => '<div class=mytooltip><img src='.($node->verify_status == 1 ? asset('/public/green.png'): asset('/public/red.png')).' style=height:50px;width:50px;><a
             href='.route('tree_view').'?referral_code='.$node->referral_code.'><span style=color:black>'.$node->referral_code.'</span><br><span
-                 style=color:black>'.$node->name.'</span></a><span class=mytext id=my'.$node->referral_code.'></span></div>',
+                 style=color:black>'.$node->first_name.'</span></a><span class=mytext id=my'.$node->referral_code.'></span></div>',
             'p' => $node->refered_by ?: null,
             'c' => [],
         ];
