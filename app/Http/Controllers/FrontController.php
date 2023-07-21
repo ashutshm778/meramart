@@ -345,4 +345,63 @@ class FrontController extends Controller
         $rewards = Reward::all();
         return view('frontend.user_reward',compact('rewards'));
     }
+    public function tree_view(Request $request){
+        if(!empty($request->referral_code)){
+              $referral_code=$request->referral_code;
+        }else{
+            $referral_code=Auth::guard('customer')->user()->referral_code;
+        }
+        return view('frontend.tree_view',compact('referral_code'));
+    }
+
+    private function getChildren($referralCode)
+    {
+        return Customer::where('refered_by', $referralCode)->get();
+    }
+    public function referral_details(Request $request)
+    {
+        $data=Customer::where('referral_code', $request->referral_code)->first();
+        return 'Name: '.$data->name.'<br>User Id: '.$data->referral_code.' <br>Sponsor Id: '.$data->refered_by;
+    }
+
+    private function buildTree($referralCode = null)
+    {
+        $node = Customer::where('referral_code', $referralCode)->first();
+        if (!$node) {
+            return null;
+        }
+        $children = $this->getChildren($referralCode);
+        if (!$children->count()) {
+            return [
+                'v' => $node->referral_code,
+                'f' =>'<div class=mytooltip><img src='.($node->verify_status == 1 ? asset('/public/green.png') : asset('/public/red.png')).' style=height:50px;width:50px;><a
+                href='.route('tree_view').'?referral_code='.$node->referral_code.'><span style=color:black>'.$node->referral_code.'</span><br><span
+                     style=color:black>'.$node->name.'</span></a><span class=mytext id=my'.$node->referral_code.'></span></div>' ,
+                'p' => $node->refered_by ?: null,
+            ];
+        }
+        $tree = [
+            'v' => $node->referral_code,
+            'f' => '<div class=mytooltip><img src='.($node->verify_status == 1 ? asset('/public/green.png'): asset('/public/red.png')).' style=height:50px;width:50px;><a
+            href='.route('tree_view').'?referral_code='.$node->referral_code.'><span style=color:black>'.$node->referral_code.'</span><br><span
+                 style=color:black>'.$node->name.'</span></a><span class=mytext id=my'.$node->referral_code.'></span></div>',
+            'p' => $node->refered_by ?: null,
+            'c' => [],
+        ];
+        foreach ($children as $child) {
+            $tree['c'][] = $this->buildTree($child->referral_code);
+        }
+        return $tree;
+    }
+
+    // Function to get the MLM tree starting from the top-level member (John)
+    public function getMLMTree(Request $request)
+    {
+        $topLevelReferralCode = $request->referral_code; // Change this to the referral code of your top-level member (e.g., 'John')
+        $mlmTree = $this->buildTree($topLevelReferralCode);
+        return response()->json($mlmTree);
+    }
+
+
+
 }

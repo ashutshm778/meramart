@@ -91,6 +91,12 @@ Route::group(['middleware' => 'auth:customer'], function () {
     Route::get('level-team-list/{level}',[LevelIncomeController::class,'teamList'])->name('level.team.list');
 
 
+    Route::get('tree-view', [FrontController::class, 'tree_view'])->name('tree_view');
+
+    Route::get('/mlm-tree', [FrontController::class, 'getMLMTree'])->name('mlm_tree');
+
+    Route::get('/referral_details', [FrontController::class, 'referral_details'])->name('referral_details');
+
 });
 
 
