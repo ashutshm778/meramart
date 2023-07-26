@@ -107,7 +107,7 @@
                                                       </div>
                                                       <div class="col-md-6">
                                                         <label class="form-label">Referral By Name</label>
-                                                        <input type="text" class="form-control" value="{{App\Models\Customer::where('referral_code',Auth::guard('customer')->user()->refered_by)->first()->first_name}}" readonly>
+                                                        <input type="text" class="form-control" value="{{optional(App\Models\Customer::where('referral_code',Auth::guard('customer')->user()->refered_by)->first())->first_name}}" readonly>
                                                       </div>
                                                 @endif
                                                 <div class="col-md-12">
