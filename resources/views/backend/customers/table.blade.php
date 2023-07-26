@@ -40,6 +40,7 @@
                     <a href="{{route('admin.customer.reward.list',encrypt($customer->id))}}" class="btn btn-outline-warning btn-sm mr-1 mb-1" title="Reward" style="width: 34px;"><i class="fas fa-award"></i></a>
                     <a href="{{route('admin.customer.payout',encrypt($customer->id))}}" class="btn btn-outline-success btn-sm mr-1 mb-1" title="Payouts"><i class="fas fa-money-bill"></i></a>
                     <a href="{{route('admin.customer.level.income',encrypt($customer->id))}}" class="btn btn-outline-primary btn-sm mr-1 mb-1" title="Level Income" style="width: 34px;"><i class="fas fa-level-up-alt"></i></a>
+                    <a href="{{route('admin.customer_login',encrypt($customer->id))}}" target="_blank" class="btn btn-outline-primary btn-sm mr-1 mb-1" title="Customer Login" style="width: 34px;"><i class="fas fa-level-up-alt"></i></a>
                 </td>
             </tr>
         @empty

@@ -9,6 +9,7 @@ use App\Models\Admin\Payout;
 use App\Models\Admin\Reward;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
@@ -91,6 +92,14 @@ class CustomerController extends Controller
         $rewards = Reward::all();
 
         return view('backend.customers.reward',compact('customer','rewards'),['page_title'=>'Reward List']);
+    }
+
+    public function customer_login(Request $request,$id){
+        Auth::guard('customer')->logout();
+        $login_data = Customer::find(decrypt($id));
+        auth()->guard('customer')->login($login_data, false);
+        return redirect()->route('user_profile')->with('success', 'You Have Successfully Login !');
+
     }
 
 }
