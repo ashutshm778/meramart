@@ -33,8 +33,8 @@
                                                     <option value="confirm" @if($order->order_status == 'confirm') selected @endif>Confirm</option>
                                                     <option value="on_delivery" @if($order->order_status == 'on_delivery') selected @endif>On Delivery</option>
                                                     <option value="delivered" @if($order->order_status == 'delivered') selected @endif>Delivered</option>
-                                                    <option value="cancel" @if($order->order_status == 'cancel') selected @endif>Cancel</option>
-                                                    <option value="returned" @if($order->order_status == 'returned') selected @endif>Returned</option>
+                                                    {{-- <option value="cancel" @if($order->order_status == 'cancel') selected @endif>Cancel</option>
+                                                    <option value="returned" @if($order->order_status == 'returned') selected @endif>Returned</option> --}}
                                                 </select>
                                             @else
                                                 <span class="badge bg-danger">{{ucwords($order->order_status)}}</span>
