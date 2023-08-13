@@ -152,6 +152,27 @@
                                                         <span class="text-danger">{{ $errors->first('ifsc_code') }}</span>
                                                     @endif
                                                 </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Nominee Name</label>
+                                                    <input type="text" class="form-control" name="nominee_name" value="{{Auth::guard('customer')->user()->nominee_name}}">
+                                                    @if ($errors->has('nominee_name'))
+                                                        <span class="text-danger">{{ $errors->first('nominee_name') }}</span>
+                                                    @endif
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Nominee Relation</label>
+                                                    <input type="text" class="form-control" name="nominee_relation" value="{{Auth::guard('customer')->user()->nominee_relation}}">
+                                                    @if ($errors->has('nominee_relation'))
+                                                        <span class="text-danger">{{ $errors->first('nominee_relation') }}</span>
+                                                    @endif
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Nominee Date of Birth</label>
+                                                    <input type="date" class="form-control" name="nominee_dob" value="{{Auth::guard('customer')->user()->nominee_dob}}">
+                                                    @if ($errors->has('nominee_dob'))
+                                                        <span class="text-danger">{{ $errors->first('nominee_dob') }}</span>
+                                                    @endif
+                                                </div>
                                                 <div class="col-md-12 text-center">
                                                     <button type="submit" class="btn btn-primary">Update</button>
                                                 </div>

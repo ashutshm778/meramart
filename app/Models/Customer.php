@@ -30,7 +30,10 @@ class Customer extends Authenticatable
         'account_number',
         'bank_name',
         'address',
-        'pv'
+        'pv',
+        'nominee_name',
+        'nominee_relation',
+        'nominee_dob'
     ];
 
     protected $hidden = [

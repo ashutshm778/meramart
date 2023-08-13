@@ -323,6 +323,9 @@ class FrontController extends Controller
             'ifsc_code' => $request->ifsc_code,
             'account_number' => $request->account_number,
             'bank_name' => $request->bank_name,
+            'nominee_name' => $request->nominee_name,
+            'nominee_relation' => $request->nominee_relation,
+            'nominee_dob' => $request->nominee_dob,
         ]);
 
         return back()->with('success', 'Profile Updated Successfully!');
