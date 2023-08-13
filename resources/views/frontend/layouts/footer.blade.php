@@ -128,14 +128,14 @@
                         <div class="footer-bottom-payment d-flex justify-content-end">
                             <div class="ec-footer-links">
                                 <ul class="align-items-center">
-                                    <li class="list-inline-item"><a href="#" class="prt-social-facebook"><i
-                                                class="ecicon eci-facebook"></i></a></li>
-                                    <li class="list-inline-item"><a href="#" class="prt-social-twitter"><i
-                                                class="ecicon eci-twitter"></i></a></li>
-                                    <li class="list-inline-item"><a href="#" class="prt-social-instagram"><i
+                                    {{-- <li class="list-inline-item"><a href="#" class="prt-social-facebook"><i
+                                                class="ecicon eci-facebook"></i></a></li> --}}
+                                    {{-- <li class="list-inline-item"><a href="#" class="prt-social-twitter"><i
+                                                class="ecicon eci-twitter"></i></a></li> --}}
+                                    <li class="list-inline-item"><a href="https://instagram.com/meramart7860?igshid=OGY3MTU3OGY1Mw==" class="prt-social-instagram"><i
                                                 class="ecicon eci-instagram"></i></a></li>
-                                    <li class="list-inline-item"><a href="#" class="prt-social-linkedin"><i
-                                                class="ecicon eci-linkedin"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://www.youtube.com/@Meramart" class="prt-social-youtube"><i
+                                                class="ecicon eci-youtube"></i></a></li>
                                 </ul>
                             </div>
                         </div>
