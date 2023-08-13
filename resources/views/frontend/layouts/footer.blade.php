@@ -124,6 +124,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-4 footer-bottom-right">
                         <div class="footer-bottom-payment d-flex justify-content-end">
                             <div class="ec-footer-links">
