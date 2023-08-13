@@ -236,6 +236,9 @@ Route::prefix("admin")->group(function(){
         Route::post('/aiz-uploader/get_file_by_ids', [AizUploadController::class, 'get_preview_files']);
         Route::get('/aiz-uploader/download/{id}', [AizUploadController::class, 'attachment_download'])->name('download_attachment');
 
+        Route::get('profile',[HomeController::class,'admin_profile'])->name('profile');
+        Route::post('profile/update',[HomeController::class,'admin_profile_update'])->name('profile.update');
+
     });
 
 });

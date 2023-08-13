@@ -23,7 +23,7 @@
             </span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
-            <a href="#" class="dropdown-item">
+            <a href="{{route('admin.profile')}}" class="dropdown-item">
             <i class="far fa-user mr-2"></i> Profile
             </a>
             <div class="dropdown-divider"></div>
