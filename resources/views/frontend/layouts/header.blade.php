@@ -111,7 +111,7 @@
                                             </li> --}}
                                             @endif
                                             @if(featureActivation('mlm') == '1')
-                                            <li><a class="dropdown-item" href="{{ route('user.register.mlm') }}">Mlm Register</a>
+                                            <li><a class="dropdown-item" href="{{ route('user.register.mlm') }}">Register</a>
                                             </li>
                                             @endif
                                             @if(featureActivation('distributor') == '1' || featureActivation('wholeseller') == '1')

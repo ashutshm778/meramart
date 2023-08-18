@@ -120,7 +120,7 @@
                                 <script>
                                     document.write(new Date().getFullYear())
                                 </script> All Rights Reserved. Developed By <a href="#"
-                                    class="site-name"> Techup Technologies. </a>
+                                    class="site-name">  </a>
                             </div>
                         </div>
                     </div>

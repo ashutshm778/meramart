@@ -45,7 +45,7 @@
                   <div class="row">
                     <div class="col-md-6">
                         <div class="image-contain d-lg-block d-md-block d-none">
-                            <img src="{{asset('public/frontend/assets/images/login.png')}}" class="img-fluid" alt="">
+                            <img src="{{asset('public/frontend/assets/images/login.jpeg')}}" class="img-fluid" alt="">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -91,7 +91,7 @@
                                                         <h3>Register Here</h3>
                                                             <ul>
                                                                 {{-- <li><a href="{{ route('user.register') }}"> As User</a></li> --}}
-                                                                <li><a href="{{ route('user.register.mlm') }}"> As MLM</a></li>
+                                                                <li><a href="{{ route('user.register.mlm') }}"> As User</a></li>
                                                             </ul>
                                                     </div>
                                                 </div>
