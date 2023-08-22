@@ -40,19 +40,8 @@
                             <div class="ec-cms-block-inner pt-2">
 
                                 <div class="small-tit">About</div>
-                                <h3 class="ec-cms-block-title">Green Orbit Furniture Pvt Ltd.</h3>
-                                <p>Your dream is at your door. Green Orbit Furniture Pvt Ltd is marketing, collections of modular home and office durable furniture's mainly Home furniture like beds, wardrobes, dresser, having world class attractions manufactured by globally recognized KOINA" <b>NO ONE IS STYLIS THAN YOU.</b></p>
-                                <p>Customer Obsession: Customers are at the center of whatever we do at Green Orbit. We ensure that we get the right customer solution in all our initiatives. We establish a long-term relationship with every customer and aim to delight them in every interaction. We aim to set the global benchmark for customer happiness scores.</p>
-                                <p>Honesty & Transparency: We are honest, ethical, and trustworthy in the way we
-                                    live life. We hold the highest standards of corporate governance in all our
-                                    activities. We communicate transparently with all our stakeholders. When we
-                                    make mistakes, we are honest and upfront about owning up to them.</p>
-                                    <p>Action Orientation: We have a bias for action. We empower our teams to take
-                                        fast and well informed decisions. We continuously iterate and learn from our
-                                        mistakes. Scale and robustness are built in as we move along.</p>
-                                <p>Stepping Up: We take charge, go the extra mile, and think differently to find
-                                    innovative solutions. When in doubt, we push ourselves harder to solve newer
-                                    challenges and get better solutions.</p>
+                                <h3 class="ec-cms-block-title">Mera Mart</h3>
+                                <p>Mera Mart is a fast growing direct selling company, you can give another direction to your life by joining it. After you join this company which is going to make best option in direct selling for your future. We have introduced a cost-effective business concept that has the power to radically change your life. Mera Mart is a direct selling business and manufacturing process of banarasi sarees, suits, kurtas, sherwanis and etc garments. Work in e-commerce with clothing products. Mera Mart believes that the success of an organization depends on the quality of its people. The best minds produce the best results. They dedicated themselves to research how to meet each and every requirement of our dear nationwide members. We have grown as an organization and continue to play a leading role.</p>
                             </div>
                         </div>
                     </div>
