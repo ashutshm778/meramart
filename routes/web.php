@@ -31,7 +31,6 @@ use App\Http\Controllers\CustomerAddressController;
 Route::get('/admin',function(){
     return redirect()->route('login');
 });
-
 Route::view('about-us', 'frontend.about-us')->name('about');
 Route::view('contact-us', 'frontend.contact-us')->name('contact');
 Route::view('privacypolicy', 'frontend.privacy_policy')->name('privacy');
