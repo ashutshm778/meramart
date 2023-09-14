@@ -219,33 +219,6 @@
             });
         });
 
-        function getVariantPrice() {
-
-            $.ajax({
-                type: "GET",
-                url: '{{ route('product.get_varinat_price') }}',
-                data: $('#product_detail_form').serializeArray(),
-                success: function(data) {
-
-                        $('#product_variant_div').empty();
-                        $('#product_variant_div').html(data);
-                        $(".single-product-cover").slick({
-                                slidesToShow: 1,
-                                slidesToScroll: 1,
-                                arrows: !1,
-                                fade: !1,
-                                asNavFor: ".single-nav-thumb"
-                            }),
-                            $(".single-nav-thumb").slick({
-                                slidesToShow: 4,
-                                slidesToScroll: 1,
-                                asNavFor: ".single-product-cover",
-                                focusOnSelect: !0,
-                            })
-                }
-            });
-
-        }
 
 
         function getVaiantPriceData(product_group_id,attribute_id,attribute_value){

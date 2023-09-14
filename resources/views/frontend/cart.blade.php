@@ -35,7 +35,7 @@
                         <div class="ec-cart-inner">
                             <div class="row">
                                 <form action="#">
-                                    <div class="table-content cart-table-content">
+                                    <div class="table-content cart-table-content" id="cart_data">
                                         <table>
                                             <thead>
                                                 <tr>

@@ -81,6 +81,7 @@ class CartController extends Controller
         ]);
         $cart_detail = view('frontend.cart_detail')->render();
         $cart_summary = view('frontend.cart_summary')->render();
-        return ['cart_detail'=>$cart_detail,'cart_summary'=>$cart_summary];
+        $cart_data = view('frontend.cart_data')->render();
+        return ['cart_detail'=>$cart_detail,'cart_summary'=>$cart_summary,'cart_data'=>$cart_data];
     }
 }

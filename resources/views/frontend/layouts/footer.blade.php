@@ -401,6 +401,35 @@
 </script>
 
 <script>
+
+    function getVariantPrice() {
+        @if(request()->route()->getName() != 'index' && request()->route()->getName() != 'cart')
+            $.ajax({
+                type: "GET",
+                url: '{{ route('product.get_varinat_price') }}',
+                data: $('#product_detail_form').serializeArray(),
+                success: function(data) {
+
+                    $('#product_variant_div').empty();
+                    $('#product_variant_div').html(data);
+                    $(".single-product-cover").slick({
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                            arrows: !1,
+                            fade: !1,
+                            asNavFor: ".single-nav-thumb"
+                        }),
+                        $(".single-nav-thumb").slick({
+                            slidesToShow: 4,
+                            slidesToScroll: 1,
+                            asNavFor: ".single-product-cover",
+                            focusOnSelect: !0,
+                        })
+                }
+            });
+        @endif
+    }
+
     function update_qty(type, product_id, range_qty, is_change) {
         var qty_id = '.qty_value_' + product_id;
         var qty_value = $(qty_id).val();
@@ -442,6 +471,7 @@
             $("#addtocart_toast").addClass("show");
             $('#ec-side-cart').html(data.cart_detail)
             $('#cart-summary-div').html(data.cart_summary)
+            $('#cart_data').html(data.cart_data);
         });
     }
 
