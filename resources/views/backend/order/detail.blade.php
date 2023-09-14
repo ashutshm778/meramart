@@ -170,10 +170,11 @@
                 </div>
             </div>
         </section>
+        <div class="col-md-12">
+            <a href="{{route('order.invoice_without_tax',$order->order_id)}}" target="blank" class="btn btn-outline-primary btn-sm mr-1 mb-1"> Print Invoice Without Tax</a> &nbsp;<a href="{{route('order.invoice_with_tax',$order->order_id)}}" target="blank" class="btn btn-outline-primary btn-sm mr-1 mb-1"> Print Invoice With Tax</a>
+        </div>
     </div>
-    <div class="col-md-12">
-        <a href="{{route('order.invoice_without_tax',$order->order_id)}}" target="blank" class="btn btn-outline-primary btn-sm mr-1 mb-1"> Print Invoice Without Tax</a> &nbsp;<a href="{{route('order.invoice_with_tax',$order->order_id)}}" target="blank" class="btn btn-outline-primary btn-sm mr-1 mb-1"> Print Invoice With Tax</a>
-    </div>
+
     <script>
 
         function changeProductStatus(order_id,product_id,current_status){
