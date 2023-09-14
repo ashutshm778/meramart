@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -44,5 +45,17 @@ class HomeController extends Controller
 
         return back();
     }
+
+    public function invoice_with_tax($id)
+    {
+        $order = Order::where('order_id',$id)->latest()->with('order_details.product')->first();
+        return view('invoice.product_invoice_with_tax',compact('order'));
+    }
+    public function invoice_without_tax($id)
+    {
+        $order = Order::where('order_id',$id)->latest()->with('order_details.product')->first();
+        return view('invoice.product_invoice_without_tax',compact('order'));
+    }
+
 
 }

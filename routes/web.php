@@ -31,6 +31,10 @@ use App\Http\Controllers\CustomerAddressController;
 Route::get('/admin',function(){
     return redirect()->route('login');
 });
+
+Route::get('invoice_with_tax/{id}', [HomeController::class, 'invoice_with_tax'])->name('order.invoice_with_tax');
+Route::get('invoice_without_tax/{id}', [HomeController::class, 'invoice_without_tax'])->name('order.invoice_without_tax');
+
 Route::view('about-us', 'frontend.about-us')->name('about');
 Route::view('contact-us', 'frontend.contact-us')->name('contact');
 Route::view('privacypolicy', 'frontend.privacy_policy')->name('privacy');
