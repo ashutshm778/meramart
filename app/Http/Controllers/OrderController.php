@@ -62,10 +62,10 @@ class OrderController extends Controller
 
                         if ($product_price['discount_type'] == 'percent') {
                             $discount_amount = ($product_price['s_p'] * $product_price['discount']) / 100;
-                            $discounted_prices = $discounted_prices + ($product_price['s_p']  * $cart->quantity) - $discount_amount;
+                            $discounted_prices = $discounted_prices + ($product_price['s_p']  * $cart->quantity) - ($discount_amount*$cart->quantity);
                         } elseif ($product_price['discount_type'] == 'amount') {
                             $discount_amount = $product_price['discount'];
-                            $discounted_prices = $discounted_prices + ($product_price['s_p']   * $cart->quantity) - $discount_amount;
+                            $discounted_prices = $discounted_prices + ($product_price['s_p']   * $cart->quantity) - ($discount_amount*$cart->quantity);
                         }
                         $order_details = new OrderDetail;
 
@@ -91,8 +91,8 @@ class OrderController extends Controller
                 }
 
                 Order::where('id', $order->id)->update([
-                    'grand_total' => $discounted_prices,
-                    'total_product_discount' => $selling_prices - $discounted_prices
+                    'grand_total' =>$discounted_prices,
+                    'total_product_discount' =>$selling_prices-$discounted_prices
                 ]);
                 // $customer = Customer::find($user_id);
                 // $commission_data = commissions();
