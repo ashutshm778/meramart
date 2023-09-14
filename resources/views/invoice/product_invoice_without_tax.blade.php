@@ -1094,7 +1094,7 @@
                                         <td class="items-table-info items-discount-column" style="">
                                             @php $product_discount=$order_detail->discounted_price * $order_detail->quantity @endphp
                                             <div class="item-discount-amount">{{$product_discount}}</div>
-                                            <div class="item-discount-percentage">({{(($order_detail->mrp_price-$order_detail->price)/$order_detail->mrp_price)*100}}%)</div>
+                                            <div class="item-discount-percentage">({{round((($order_detail->mrp_price-$order_detail->price)/$order_detail->mrp_price)*100,2)}}%)</div>
                                             @php $total_product_discount=$total_product_discount+$product_discount; @endphp
                                         </td>
                                         @php $product_price = $order_detail->price * $order_detail->quantity; @endphp
@@ -1146,7 +1146,7 @@
                                 <div id="amount-words-container">
                                     <div id="amount-words">
                                         <div id="amount-words-label">Total Amount (in words)</div>
-                                        <div id="amount-words-value">{{strtoupper(getIndianCurrency(3999))}} ONLY
+                                        <div id="amount-words-value">{{strtoupper(getIndianCurrency($total_product_price))}} ONLY
                                         </div>
                                     </div>
 
