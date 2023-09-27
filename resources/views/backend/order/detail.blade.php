@@ -57,7 +57,7 @@
                                                 <textarea name="remark" class="form-control">{{$order->remark}}</textarea>
                                             </div>
                                             <div class="col-md-12">
-                                                <button class="btn btn-outline-primary btn-sm mr-1 mb-1"> Submit</button>
+                                                <button class="btn btn-outline-primary btn-sm mr-1 mb-1" @if($order->payment_status == 'success') {{'disabled'}} @endif > Submit</button>
                                             </div>
                                             </form>
                                     </div>
