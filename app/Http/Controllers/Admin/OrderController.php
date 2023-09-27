@@ -83,7 +83,7 @@ class OrderController extends Controller
 
             if (featureActivation('mlm') == '1' && !empty($customer->refered_by)) {
 
-                if ($customer->orders->sum('grand_total') > 3999) {
+                if ($customer->orders->sum('grand_total') > 3998) {
                     $customer->verify_status = 1;
                     $customer->referral_code = 'MM' . rand(1111, 9999);
                     $customer->save();
@@ -138,7 +138,7 @@ class OrderController extends Controller
                                 $commission_direct = new CommissionDirect;
                                 $commission_direct->user_id = $refferal_customer->id;
                                 $commission_direct->order_id = $order->id;
-                                $commission_direct->commission = 256;
+                                $commission_direct->commission = 250;
                                 $commission_direct->direct_type = 10;
                                 $commission_direct->direct_user_id = $userId;
                                 $commission_direct->save();
@@ -148,7 +148,7 @@ class OrderController extends Controller
 
                                 $customer_wallet = new CustomerWallet;
                                 $customer_wallet->user_id = $refferal_customer->id;
-                                $customer_wallet->amount = 256;
+                                $customer_wallet->amount = 250;
                                 $customer_wallet->transaction_type = 'credited';
                                 $customer_wallet->transaction_detail = 'Comission Credited For Ten Direct';
                                 $customer_wallet->payment_details = '';

@@ -575,7 +575,7 @@ if (! function_exists('commissions')) {
     function commissions()
     {
         return [
-          200,100,25,25,25,25,25,25,25,25,25
+          200,100,50,50,25,25,25,25,25,25,25
         ];
     }
 }
