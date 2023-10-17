@@ -67,7 +67,7 @@
                                             <b>Name:</b> {{$order->customer->first_name}} {{$order->customer->last_name}}<br>
                                             <b>Phone:</b> {{$order->customer->phone}}<br>
                                             <b>Email:</b> {{$order->customer->email}}<br>
-                                            <b>Shipping Address:</b> {{json_decode($order->shipping_address)->address}} - {{json_decode($order->shipping_address)->pincode}} <br> {{json_decode($order->shipping_address)->city->city}} , {{json_decode($order->shipping_address)->state->state}} , {{json_decode($order->shipping_address)->country}}<br>
+                                            <b>Shipping Address:</b> {{json_decode($order->shipping_address)->address}} - {{json_decode($order->shipping_address)->pincode}} <br> {{json_decode($order->shipping_address)->city}} , {{json_decode($order->shipping_address)->state}} , {{json_decode($order->shipping_address)->country}}<br>
                                         </address>
                                     </div>
                                 </div>

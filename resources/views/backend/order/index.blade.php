@@ -91,8 +91,8 @@
                                                 <td class="text-center">{{$order->order_details_count}}</td>
                                                 <td class="text-left">
                                                     <b>Country: </b>{{$customer_details->country}} <br>
-                                                    <b>State: </b>{{$customer_details->state->state}} <br>
-                                                    <b>City: </b>{{$customer_details->city->city}} <br>
+                                                    <b>State: </b>{{$customer_details->state}} <br>
+                                                    <b>City: </b>{{$customer_details->city}} <br>
                                                     <b>Pincode: </b>{{$customer_details->pincode}} <br>
                                                     <b>Pincode: </b>{{$customer_details->address}}
                                                 </td>
