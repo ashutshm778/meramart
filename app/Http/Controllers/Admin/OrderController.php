@@ -64,7 +64,7 @@ class OrderController extends Controller
         $commission_repurchase_data = repurchase_commissions();
 
 
-        $order_data=Order::where('user_id', Auth::guard('customer')->user()->id)->where('payment_status','success')->get();
+        $order_data=Order::where('user_id', $order->user_id)->where('payment_status','success')->get();
         $total_pv=0;
         foreach($order_data as $data){
             foreach($data->order_details as $order_detail){
