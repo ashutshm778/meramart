@@ -81,7 +81,7 @@ class OrderController extends Controller
         }
 
 
-        if(empty($customer->referral_code)){
+        if(!empty($customer->referral_code)){
             if ( $total_pv > 39) {
                 $referral_code = $customer->refered_by;
                 do {
@@ -97,7 +97,7 @@ class OrderController extends Controller
 
 
 
-        if (empty($customer->referral_code)) {
+        if (!empty($customer->referral_code)) {
 
             if (featureActivation('mlm') == '1' && !empty($customer->refered_by)) {
 
