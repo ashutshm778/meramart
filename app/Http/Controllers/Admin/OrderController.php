@@ -82,7 +82,7 @@ class OrderController extends Controller
 
 
         if(empty($customer->referral_code)){
-            if ( $total_pv > 40) {
+            if ( $total_pv > 39) {
                 $referral_code = $customer->refered_by;
                 do {
                     $refferal_customer = Customer::where('referral_code', $referral_code)->first();
@@ -101,7 +101,7 @@ class OrderController extends Controller
 
             if (featureActivation('mlm') == '1' && !empty($customer->refered_by)) {
 
-                if ($total_pv > 40) {
+                if ($total_pv > 39) {
 
                     $level = 10;
                     $referral_code = $customer->refered_by;
