@@ -46,7 +46,7 @@ class OrderController extends Controller
             $order->total_product_discount = $selling_prices - $discounted_prices;
             $order->coupon_discount = 0.00;
             $order->wallet_discount = 0.00;
-            $order->shipping_address = CustomerAddress::where('id', $request->shipping_address_id)->with(['state', 'city'])->first();
+            $order->shipping_address = CustomerAddress::where('id', $request->shipping_address_id)->first();
             $order->payment_type = $request->payment_type;
             $order->payment_details = '';
             $order->payment_status = 'pending';
@@ -76,6 +76,7 @@ class OrderController extends Controller
                         $order_details->price = $product_price['s_p'] - $discount_amount;
                         $order_details->discounted_price = $discount_amount;
                         $order_details->tax = $product->tax_amount;
+                        $order_details->pv = $product->retailer_point;
                         $order_details->shipping_cost = 0.00;
 
                         $order_details->save();

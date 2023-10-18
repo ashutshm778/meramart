@@ -93,6 +93,7 @@
                                                 @php
                                                     $discount_amount = 0;
                                                     $total_final_amount = 0;
+                                                    $total_pv=0;
                                                 @endphp
                                                 @foreach ($order->order_details as $key=>$order_detail)
                                                     <tr>
@@ -133,6 +134,7 @@
                                                             if($order_detail->order_status != 'cancel' && $order_detail->order_status != 'returned'){
                                                                 $discount_amount = ($discount_amount + $order_detail->discounted_price) * $order_detail->quantity;
                                                                 $total_final_amount = $total_final_amount + ($order_detail->price * $order_detail->quantity);
+                                                                $total_pv=$total_pv+ ($order_detail->pv * $order_detail->quantity);
                                                             }
                                                         @endphp
                                                     </tr>
@@ -157,6 +159,18 @@
                                                         <th>Total Amount:</th>
                                                         <td class="d-flex justify-content-end">₹
                                                             {{$total_final_amount}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Total PV:</th>
+                                                        <td class="d-flex justify-content-end">
+                                                            {{$total_pv}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Total BV:</th>
+                                                        <td class="d-flex justify-content-end">
+                                                            {{$total_pv/40}}
                                                         </td>
                                                     </tr>
                                                 </tbody>

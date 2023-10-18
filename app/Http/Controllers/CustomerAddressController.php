@@ -20,8 +20,8 @@ class CustomerAddressController extends Controller
                 'user_id'=>Auth::guard('customer')->user()->id,
                 'name'=>$request->name,
                 'country'=>$request->country,
-                'state'=>State::where('state',$request->state)->first()->id,
-                'city'=>City::where('city',$request->city)->first()->id,
+                'state'=>$request->state,
+                'city'=>$request->city,
                 'pincode'=>$request->pincode,
                 'phone'=>$request->phone,
                 'address'=>$request->address

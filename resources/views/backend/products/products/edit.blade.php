@@ -345,7 +345,7 @@
                                                                 @if(featureActivation('mlm') == '1')
                                                                 <div class="col-md-2 form_div">
                                                                     <div class="form-group">
-                                                                        <label for="retailer_point">Point</label>
+                                                                        <label for="retailer_point">Point Value</label>
                                                                         <input type="text" class="form-control" name="retailer_point[]" value="{{$var_pro->retailer_point}}" min="0" placeholder="Point...">
                                                                     </div>
                                                                 </div>

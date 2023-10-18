@@ -56,6 +56,7 @@
                 @if ($data->sku)
                     <div class="ec-single-stoke">
                         <span class="ec-single-sku">SKU#: {{ $data->sku }}</span>
+                        <span class="ec-single-sku">PV: {{ $data->retailer_point }}</span>
                     </div>
                 @endif
             </div>

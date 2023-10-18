@@ -70,7 +70,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="w-50 fw-600"><b>Shipping Address:</b></td>
-                                                <td>{{$address->address}} {{$address->city->city}} {{$address->state->state}} {{$address->country}} - {{$address->pincode}}</td>
+                                                <td>{{$address->address}} {{$address->city}} {{$address->state}} {{$address->country}} - {{$address->pincode}}</td>
                                             </tr>
                                         </tbody>
                                     </table>

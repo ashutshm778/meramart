@@ -50,6 +50,7 @@
                     <span class="new-price">{{$productprice['product_price']}}</span>
                 @endif
             </span>
+            <span class="new-price">PV:{{$productData->retailer_point}}</span>
         </div>
     </div>
 </div>

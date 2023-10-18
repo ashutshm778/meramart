@@ -1017,7 +1017,7 @@
                                         <div id="bill-to-address-container">
                                             <span class="field-bill-ship-to">Address:</span>
                                             <span id="bill-to-address">{{ $address->address }}
-                                                {{ $address->city->city }} {{ $address->state->state }}
+                                                {{ $address->city }} {{ $address->state }}
                                                 {{ $address->country }} - {{ $address->pincode }}</span>
                                         </div>
                                         <div>

@@ -1014,7 +1014,7 @@
                                     <div class="meta-bill-ship-to">
                                         <div id="bill-to-address-container">
                                             <span class="field-bill-ship-to">Address:</span>
-                                            <span id="bill-to-address">{{$address->address}} {{$address->city->city}} {{$address->state->state}} {{$address->country}} - {{$address->pincode}}</span>
+                                            <span id="bill-to-address">{{$address->address}} {{$address->city}} {{$address->state}} {{$address->country}} - {{$address->pincode}}</span>
                                         </div>
                                         <div>
                                             <div id="bill-to-mobile-container" class="mr-4">
@@ -1077,6 +1077,7 @@
                                      $total_product_price=0;
                                      $total_product_discount=0;
                                      $total_quantity=0;
+                                     $total_pv=0;
 
                                     @endphp
                                     @foreach ($order->order_details as $key=>$order_detail)
@@ -1101,6 +1102,7 @@
                                         <td class="items-table-info item-total nowrap" style="">{{$product_price}}</td>
                                         @php  $total_product_price =  $total_product_price+$product_price;  @endphp
                                     </tr>
+                                    @php $total_pv=$total_pv+ ($order_detail->pv * $order_detail->quantity); @endphp
                                     @endforeach
                                     <tr class="empty-row" style="height: 98.55833335720001mm">
                                         <td class="items-table-info item-serial-number" style=""></td>
@@ -1149,7 +1151,10 @@
                                         <div id="amount-words-value">{{strtoupper(getIndianCurrency($total_product_price))}} ONLY
                                         </div>
                                     </div>
-
+                                    <div>
+                                        Total PV:{{$total_pv}}, Total BV:{{$total_pv/40}}&nbsp;
+                                     </div>
+                                    </div>
                                 </div>
 
                                 <!-- Misc details  -->

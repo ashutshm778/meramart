@@ -584,7 +584,7 @@ if (! function_exists('repurchase_commissions')) {
     function repurchase_commissions()
     {
         return [
-          100,50,50
+          2.5,1.5,1,0.75,0.5
         ];
     }
 }

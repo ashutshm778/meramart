@@ -76,7 +76,7 @@
                                                                 <div class="address">
                                                                     <input type="radio" id="address_select_{{$add_key+1}}" value="{{$customer_address->id}}" name="address_select" checked>
                                                                     <label for="address_select_{{$add_key+1}}"><b>{{$customer_address->name}}</b></label>
-                                                                    <p>{{$customer_address->address}} {{App\Models\Admin\City::where('id',$customer_address->city)->first()->city}} {{App\Models\Admin\State::where('id',$customer_address->state)->first()->state}} {{$customer_address->country}} {{$customer_address->pincode}}</p>
+                                                                    <p>{{$customer_address->address}} {{$customer_address->city}} {{$customer_address->state}} {{$customer_address->country}} {{$customer_address->pincode}}</p>
                                                                 </div>
                                                             @endforeach
                                                         </span>

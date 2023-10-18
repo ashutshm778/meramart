@@ -51,7 +51,27 @@
                             <button onclick="copy_text()" >Click to copy  &nbsp;<i class="ecicon eci-copy"></i> </button>
                       @else <span class="out-of-stock" >{{'InActive'}} @endif</span>
                     @endif
+                    @php
 
+                    $order_data=App\Models\Order::where('user_id', Auth::guard('customer')->user()->id)->where('payment_status','success')->get();
+                    $total_pv=0;
+                    foreach($order_data as $data){
+                        foreach($data->order_details as $order_detail){
+                             $total_pv= $total_pv + $order_detail->pv;
+                         }
+                    }
+                    @endphp
+
+                   Total PV: {{$total_pv}}
+                   <div class="marquee">
+                    @if(Auth::guard('customer')->user()->verify_status==0)
+                      <p><b><marquee><a href="/">To Activate Your Account & Referral Code Please Buy a Product of Worth ₹999</a></marquee></b></p>
+                    @endif
+
+                    @if($total_pv < 40)
+                     <p><b><marquee><a href="/">For getting team income 40 PV required.</a></marquee></b></p>
+                    @endif
+                  </div>
                 </div>
                 <div class="ec-vendor-block-items">
                     <ul>
