@@ -72,12 +72,13 @@ class OrderController extends Controller
              }
         }
 
-        if ($customer->orders->sum('grand_total') > 999) {
-            $customer->verify_status = 1;
-            $customer->referral_code = 'MM' . rand(1111, 9999);
-            $customer->save();
+        if(empty($customer->referral_code)){
+            if ($customer->orders->sum('grand_total') > 999) {
+                $customer->verify_status = 1;
+                $customer->referral_code = 'MM' . rand(1111, 9999);
+                $customer->save();
+            }
         }
-
 
 
         if(empty($customer->referral_code)){
