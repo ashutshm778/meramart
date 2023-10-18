@@ -57,7 +57,7 @@
                     $total_pv=0;
                     foreach($order_data as $data){
                         foreach($data->order_details as $order_detail){
-                             $total_pv= $total_pv + $order_detail->pv;
+                             $total_pv= $total_pv + ($order_detail->pv * $order_detail->quantity);
                          }
                     }
                     @endphp
