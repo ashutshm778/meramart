@@ -37,6 +37,8 @@
                                             <th class="text-center">Income</th>
                                             <th class="text-center">Total Team</th>
                                             <th class="text-center">My Income</th>
+                                            <th class="text-center">Total Team PV</th>
+                                            <th class="text-center">Total Team BV</th>
                                             <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
@@ -47,6 +49,8 @@
                                                 <td class="text-center">{{$final_ar['income']}}</td>
                                                 <td class="text-center">{{$final_ar['total_team']}}</td>
                                                 <td class="text-center">{{$final_ar['my_income']}}</td>
+                                                <td class="text-center">{{$final_ar['total_pv_all']}}</td>
+                                                <td class="text-center">{{$final_ar['total_pv_all']/40}}</td>
                                                 <td class="text-center">
                                                     <a href="{{route('level.team.list',$final_ar['level'])}}" class="btn btn-lg btn-primary">View</a>
                                                 </td>

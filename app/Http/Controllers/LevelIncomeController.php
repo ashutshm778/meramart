@@ -18,7 +18,7 @@ class LevelIncomeController extends Controller
             $teams = Commission::where('user_id',Auth::guard('customer')->user()->id)->where('level',$level)->get();
 
             $total_pv_all=0;
-           foreach($teams as $team){
+            foreach($teams as $team){
              $order_data=Order::where('user_id', $team->order->user_id)->where('payment_status','success')->get();
              $total_pv=0;
              foreach($order_data as $data){
@@ -26,11 +26,12 @@ class LevelIncomeController extends Controller
                $total_pv= $total_pv + ($order_detail->pv *  $order_detail->quantity);
                }
               }
+              $total_pv_all=$total_pv_all+$total_pv;
              }
 
             $total_team = $teams->count();
             $my_income = $teams->sum('commission');
-            array_push($final_arr,['level'=>$level,'income'=>$commissions[$key],'total_team'=>$total_team,'my_income'=>$my_income]);
+            array_push($final_arr,['level'=>$level,'income'=>$commissions[$key],'total_team'=>$total_team,'my_income'=>$my_income,'total_pv_all'=>$total_pv_all]);
         }
 
         return view('frontend.user.level_income.index',compact('final_arr'));
