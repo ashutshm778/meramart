@@ -206,7 +206,7 @@ class OrderController extends Controller
 
 
 
-        if(count(Order::where('user_id', $order->user_id)->where('payment_status','success')->get()) > 1){
+
 
             if($customer->team_repurchase_status==0){
                 if (!empty($customer->referral_code) && ($total_pv > 40)) {
@@ -333,7 +333,7 @@ class OrderController extends Controller
                 }
             }
 
-        }
+
 
         return redirect()->back();
     }
