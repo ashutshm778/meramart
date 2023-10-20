@@ -384,8 +384,8 @@ class FrontController extends Controller
              foreach($teams as $team){
               $order_data=Order::where('user_id', $team->order->user_id)->where('payment_status','success')->get();
               $total_pv=0;
-              foreach($order_data as $data){
-               foreach($data->order_details as $order_detail){
+              foreach($order_data as $datas){
+               foreach($datas->order_details as $order_detail){
                 $total_pv= $total_pv + ($order_detail->pv *  $order_detail->quantity);
                 }
                }
