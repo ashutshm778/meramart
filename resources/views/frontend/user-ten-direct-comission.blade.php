@@ -51,7 +51,7 @@
                                             <tr>
                                                 <td><span>{{$commission_history->created_at->format('d-M-Y h:i A')}}</span></td>
                                                 <td><span>{{$commission_history->direct_type}}</span></td>
-                                                <td> <span>2560</span></td>
+                                                <td> <span>2500</span></td>
                                                 <td> <a href="{{route('user_ten_direct_commission_list',$commission_history->order_id)}}" class="btn btn-primary">View</a></td>
                                             </tr>
                                         @endforeach
