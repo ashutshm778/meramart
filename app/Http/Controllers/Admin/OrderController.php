@@ -206,65 +206,68 @@ class OrderController extends Controller
 
 
 
+        if(count(Order::where('user_id', $order->user_id)->where('payment_status','success')->get()) > 1){
 
-        if (!empty($customer->referral_code) && ($total_pv > 40)) {
+            if (!empty($customer->referral_code) && ($total_pv > 40)) {
 
-            $amount_comission_data=($order->grand_total*7.5)/100;
-            $customer->balance = $customer->balance + $amount_comission_data;
-            $customer->save();
+                $amount_comission_data=($order->grand_total*7.5)/100;
+                $customer->balance = $customer->balance + $amount_comission_data;
+                $customer->save();
 
-            $customer_wallet = new CustomerWallet;
-            $customer_wallet->user_id = $customer->id;
-            $customer_wallet->amount = $amount_comission_data;
-            $customer_wallet->transaction_type = 'credited';
-            $customer_wallet->transaction_detail = 'Repurchase Income Credited';
-            $customer_wallet->payment_details = '';
-            $customer_wallet->balance = $customer->balance;
-            $customer_wallet->approval = 0;
-            $customer_wallet->save();
-
-
-            $referral_code = $customer->refered_by;
-            do {
-                $refferal_customer = Customer::where('referral_code', $referral_code)->first();
-                $refferal_customer->pv = $refferal_customer->pv + 1;
-                $refferal_customer->save();
-
-                $referral_code = $refferal_customer->refered_by;
-              } while (!empty(Customer::where('referral_code', $referral_code)->first()));
+                $customer_wallet = new CustomerWallet;
+                $customer_wallet->user_id = $customer->id;
+                $customer_wallet->amount = $amount_comission_data;
+                $customer_wallet->transaction_type = 'credited';
+                $customer_wallet->transaction_detail = 'Repurchase Income Credited';
+                $customer_wallet->payment_details = '';
+                $customer_wallet->balance = $customer->balance;
+                $customer_wallet->approval = 0;
+                $customer_wallet->save();
 
 
-            $level = 5;
-            $referral_code = $customer->refered_by;
-            for ($i = 1; $i <= $level; $i++) {
-                $refferal_customer = Customer::where('referral_code', $referral_code)->first();
-
-                if (!empty($refferal_customer->id)) {
-                    $comission_amount_repurchase=($order->grand_total * $commission_repurchase_data[$i - 1])/100;
-                    $repurchase_commission = new RepurchaseCommission;
-                    $repurchase_commission->user_id = $refferal_customer->id;
-                    $repurchase_commission->order_id = $order->id;
-                    $repurchase_commission->commission = $comission_amount_repurchase;
-                    $repurchase_commission->level = $i;
-                    $repurchase_commission->save();
-
-
-                    $refferal_customer->balance = $refferal_customer->balance +$comission_amount_repurchase;
+                $referral_code = $customer->refered_by;
+                do {
+                    $refferal_customer = Customer::where('referral_code', $referral_code)->first();
+                    $refferal_customer->pv = $refferal_customer->pv + 1;
                     $refferal_customer->save();
 
-                    $customer_wallet = new CustomerWallet;
-                    $customer_wallet->user_id = $refferal_customer->id;
-                    $customer_wallet->amount = $comission_amount_repurchase;
-                    $customer_wallet->transaction_type = 'credited';
-                    $customer_wallet->transaction_detail = 'Repurchase Level Income Credited';
-                    $customer_wallet->payment_details = '';
-                    $customer_wallet->balance = $refferal_customer->balance;
-                    $customer_wallet->approval = 0;
-                    $customer_wallet->save();
-
                     $referral_code = $refferal_customer->refered_by;
+                } while (!empty(Customer::where('referral_code', $referral_code)->first()));
+
+
+                $level = 5;
+                $referral_code = $customer->refered_by;
+                for ($i = 1; $i <= $level; $i++) {
+                    $refferal_customer = Customer::where('referral_code', $referral_code)->first();
+
+                    if (!empty($refferal_customer->id)) {
+                        $comission_amount_repurchase=($order->grand_total * $commission_repurchase_data[$i - 1])/100;
+                        $repurchase_commission = new RepurchaseCommission;
+                        $repurchase_commission->user_id = $refferal_customer->id;
+                        $repurchase_commission->order_id = $order->id;
+                        $repurchase_commission->commission = $comission_amount_repurchase;
+                        $repurchase_commission->level = $i;
+                        $repurchase_commission->save();
+
+
+                        $refferal_customer->balance = $refferal_customer->balance +$comission_amount_repurchase;
+                        $refferal_customer->save();
+
+                        $customer_wallet = new CustomerWallet;
+                        $customer_wallet->user_id = $refferal_customer->id;
+                        $customer_wallet->amount = $comission_amount_repurchase;
+                        $customer_wallet->transaction_type = 'credited';
+                        $customer_wallet->transaction_detail = 'Repurchase Level Income Credited';
+                        $customer_wallet->payment_details = '';
+                        $customer_wallet->balance = $refferal_customer->balance;
+                        $customer_wallet->approval = 0;
+                        $customer_wallet->save();
+
+                        $referral_code = $refferal_customer->refered_by;
+                    }
                 }
             }
+
         }
 
         return redirect()->back();
