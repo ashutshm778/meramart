@@ -37,6 +37,7 @@
                                             <th class="text-center">Name</th>
                                             <th class="text-center">Phone</th>
                                             <th class="text-center">Total PV </th>
+                                            <th class="text-center">Total BV </th>
                                             <th class="text-center">Join Date</th>
                                         </tr>
                                     </thead>
@@ -45,7 +46,6 @@
                                             <tr>
                                                 <td class="text-center">{{$key+1}}</td>
                                                 <td class="text-center">{{$team->order->customer->first_name}} {{$team->order->customer->last_name}}</td>
-                                                <td class="text-center">{{$team->order->customer->phone}}</td>
                                                 <td class="text-center">{{$team->order->customer->phone}}</td>
                                                 @php
 
@@ -59,6 +59,7 @@
 
                                                 @endphp
                                                 <td class="text-center">{{$total_pv}}</td>
+                                                <td class="text-center">{{$total_pv/40}}</td>
                                                 <td class="text-center">{{$team->order->customer->created_at}}</td>
                                             </tr>
                                         @endforeach
