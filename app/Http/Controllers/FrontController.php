@@ -366,8 +366,8 @@ class FrontController extends Controller
         $data=Customer::where('referral_code', $request->referral_code)->first();
         $order_data=Order::where('user_id', $data->id)->where('payment_status','success')->get();
         $total_pv=0;
-        foreach($order_data as $data){
-         foreach($data->order_details as $order_detail){
+        foreach($order_data as $datas){
+         foreach($datas->order_details as $order_detail){
           $total_pv= $total_pv + ($order_detail->pv *  $order_detail->quantity);
           }
          }
