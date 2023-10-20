@@ -36,6 +36,7 @@
                                             <th class="text-center">#</th>
                                             <th class="text-center">Name</th>
                                             <th class="text-center">Phone</th>
+                                            <th class="text-center">Total PV </th>
                                             <th class="text-center">Join Date</th>
                                         </tr>
                                     </thead>
@@ -45,6 +46,19 @@
                                                 <td class="text-center">{{$key+1}}</td>
                                                 <td class="text-center">{{$team->order->customer->first_name}} {{$team->order->customer->last_name}}</td>
                                                 <td class="text-center">{{$team->order->customer->phone}}</td>
+                                                <td class="text-center">{{$team->order->customer->phone}}</td>
+                                                @php
+
+                                                    $order_data=App\Models\Order::where('user_id', $team->order->user_id)->where('payment_status','success')->get();
+                                                    $total_pv=0;
+                                                    foreach($order_data as $data){
+                                                     foreach($data->order_details as $order_detail){
+                                                      $total_pv= $total_pv + ($order_detail->pv *  $order_detail->quantity);
+                                                      }
+                                                     }
+
+                                                @endphp
+                                                <td class="text-center">{{$total_pv}}</td>
                                                 <td class="text-center">{{$team->order->customer->created_at}}</td>
                                             </tr>
                                         @endforeach
