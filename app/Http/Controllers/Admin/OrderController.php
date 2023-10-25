@@ -108,73 +108,74 @@ class OrderController extends Controller
                     $referral_code = $customer->refered_by;
                     for ($i = 1; $i <= $level; $i++) {
                         $refferal_customer = Customer::where('referral_code', $referral_code)->first();
+                        if(!empty($refferal_customer->id)){
+                            if (Customer::where('refered_by', $referral_code)->where('verify_status', 1)->where('total_pv','>',39)->get()->count() % 2 == 0) {
 
-                        if (Customer::where('refered_by', $referral_code)->where('verify_status', 1)->where('total_pv','>',39)->get()->count() % 2 == 0) {
+                                $all_user_ids = Customer::where('refered_by', $referral_code)->where('verify_status', 1)->where('total_pv','>',39)->get()->pluck('id')->toArray();
+                                $all_commission_direct_user_id = CommissionDirect::where('user_id', $refferal_customer->id)->where('direct_type', 2)->get()->pluck('direct_user_id')->toArray();
 
-                            $all_user_ids = Customer::where('refered_by', $referral_code)->where('verify_status', 1)->where('total_pv','>',39)->get()->pluck('id')->toArray();
-                            $all_commission_direct_user_id = CommissionDirect::where('user_id', $refferal_customer->id)->where('direct_type', 2)->get()->pluck('direct_user_id')->toArray();
+                                $diff = array_diff($all_user_ids, $all_commission_direct_user_id);
 
-                            $diff = array_diff($all_user_ids, $all_commission_direct_user_id);
+                                foreach ($diff as $userId) {
 
-                            foreach ($diff as $userId) {
+                                    $commission_direct = new CommissionDirect;
+                                    $commission_direct->user_id = $refferal_customer->id;
+                                    $commission_direct->order_id = $order->id;
+                                    $commission_direct->commission = 300;
+                                    $commission_direct->direct_type = 2;
+                                    $commission_direct->direct_user_id = $userId;
+                                    $commission_direct->save();
 
-                                $commission_direct = new CommissionDirect;
-                                $commission_direct->user_id = $refferal_customer->id;
-                                $commission_direct->order_id = $order->id;
-                                $commission_direct->commission = 300;
-                                $commission_direct->direct_type = 2;
-                                $commission_direct->direct_user_id = $userId;
-                                $commission_direct->save();
+                                    $refferal_customer->balance = $refferal_customer->balance + 300;
+                                    $refferal_customer->save();
 
-                                $refferal_customer->balance = $refferal_customer->balance + 300;
-                                $refferal_customer->save();
+                                    $customer_wallet = new CustomerWallet;
+                                    $customer_wallet->user_id = $refferal_customer->id;
+                                    $customer_wallet->amount = 300;
+                                    $customer_wallet->transaction_type = 'credited';
+                                    $customer_wallet->transaction_detail = 'Comission Credited For Two Direct';
+                                    $customer_wallet->payment_details = '';
+                                    $customer_wallet->balance = $refferal_customer->balance;
+                                    $customer_wallet->approval = 0;
+                                    $customer_wallet->save();
+                                }
 
-                                $customer_wallet = new CustomerWallet;
-                                $customer_wallet->user_id = $refferal_customer->id;
-                                $customer_wallet->amount = 300;
-                                $customer_wallet->transaction_type = 'credited';
-                                $customer_wallet->transaction_detail = 'Comission Credited For Two Direct';
-                                $customer_wallet->payment_details = '';
-                                $customer_wallet->balance = $refferal_customer->balance;
-                                $customer_wallet->approval = 0;
-                                $customer_wallet->save();
                             }
 
-                        }
-
-                        if (Customer::where('refered_by', $referral_code)->get()->where('verify_status', 1)->where('total_pv','>',39)->count() % 10 == 0) {
+                            if (Customer::where('refered_by', $referral_code)->get()->where('verify_status', 1)->where('total_pv','>',39)->count() % 10 == 0) {
 
 
-                            $all_user_ids = Customer::where('refered_by', $referral_code)->where('verify_status', 1)->get()->pluck('id')->toArray();
-                            $all_commission_direct_user_id = CommissionDirect::where('user_id', $refferal_customer->id)->where('direct_type', 10)->get()->pluck('direct_user_id')->toArray();
+                                $all_user_ids = Customer::where('refered_by', $referral_code)->where('verify_status', 1)->get()->pluck('id')->toArray();
+                                $all_commission_direct_user_id = CommissionDirect::where('user_id', $refferal_customer->id)->where('direct_type', 10)->get()->pluck('direct_user_id')->toArray();
 
-                            $diff = array_diff($all_user_ids, $all_commission_direct_user_id);
+                                $diff = array_diff($all_user_ids, $all_commission_direct_user_id);
 
-                            foreach ($diff as $userId) {
+                                foreach ($diff as $userId) {
 
-                                $commission_direct = new CommissionDirect;
-                                $commission_direct->user_id = $refferal_customer->id;
-                                $commission_direct->order_id = $order->id;
-                                $commission_direct->commission = 250;
-                                $commission_direct->direct_type = 10;
-                                $commission_direct->direct_user_id = $userId;
-                                $commission_direct->save();
+                                    $commission_direct = new CommissionDirect;
+                                    $commission_direct->user_id = $refferal_customer->id;
+                                    $commission_direct->order_id = $order->id;
+                                    $commission_direct->commission = 250;
+                                    $commission_direct->direct_type = 10;
+                                    $commission_direct->direct_user_id = $userId;
+                                    $commission_direct->save();
 
-                                $refferal_customer->balance = $refferal_customer->balance + 250;
-                                $refferal_customer->save();
+                                    $refferal_customer->balance = $refferal_customer->balance + 250;
+                                    $refferal_customer->save();
 
-                                $customer_wallet = new CustomerWallet;
-                                $customer_wallet->user_id = $refferal_customer->id;
-                                $customer_wallet->amount = 250;
-                                $customer_wallet->transaction_type = 'credited';
-                                $customer_wallet->transaction_detail = 'Comission Credited For Ten Direct';
-                                $customer_wallet->payment_details = '';
-                                $customer_wallet->balance = $refferal_customer->balance;
-                                $customer_wallet->approval = 0;
-                                $customer_wallet->save();
+                                    $customer_wallet = new CustomerWallet;
+                                    $customer_wallet->user_id = $refferal_customer->id;
+                                    $customer_wallet->amount = 250;
+                                    $customer_wallet->transaction_type = 'credited';
+                                    $customer_wallet->transaction_detail = 'Comission Credited For Ten Direct';
+                                    $customer_wallet->payment_details = '';
+                                    $customer_wallet->balance = $refferal_customer->balance;
+                                    $customer_wallet->approval = 0;
+                                    $customer_wallet->save();
+                                }
+
                             }
-
-                        }
+                      }
 
                         if (!empty($refferal_customer->id)) {
                             $commission = new Commission;
