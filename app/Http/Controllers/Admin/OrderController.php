@@ -114,7 +114,7 @@ class OrderController extends Controller
 
                         if (Customer::where('refered_by', $referral_code)->where('verify_status', 1)->where('total_pv','>',39)->get()->count() % 2 == 0) {
 
-                            $all_user_ids = Customer::where('refered_by', $referral_code)->where('verify_status', 1)->get()->pluck('id')->toArray();
+                            $all_user_ids = Customer::where('refered_by', $referral_code)->where('verify_status', 1)->where('total_pv','>',39)->get()->pluck('id')->toArray();
                             $all_commission_direct_user_id = CommissionDirect::where('user_id', $refferal_customer->id)->where('direct_type', 2)->get()->pluck('direct_user_id')->toArray();
 
                             $diff = array_diff($all_user_ids, $all_commission_direct_user_id);
@@ -148,7 +148,7 @@ class OrderController extends Controller
                         if (Customer::where('refered_by', $referral_code)->get()->where('verify_status', 1)->where('total_pv','>',39)->count() % 10 == 0) {
 
 
-                            $all_user_ids = Customer::where('refered_by', $referral_code)->where('verify_status', 1)->get()->pluck('id')->toArray();
+                            $all_user_ids = Customer::where('refered_by', $referral_code)->where('verify_status', 1)->where('total_pv','>',39)->get()->pluck('id')->toArray();
                             $all_commission_direct_user_id = CommissionDirect::where('user_id', $refferal_customer->id)->where('direct_type', 10)->get()->pluck('direct_user_id')->toArray();
 
                             $diff = array_diff($all_user_ids, $all_commission_direct_user_id);
