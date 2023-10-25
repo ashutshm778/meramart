@@ -71,7 +71,8 @@ class OrderController extends Controller
                  $total_pv= $total_pv + ($order_detail->pv *  $order_detail->quantity);
              }
         }
-
+        $customer->total_pv= $total_pv;
+        $customer->save();
         if(empty($customer->referral_code)){
             if ($customer->orders->sum('grand_total') > 999) {
                 $customer->verify_status = 1;
