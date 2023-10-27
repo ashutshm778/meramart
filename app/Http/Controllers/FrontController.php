@@ -108,7 +108,7 @@ class FrontController extends Controller
             'phone' => $request->phone,
             'type' => 'retailer',
             'password' => Hash::make($request->password),
-            'refered_by' => strtoupper($request->referral_code)
+            'refered_by' => $request->referral_code
         ]);
 
         if (Auth::guard('customer')->attempt(['phone' => $request->phone, 'password' => $request->password])) {
@@ -399,12 +399,8 @@ class FrontController extends Controller
         return 'Name: '.$data->first_name.'<br>User Id: '.$data->referral_code.' <br>Sponsor Id: '.$data->refered_by.' <br>Phone No: '.$data->phone.' <br>Total PV: '.$total_pv.' <br>Total Team PV: '.$total_all_pv.' <br>Total Team BV: '.$total_all_pv/40;
     }
 
-    private function buildTree($referralCode = null,$level = 1)
+    private function buildTree($referralCode = null)
     {
-        if ($level > 4) {
-            return null; // Limit the depth to four levels
-        }
-
         $node = Customer::where('referral_code', $referralCode)->first();
         if (!$node) {
             return null;
@@ -428,7 +424,7 @@ class FrontController extends Controller
             'c' => [],
         ];
         foreach ($children as $child) {
-            $tree['c'][] = $this->buildTree($child->referral_code,$level + 1);
+            $tree['c'][] = $this->buildTree($child->referral_code);
         }
         return $tree;
     }
