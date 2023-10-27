@@ -108,7 +108,7 @@ class FrontController extends Controller
             'phone' => $request->phone,
             'type' => 'retailer',
             'password' => Hash::make($request->password),
-            'refered_by' => $request->referral_code
+            'refered_by' => strtoupper($request->referral_code)
         ]);
 
         if (Auth::guard('customer')->attempt(['phone' => $request->phone, 'password' => $request->password])) {
