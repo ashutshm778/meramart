@@ -399,8 +399,13 @@ class FrontController extends Controller
         return 'Name: '.$data->first_name.'<br>User Id: '.$data->referral_code.' <br>Sponsor Id: '.$data->refered_by.' <br>Phone No: '.$data->phone.' <br>Total PV: '.$total_pv.' <br>Total Team PV: '.$total_all_pv.' <br>Total Team BV: '.$total_all_pv/40;
     }
 
-    private function buildTree($referralCode = null)
+
+    private function buildTree($referralCode = null,$level = 1)
     {
+        if ($level > 4) {
+            return null; // Limit the depth to four levels
+        }
+
         $node = Customer::where('referral_code', $referralCode)->first();
         if (!$node) {
             return null;
@@ -408,23 +413,23 @@ class FrontController extends Controller
         $children = $this->getChildren($referralCode);
         if (!$children->count()) {
             return [
-                'v' => $node->referral_code ?: $node->id,
-                'f' =>'<div class=mytooltip><img src='.($node->verify_status == 1 ? ($node->photo ? asset('public/public/frontend/user_profile/'.$node->photo): asset('/public/green.png')) : ($node->photo ?asset('public/public/frontend/user_profile/'.$node->photo) : asset('/public/red.png'))).' style=height:50px;width:50px;><a
+                'v' => $node->referral_code,
+                'f' =>'<div class=mytooltip><img src='.($node->status == 1 ? asset('green.png') : asset('red.png')).' style=height:50px;width:50px;><a
                 href='.route('tree_view').'?referral_code='.$node->referral_code.'><span style=color:black>'.$node->referral_code.'</span><br><span
-                     style=color:black>'.$node->first_name.'</span></a><span class=mytext id=my'.$node->referral_code.'></span></div>' ,
-                'p' => $node->refered_by ?: null,
+                     style=color:black>'.$node->name.'</span></a><span class=mytext id=my'.$node->referral_code.'></span></div>' ,
+                'p' => $node->referral_by ?: null,
             ];
         }
         $tree = [
-            'v' => $node->referral_code ?: $node->id,
-            'f' => '<div class=mytooltip><img src='.($node->verify_status == 1 ? ($node->photo ? asset('public/public/frontend/user_profile/'.$node->photo): asset('/public/green.png')): ( $node->photo ? asset('public/public/frontend/user_profile/'.$node->photo) : asset('/public/red.png'))).' style=height:50px;width:50px;><a
+            'v' => $node->referral_code,
+            'f' => '<div class=mytooltip><img src='.($node->status == 1 ? asset('green.png'): asset('red.png')).' style=height:50px;width:50px;><a
             href='.route('tree_view').'?referral_code='.$node->referral_code.'><span style=color:black>'.$node->referral_code.'</span><br><span
-                 style=color:black>'.$node->first_name.'</span></a><span class=mytext id=my'.$node->referral_code.'></span></div>',
-            'p' => $node->refered_by ?: null,
+                 style=color:black>'.$node->name.'</span></a><span class=mytext id=my'.$node->referral_code.'></span></div>',
+            'p' => $node->referral_by ?: null,
             'c' => [],
         ];
         foreach ($children as $child) {
-            $tree['c'][] = $this->buildTree($child->referral_code);
+            $tree['c'][] = $this->buildTree($child->referral_code,$level + 1);
         }
         return $tree;
     }
@@ -436,7 +441,6 @@ class FrontController extends Controller
         $mlmTree = $this->buildTree($topLevelReferralCode);
         return response()->json($mlmTree);
     }
-
 
 
 }
