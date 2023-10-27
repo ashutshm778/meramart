@@ -82,17 +82,16 @@ class OrderController extends Controller
 
 
         if(!empty($customer->referral_code)){
-            if ( $total_pv > 39) {
+
                 $referral_code = $customer->refered_by;
                 do {
                     $refferal_customer = Customer::where('referral_code', $referral_code)->first();
-                    $refferal_customer->pv = $refferal_customer->pv + 1;
+                    $refferal_customer->pv = $refferal_customer->pv + $total_pv;
                     $refferal_customer->save();
 
                     $referral_code = $refferal_customer->refered_by;
                   } while (!empty(Customer::where('referral_code', $referral_code)->first()));
 
-            }
         }
 
 
