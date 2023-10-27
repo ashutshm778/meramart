@@ -28,7 +28,7 @@
                 if ($other_side >= $other_side_count) {
                     $one_side_customer=App\Models\Customer::where('id',$one_side)->first();
                     $one_side_customer->total_pv=$one_side_customer->total_pv-$one_side_count;
-                    //$one_side_customer->save();
+                    $one_side_customer->save();
 
                     foreach($other_side_id as $otherSideId){
                         $other_side_customer=App\Models\Customer::where('id',$otherSideId['customer_id'] )->first();
@@ -42,10 +42,10 @@
                     $customer_reward_achive=new App\Models\CustomerReward;
                     $customer_reward_achive->user_id= $customer->id;
                     $customer_reward_achive->reward_id=$reward_id;
-                   // $customer_reward_achive->save();
+                    $customer_reward_achive->save();
 
                     $customer->balance = $customer->balance + $amount;
-                   // $customer->save();
+                    $customer->save();
 
                     $customer_wallet = new App\Models\CustomerWallet;
                     $customer_wallet->user_id =$customer->id;
@@ -55,7 +55,7 @@
                     $customer_wallet->payment_details = '';
                     $customer_wallet->balance = $customer->balance;
                     $customer_wallet->approval = 0;
-                   // $customer_wallet->save();
+                    $customer_wallet->save();
 
                     echo 'Achived';
                 } else {
