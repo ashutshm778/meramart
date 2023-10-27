@@ -108,6 +108,7 @@ class FrontController extends Controller
             'phone' => $request->phone,
             'type' => 'retailer',
             'password' => Hash::make($request->password),
+            'referral_code' =>'MM' . rand(1111, 9999),
             'refered_by' => $request->referral_code
         ]);
 
