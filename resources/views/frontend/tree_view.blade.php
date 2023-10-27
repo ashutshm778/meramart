@@ -200,83 +200,82 @@
     </section>
 @endsection
 @section('script')
-<script>
-    // Function to fetch the MLM tree response from your server
-    function fetchMLMTree() {
-        return fetch(
-                '{{ route('mlm_tree') }}?referral_code={{ $referral_code }}'
-                ) // Replace with the actual endpoint to get the MLM tree response from your server
-            .then((response) => response.json())
-            .catch((error) => console.error('Error fetching MLM tree:', error));
-    }
+    <script>
+        // Function to fetch the MLM tree response from your server
+        function fetchMLMTree() {
+            return fetch(
+                '{{ route('mlm_tree') }}?referral_code={{ $referral_code }}') // Replace with the actual endpoint to get the MLM tree response from your server
+                .then((response) => response.json())
+                .catch((error) => console.error('Error fetching MLM tree:', error));
+        }
 
-    // Function to draw the org chart using the MLM tree response
-    function drawOrgChart(mlmTree) {
-        google.charts.load('current', {
-            packages: ['orgchart']
-        });
-        google.charts.setOnLoadCallback(() => {
-            const chartData = new google.visualization.DataTable();
-            chartData.addColumn('string', 'ID');
-            chartData.addColumn('string', 'Parent');
-            chartData.addColumn('string', 'Name');
-
-            // Convert the MLM tree response to the format required by Google Org Chart
-            const orgChartData = convertToOrgChartData(mlmTree);
-
-            chartData.addRows(orgChartData);
-
-            const chart = new google.visualization.OrgChart(document.getElementById('orgchart_div'));
-            chart.draw(chartData, {
-                allowHtml: true
+        // Function to draw the org chart using the MLM tree response
+        function drawOrgChart(mlmTree) {
+            google.charts.load('current', {
+                packages: ['orgchart']
             });
+            google.charts.setOnLoadCallback(() => {
+                const chartData = new google.visualization.DataTable();
+                chartData.addColumn('string', 'ID');
+                chartData.addColumn('string', 'Parent');
+                chartData.addColumn('string', 'Name');
 
-            google.visualization.events.addListener(chart, 'onmouseover', function(e) {
-                setTooltipContent(chartData, e.row);
-            });
+                // Convert the MLM tree response to the format required by Google Org Chart
+                const orgChartData = convertToOrgChartData(mlmTree);
 
-            function setTooltipContent(dataTable, row) {
-                if (row != null) {
-                    var str = dataTable.getValue(row, 0);
-                    var tooltip = document.getElementsByClassName("google-visualization-tooltip")[0];
-                    if (str != '') {
-                        $.ajax({
-                            type: 'GET',
-                            url: "{{ route('referral_details') }}",
-                            data: 'referral_code=' + str,
-                            success: function(resp) {
-                                if (resp != '') {
-                                    $("#my" + str).html(resp);
+                chartData.addRows(orgChartData);
+
+                const chart = new google.visualization.OrgChart(document.getElementById('orgchart_div'));
+                chart.draw(chartData, {
+                    allowHtml: true
+                });
+
+                google.visualization.events.addListener(chart, 'onmouseover', function(e) {
+                    setTooltipContent(chartData, e.row);
+                });
+
+                function setTooltipContent(dataTable, row) {
+                    if (row != null) {
+                        var str = dataTable.getValue(row, 0);
+                        var tooltip = document.getElementsByClassName("google-visualization-tooltip")[0];
+                        if (str != '') {
+                            $.ajax({
+                                type: 'GET',
+                                url: "{{ route('referral_details') }}",
+                                data: 'referral_code=' + str,
+                                success: function(resp) {
+                                    if (resp != '') {
+                                        $("#my" + str).html(resp);
+                                    }
                                 }
-                            }
-                        });
+                            });
+                        }
                     }
                 }
-            }
 
-        });
-    }
-
-    // Function to convert MLM tree response to Google Org Chart format
-    function convertToOrgChartData(node) {
-        const orgChartData = [];
-        if (node) {
-            orgChartData.push([{
-                'v': node.v.toString(),
-                'f': node.f
-            }, node.p ? node.p.toString() : '', '']);
-            if (node.c && node.c.length > 0) {
-                node.c.forEach((child) => {
-                    orgChartData.push(...convertToOrgChartData(child));
-                });
-            }
+            });
         }
-        return orgChartData;
-    }
 
-    // Fetch the MLM tree response and draw the org chart
-    fetchMLMTree().then((mlmTree) => {
-        drawOrgChart(mlmTree);
-    });
-</script>
+        // Function to convert MLM tree response to Google Org Chart format
+        function convertToOrgChartData(node) {
+            const orgChartData = [];
+            if (node) {
+                orgChartData.push([{
+                    'v': node.v ? node.v.toString() : '',
+                    'f': node.f
+                }, node.p ? node.p.toString() : '', '']);
+                if (node.c && node.c.length > 0) {
+                    node.c.forEach((child) => {
+                        orgChartData.push(...convertToOrgChartData(child));
+                    });
+                }
+            }
+            return orgChartData;
+        }
+
+        // Fetch the MLM tree response and draw the org chart
+        fetchMLMTree().then((mlmTree) => {
+            drawOrgChart(mlmTree);
+        });
+    </script>
 @endsection
