@@ -189,9 +189,11 @@
                     <div class="ec-vendor-card-header">
                         <h5>Tree</h5>
                     </div>
+                    @if(Auth::guard('customer')->user()->verify_status==1)
                     <div class="ec-vendor-card-body">
                        <div id="orgchart_div"></div>
                     </div>
+                    @endif
                 </div>
             </div>
             </div>
