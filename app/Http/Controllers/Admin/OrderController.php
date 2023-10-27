@@ -72,6 +72,7 @@ class OrderController extends Controller
              }
         }
         $customer->total_pv= $total_pv;
+        $customer->pv= $total_pv/40;
         $customer->save();
         if($customer->verify_status==0){
             if ($customer->orders->sum('grand_total') > 990) {
