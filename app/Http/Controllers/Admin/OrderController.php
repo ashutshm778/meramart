@@ -73,7 +73,7 @@ class OrderController extends Controller
         }
         $customer->total_pv= $total_pv;
         $customer->save();
-        if(empty($customer->referral_code)){
+        if($customer->verify_status==0){
             if ($customer->orders->sum('grand_total') > 990) {
                 $customer->verify_status = 1;
                 $customer->save();
@@ -81,18 +81,18 @@ class OrderController extends Controller
         }
 
 
-        if(!empty($customer->referral_code)){
+        // if(!empty($customer->referral_code)){
 
-                $referral_code = $customer->refered_by;
-                do {
-                    $refferal_customer = Customer::where('referral_code', $referral_code)->first();
-                    $refferal_customer->pv = $refferal_customer->pv + $total_pv;
-                    $refferal_customer->save();
+        //         $referral_code = $customer->refered_by;
+        //         do {
+        //             $refferal_customer = Customer::where('referral_code', $referral_code)->first();
+        //             $refferal_customer->pv = $refferal_customer->pv + $total_pv;
+        //             $refferal_customer->save();
 
-                    $referral_code = $refferal_customer->refered_by;
-                  } while (!empty(Customer::where('referral_code', $referral_code)->first()));
+        //             $referral_code = $refferal_customer->refered_by;
+        //           } while (!empty(Customer::where('referral_code', $referral_code)->first()));
 
-        }
+        // }
 
 
 
