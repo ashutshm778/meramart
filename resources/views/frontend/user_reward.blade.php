@@ -13,7 +13,7 @@
 
                 $one_side = '';
                 foreach ($customer_data as $customer_referral) {
-                    if (empty($one_side) && ($customer_referral->pv >= $one_side_count)) {
+                    if (empty($one_side) && (($customer_referral->group_pv+$customer_referral->total_pv) >= $one_side_count)) {
                         $one_side = $customer_referral->id;
                     }
                 }
@@ -21,31 +21,31 @@
                 $other_side_id = [];
                 foreach (App\Models\Customer::where('refered_by', $customer->referral_code)->where('id', '!=', $one_side)->get() as $customer_referrals) {
                     if (!empty($one_side) && ($other_side < $other_side_count)) {
-                        $other_side = $other_side + $customer_referrals->pv;
-                        array_push($other_side_id,['customer_id'=>$customer_referrals->id,'pv'=>$customer_referrals->pv] );
+                        $other_side = $other_side + ($customer_referrals->group_pv+$customer_referral->total_pv);
+                        array_push($other_side_id,['customer_id'=>$customer_referrals->id,'total_gb_pv'=$customer_referrals->group_pv+$customer_referral->total_pv] );
                     }
                 }
                 if ($other_side >= $other_side_count) {
                     $one_side_customer=App\Models\Customer::where('id',$one_side)->first();
-                    $one_side_customer->pv=$one_side_customer->pv-$one_side_count;
-                    $one_side_customer->save();
+                    //$one_side_customer->pv=$one_side_customer->pv-$one_side_count;
+                    //$one_side_customer->save();
 
                     foreach($other_side_id as $otherSideId){
                         $other_side_customer=App\Models\Customer::where('id',$otherSideId['customer_id'] )->first();
-                        if($otherSideId['pv'] >= $other_side_count){
-                            $other_side_customer->pv=$other_side_customer->pv-$other_side_count;
+                        if($otherSideId['total_gb_pv'] >= $other_side_count){
+                            //$other_side_customer->pv=$other_side_customer->pv-$other_side_count;
                         }else{
-                            $other_side_customer->pv=$other_side_customer->pv-$otherSideId['pv'];
+                           // $other_side_customer->pv=$other_side_customer->pv-$otherSideId['pv'];
                         }
-                        $other_side_customer->save();
+                       // $other_side_customer->save();
                     }
                     $customer_reward_achive=new App\Models\CustomerReward;
                     $customer_reward_achive->user_id= $customer->id;
                     $customer_reward_achive->reward_id=$reward_id;
-                    $customer_reward_achive->save();
+                    //$customer_reward_achive->save();
 
                     $customer->balance = $customer->balance + $amount;
-                    $customer->save();
+                    //$customer->save();
 
                     $customer_wallet = new App\Models\CustomerWallet;
                     $customer_wallet->user_id =$customer->id;
@@ -55,7 +55,7 @@
                     $customer_wallet->payment_details = '';
                     $customer_wallet->balance = $customer->balance;
                     $customer_wallet->approval = 0;
-                    $customer_wallet->save();
+                    //$customer_wallet->save();
 
                     echo 'Achived';
                 } else {
