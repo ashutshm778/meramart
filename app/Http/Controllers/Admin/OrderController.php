@@ -88,7 +88,7 @@ class OrderController extends Controller
                 $referral_code = $customer->refered_by;
                 do {
                     $refferal_customer = Customer::where('referral_code', $referral_code)->first();
-                    $refferal_customer->group_pv = $refferal_customer->group_pv + ($gv/40);
+                    $refferal_customer->group_pv = $refferal_customer->group_pv + $gv;
                     $refferal_customer->save();
 
                     $referral_code = $refferal_customer->refered_by;
