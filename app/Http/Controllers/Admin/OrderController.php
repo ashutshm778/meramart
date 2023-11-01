@@ -73,6 +73,7 @@ class OrderController extends Controller
         }
         $customer->total_pv= $total_pv;
         $customer->pv= $total_pv/40;
+        $customer->group_pv=$customer->group_pv+ $total_pv/40;
         $customer->save();
         if($customer->verify_status==0){
             if ($customer->orders->sum('grand_total') > 990) {
@@ -81,7 +82,7 @@ class OrderController extends Controller
             }
         }
 
-        $gv=$total_pv+$customer->group_pv;
+        $gv=$customer->group_pv;
         if(!empty($customer->referral_code)){
 
                 $referral_code = $customer->refered_by;
