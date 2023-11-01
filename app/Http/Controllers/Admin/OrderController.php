@@ -81,19 +81,19 @@ class OrderController extends Controller
             }
         }
 
+        $gv=$total_pv+$customer->group_pv;
+        if(!empty($customer->referral_code)){
 
-        // if(!empty($customer->referral_code)){
+                $referral_code = $customer->refered_by;
+                do {
+                    $refferal_customer = Customer::where('referral_code', $referral_code)->first();
+                    $refferal_customer->group_pv = $refferal_customer->group_pv + $gv;
+                    $refferal_customer->save();
 
-        //         $referral_code = $customer->refered_by;
-        //         do {
-        //             $refferal_customer = Customer::where('referral_code', $referral_code)->first();
-        //             $refferal_customer->pv = $refferal_customer->pv + $total_pv;
-        //             $refferal_customer->save();
+                    $referral_code = $refferal_customer->refered_by;
+                  } while (!empty(Customer::where('referral_code', $referral_code)->first()));
 
-        //             $referral_code = $refferal_customer->refered_by;
-        //           } while (!empty(Customer::where('referral_code', $referral_code)->first()));
-
-        // }
+        }
 
 
 
