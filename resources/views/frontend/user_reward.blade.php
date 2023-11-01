@@ -22,7 +22,7 @@
                 foreach (App\Models\Customer::where('refered_by', $customer->referral_code)->where('id', '!=', $one_side)->get() as $customer_referrals) {
                     if (!empty($one_side) && ($other_side < $other_side_count)) {
                         $other_side = $other_side + ($customer_referrals->group_pv+$customer_referral->total_pv);
-                        array_push($other_side_id,['customer_id'=>$customer_referrals->id,'total_gb_pv'=$customer_referrals->group_pv+$customer_referral->total_pv] );
+                        array_push($other_side_id,['customer_id'=>$customer_referrals->id,'total_gb_pv'=>$customer_referrals->group_pv+$customer_referral->total_pv] );
                     }
                 }
                 if ($other_side >= $other_side_count) {
