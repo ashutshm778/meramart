@@ -43,9 +43,11 @@
                                                 {{-- <td class="text-center">{{$customer->balance + $customer->payout}}</td> --}}
                                                 <td class="text-center">{{$customer->balance}}</td>
                                                 <td class="text-center">
+                                                    @if($customer->total_pv > 39)
                                                     <a class="btn btn-outline-success btn-sm mr-1 mb-1" onclick="payout({{$customer->id}},{{$customer->balance}},'{{$customer->first_name}}','{{$customer->last_name}}','{{$customer->phone}}')">
                                                         <i class="fas fa-money-bill"></i>
                                                     </a>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @empty
