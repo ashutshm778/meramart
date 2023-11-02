@@ -224,14 +224,14 @@ class OrderController extends Controller
                     $customer_wallet->save();
 
 
-                    $referral_code = $customer->refered_by;
-                    do {
-                        $refferal_customer = Customer::where('referral_code', $referral_code)->first();
-                        $refferal_customer->pv = $refferal_customer->pv + 1;
-                        $refferal_customer->save();
+                    // $referral_code = $customer->refered_by;
+                    // do {
+                    //     $refferal_customer = Customer::where('referral_code', $referral_code)->first();
+                    //     $refferal_customer->pv = $refferal_customer->pv + 1;
+                    //     $refferal_customer->save();
 
-                        $referral_code = $refferal_customer->refered_by;
-                    } while (!empty(Customer::where('referral_code', $referral_code)->first()));
+                    //     $referral_code = $refferal_customer->refered_by;
+                    // } while (!empty(Customer::where('referral_code', $referral_code)->first()));
 
 
                     $level = 5;
@@ -287,14 +287,14 @@ class OrderController extends Controller
                     $customer_wallet->save();
 
 
-                    $referral_code = $customer->refered_by;
-                    do {
-                        $refferal_customer = Customer::where('referral_code', $referral_code)->first();
-                        $refferal_customer->pv = $refferal_customer->pv + 1;
-                        $refferal_customer->save();
+                    // $referral_code = $customer->refered_by;
+                    // do {
+                    //     $refferal_customer = Customer::where('referral_code', $referral_code)->first();
+                    //     $refferal_customer->pv = $refferal_customer->pv + 1;
+                    //     $refferal_customer->save();
 
-                        $referral_code = $refferal_customer->refered_by;
-                    } while (!empty(Customer::where('referral_code', $referral_code)->first()));
+                    //     $referral_code = $refferal_customer->refered_by;
+                    // } while (!empty(Customer::where('referral_code', $referral_code)->first()));
 
 
                     $level = 5;
