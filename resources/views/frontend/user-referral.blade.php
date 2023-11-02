@@ -37,6 +37,7 @@
                                             <th scope="col">Phone</th>
                                             <th scope="col">Email</th>
                                             <th scope="col">Earning</th>
+                                            <th scope="col">Pending BV</th>
                                             <th scope="col">Register Date</th>
                                         </tr>
                                     </thead>
@@ -50,6 +51,7 @@
                                                 <td><span>{{$referral_user->phone}}</span></td>
                                                 <td><span>{{$referral_user->email}}</span></td>
                                                 <td> <span>{{$referral_user->balance}}</span></td>
+                                                <td> <span>{{$referral_user->group_pv}}</span></td>
                                                 <td><span>{{$referral_user->created_at->format('d-M-Y h:i A')}}</span></td>
                                             </tr>
                                         @endforeach
