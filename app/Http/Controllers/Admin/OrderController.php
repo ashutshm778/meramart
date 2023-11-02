@@ -207,7 +207,7 @@ class OrderController extends Controller
         }
 
             if($customer->team_repurchase_status==1){
-                if (!empty($customer->referral_code) && ($total_pv > 40)) {
+                if (!empty($customer->referral_code) && ($total_pv > 39)) {
 
                     $amount_comission_data=($order->grand_total*7.5)/100;
                     $customer->balance = $customer->balance + $amount_comission_data;
@@ -269,7 +269,7 @@ class OrderController extends Controller
             }
 
             if($customer->team_repurchase_status==0){
-                if (!empty($customer->referral_code) && ($total_pv > 40)) {
+                if (!empty($customer->referral_code) && ($total_pv > 39)) {
                     $repurchase_amount=($total_pv-40)*150;
                     $amount_comission_data=($repurchase_amount*7.5)/100;
                     $customer->balance = $customer->balance + $amount_comission_data;
