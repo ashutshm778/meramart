@@ -321,7 +321,6 @@
 <script src="{{ asset('public/frontend/assets/js/plugins/swiper-bundle.min.js') }}"></script>
 <script src="{{ asset('public/frontend/assets/js/plugins/countdownTimer.min.js') }}"></script>
 <script src="{{ asset('public/frontend/assets/js/plugins/scrollup.js') }}"></script>
-<script src="{{ asset('public/frontend/assets/js/plugins/jquery.zoom.min.js') }}"></script>
 <script src="{{ asset('public/frontend/assets/js/plugins/slick.min.js') }}"></script>
 <script src="{{ asset('public/frontend/assets/js/vendor/jquery.magnific-popup.min.js') }}"></script>
 <script src="{{ asset('public/frontend/assets/js/plugins/jquery.sticky-sidebar.js') }}"></script>
