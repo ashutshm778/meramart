@@ -63,7 +63,7 @@ class LevelIncomeController extends Controller
 
         foreach ($children as $child) {
             $teamMembers[] = $child;
-            $teamMembers = array_merge($teamMembers, $this->getTeamMembers($child->referral_code));
+            $teamMembers = array_push($teamMembers, $this->getTeamMembers($child->referral_code));
         }
 
         return $teamMembers;
@@ -77,12 +77,12 @@ class LevelIncomeController extends Controller
             return [];
         }
 
-        $teamMembers = [$node];
+        $teamMembers = [];
 
         $children = $this->getChildren($referralCode);
 
         foreach ($children as $child) {
-            $teamMembers = array_merge($teamMembers, $this->getTeamMembers($child->referral_code));
+            $teamMembers = array_push($teamMembers, $this->getTeamMembers($child->referral_code));
         }
 
         return $teamMembers;
