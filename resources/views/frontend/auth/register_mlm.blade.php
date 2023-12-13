@@ -60,7 +60,7 @@
 
                                 <span class="ec-register-wrap ec-register-half">
                                     <label>Last Name<span style="color:red">*<span></label> <br>
-                                    <input type="text" class="form-control" name="last_name" value="{{old('last_name')}}" placeholder="" required />
+                                    <input type="text" class="form-control" name="last_name" value="{{old('last_name')}}" placeholder=""  />
                                     @if ($errors->has('last_name'))
                                         <span class="text-danger">{{ $errors->first('last_name') }}</span>
                                     @endif
