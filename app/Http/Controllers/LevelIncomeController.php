@@ -46,57 +46,8 @@ class LevelIncomeController extends Controller
     public function user_under_forty_pv(){
 
        $team=[];
-       return $this->getTeam();
         return view('frontend.user.level_income.user_under_fourty_pv',compact('teams'));
     }
-
-    private function getChildren($referralCode)
-    {
-        return Customer::where('refered_by', $referralCode)->get();
-    }
-
-    private function getTeamMembers($referralCode)
-    {
-        $teamMembers = [];
-
-        $children = Customer::where('refered_by', $referralCode)->get();
-
-        foreach ($children as $child) {
-            $teamMembers[] = $child;
-            $teamMembers = array_push($teamMembers, $this->getTeamMembers($child->referral_code));
-        }
-
-        return $teamMembers;
-    }
-
-    private function buildTeam($referralCode = null)
-    {
-        $node = Customer::where('referral_code', $referralCode)->first();
-
-        if (!$node) {
-            return [];
-        }
-
-        $teamMembers = [];
-
-        $children = $this->getChildren($referralCode);
-
-        foreach ($children as $child) {
-            $teamMembers = array_push($teamMembers, $this->getTeamMembers($child->referral_code));
-        }
-
-        return $teamMembers;
-    }
-
-    public function getTeam()
-    {
-        $userReferralCode = Auth::guard('customer')->user()->referral_code;
-        $team = $this->buildTeam($userReferralCode);
-
-        return response()->json($team);
-    }
-
-
 
 
 }
