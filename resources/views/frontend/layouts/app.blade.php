@@ -4,9 +4,9 @@
         <meta charset="UTF-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-        <title>{{optional(websiteSettingValue('meta_title'))->image}}</title>
-        <meta name="keywords" content="{{optional(websiteSettingValue('meta_keyword'))->image}}" />
-        <meta name="description" content="{{optional(websiteSettingValue('meta_description'))->image}}">
+        <title>{{optional(websiteSettingValue('meta_title'))}}</title>
+        <meta name="keywords" content="{{optional(websiteSettingValue('meta_keyword'))}}" />
+        <meta name="description" content="{{optional(websiteSettingValue('meta_description'))}}">
         <meta name="author" content="{{env('APP_URL')}}">
         <meta name="msapplication-TileImage" content="{{asset('public/frontend/assets/images/favicon/favicon-3.png')}}" />
         <link rel="icon" href="{{asset('public/frontend/assets/images/favicon/favicon-3.png')}}" sizes="32x32" />
