@@ -397,7 +397,7 @@ class FrontController extends Controller
          }
 
 
-        return 'Name: '.$data->first_name.'<br>User Id: '.$data->referral_code.' <br>Sponsor Id: '.$data->refered_by.' <br>Phone No: '.$data->phone.' <br>Total PV: '.$total_pv.' <br>Total Team PV: '.$total_all_pv.' <br>Total Team BV: '.$total_all_pv/40;
+        return 'Name: '.$data->first_name.' '.$data->last_name.'<br>User Id: '.$data->referral_code.' <br>Sponsor Id: '.$data->refered_by.' <br>Phone No: '.$data->phone.' <br>Total PV: '.$total_pv.' <br>Total Team PV: '.$total_all_pv.' <br>Total Team BV: '.$total_all_pv/40;
     }
 
     private function buildTree($referralCode = null,$level = 1)
