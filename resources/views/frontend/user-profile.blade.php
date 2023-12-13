@@ -57,7 +57,7 @@
                                             <p>Hello <span>{{Auth::guard('customer')->user()->first_name}} {{Auth::guard('customer')->user()->last_name}}</span></p>
                                             <p>From your account you can easily view and track orders. You can manage and change your account information like address, contact information and history of orders.</p>
                                             <hr>
-                                            
+
                                         </div>
 
                                         <div class="ec-vendor-upload-detail">
@@ -93,10 +93,12 @@
                                                     <input type="file" class="form-control" name="photo" accept="image/*">
                                                 </div>
                                                 @if(featureActivation('mlm') == '1' && !empty(Auth::guard('customer')->user()->refered_by))
+                                                @if(Auth::guard('customer')->user()->verify_status==0)
                                                    <div class="col-md-6">
                                                       <label class="form-label">Referral Code</label>
                                                       <input type="text" class="form-control" value="{{Auth::guard('customer')->user()->referral_code}}" readonly>
                                                     </div>
+                                                 @endif
                                                     <div class="col-md-6">
                                                         <label class="form-label">Referral By</label>
                                                         <input type="text" class="form-control" value="{{Auth::guard('customer')->user()->refered_by}}" readonly>

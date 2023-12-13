@@ -87,7 +87,9 @@
                         <li><a href="{{route('user_commission')}}">Level Income History</a></li>
                         <li><a href="{{route('level.income.index')}}">Level Team</a></li>
                         <li><a href="{{route('repurchse.commission.list')}}">Repurchase Wallet</a></li>
+                        @if(Auth::guard('customer')->user()->verify_status==0)
                         <li><a href="{{route('tree_view')}}">Tree</a></li>
+                        @endif
                         <li><a href="{{route('user_referral')}}">Directs</a></li>
                         <li><a href="{{route('user_direct_commission')}}">Direct Pair Income</a></li>
                         <li><a href="{{route('user_ten_direct_commission')}}">Bonanza Income</a></li>
