@@ -46,50 +46,53 @@ class LevelIncomeController extends Controller
     public function user_under_forty_pv(){
 
        $team=[];
-       return $this->getMLMTree();
+       return $this->getTeam();
         return view('frontend.user.level_income.user_under_fourty_pv',compact('teams'));
     }
 
 
 
-    private function getChildren($referralCode)
+    private function getTeamMembers($referralCode)
     {
-        return Customer::where('refered_by', $referralCode)->get();
-    }
+        $teamMembers = [];
 
+        $children = Customer::where('refered_by', $referralCode)->get();
 
-    private function buildTree($referralCode = null)
-    {
-
-
-        $node = Customer::where('referral_code', $referralCode)->first();
-        if (!$node) {
-            return null;
-        }
-        $children = $this->getChildren($referralCode);
-        if (!$children->count()) {
-            return [
-                'user_id' => $node->id,
-
-            ];
-        }
-        $tree = [
-            'user_id' => $node->id,
-            'c' => [],
-        ];
         foreach ($children as $child) {
-            $tree['c'][] = $this->buildTree($child->referral_code);
+            $teamMembers[] = $child;
+            $teamMembers = array_merge($teamMembers, $this->getTeamMembers($child->referral_code));
         }
-        return $tree;
+
+        return $teamMembers;
     }
 
-    // Function to get the MLM tree starting from the top-level member (John)
-    public function getMLMTree()
+    private function buildTeam($referralCode = null)
     {
-        $topLevelReferralCode = Auth::guard('customer')->user()->referral_code; // Change this to the referral code of your top-level member (e.g., 'John')
-        $mlmTree = $this->buildTree($topLevelReferralCode);
-        return response()->json($mlmTree);
+        $node = Customer::where('referral_code', $referralCode)->first();
+
+        if (!$node) {
+            return [];
+        }
+
+        $teamMembers = [$node];
+
+        $children = $this->getChildren($referralCode);
+
+        foreach ($children as $child) {
+            $teamMembers = array_merge($teamMembers, $this->getTeamMembers($child->referral_code));
+        }
+
+        return $teamMembers;
     }
+
+    public function getTeam()
+    {
+        $userReferralCode = Auth::guard('customer')->user()->referral_code;
+        $team = $this->buildTeam($userReferralCode);
+
+        return response()->json($team);
+    }
+
 
 
 }
