@@ -163,7 +163,7 @@
                                                     @if($data->subsubcategory_id)
                                                         <b>S.S.C:</b>
                                                         @foreach ($data->subsubcategory_id as $subsubcategory)
-                                                            {{optional(App\Models\Admin\SubSubCategory::where('id',$subsubcategory))->first()->name}}/
+                                                            {{optional(App\Models\Admin\SubSubCategory::where('id',$subsubcategory)->first())->name}}/
                                                         @endforeach
                                                     @endif
                                                     <b>Brand:</b> {{$data->brand->name}}
