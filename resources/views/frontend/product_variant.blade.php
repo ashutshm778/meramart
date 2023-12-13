@@ -219,7 +219,7 @@
                 </form>
             </div>
 
-
+{{--
             <div class="ec-single-social">
                 <ul class="mb-0">
                     <li class="list-inline-item facebook"><a href="#"><i class="ecicon eci-facebook"></i></a>
@@ -233,7 +233,7 @@
                     <li class="list-inline-item whatsapp"><a href="#"><i class="ecicon eci-whatsapp"></i></a>
                     </li>
                 </ul>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
