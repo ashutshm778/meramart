@@ -45,7 +45,7 @@ class LevelIncomeController extends Controller
 
     public function user_under_forty_pv(){
 
-       $team=[];
+       $teams=[];
         return view('frontend.user.level_income.user_under_fourty_pv',compact('teams'));
     }
 
