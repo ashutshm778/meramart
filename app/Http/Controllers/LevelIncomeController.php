@@ -59,7 +59,7 @@ class LevelIncomeController extends Controller
         } while (!empty(Customer::where('referral_code', $referral_code)->first()));
 
 
-return  $user_id;
+            return  $user_id;
         return view('frontend.user.level_income.user_under_fourty_pv',compact('teams'));
     }
 
