@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Models\Order;
+use App\Models\Customer;
 use App\Models\Commission;
 use Illuminate\Http\Request;
 
@@ -43,9 +44,26 @@ class LevelIncomeController extends Controller
     }
 
     public function user_under_forty_pv(){
-        $teams=[];
+
+        $referral_code = Auth::guard('customer')->user()->referral_code;
+        $current_user = Customer::find(Auth::guard('customer')->user()->id);
+        $user_id=array();
+
+        do {
+            $parent_user = Customer::where('referral_code', $referral_code)->first();
+            if(!empty($parent_user)){
+                array_push($user_id,$parent_user->id);
+            $current_user = $parent_user;
+            $referral_code = $parent_user->referral_by;
+            }
+        } while (!empty(Customer::where('referral_code', $referral_code)->first()));
+
+
+return  $user_id;
         return view('frontend.user.level_income.user_under_fourty_pv',compact('teams'));
     }
+
+
 
 
 }
