@@ -7,6 +7,7 @@
         <title>Mera Mart</title>
         <meta name="keywords" content="Customer Dashboard" />
         <meta name="description" content="Direct selling Golden Opportunity">
+        <meta name="image" content="{{asset('public/frontend/assets/images/favicon/favicon-3.png')}}">
         <meta name="author" content="{{env('APP_URL')}}">
         <meta name="msapplication-TileImage" content="{{asset('public/frontend/assets/images/favicon/favicon-3.png')}}" />
         <link rel="icon" href="{{asset('public/frontend/assets/images/favicon/favicon-3.png')}}" sizes="32x32" />
