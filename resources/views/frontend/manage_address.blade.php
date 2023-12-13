@@ -49,10 +49,10 @@
                                                 <b>Country: </b>{{$customer_address->country}} <br>
                                             </div>
                                             <div>
-                                                <b>State: </b>{{App\Models\Admin\State::where('id',$customer_address->state)->first()->state}} <br>
+                                                <b>State: </b>{{$customer_address->state}} <br>
                                             </div>
                                             <div>
-                                                <b>City: </b>{{App\Models\Admin\City::where('id',$customer_address->city)->first()->city}} <br>
+                                                <b>City: </b>{{$customer_address->city}} <br>
                                             </div>
                                             <div>
                                                 <b>Pincode: </b>{{$customer_address->pincode}} <br>
