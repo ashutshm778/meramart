@@ -34,6 +34,18 @@
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-warning">
                             <div class="inner">
+                                <h3>{{App\Models\Order::where('order_status','pending')->get()->count()}}</h3>
+                                <p>Pending Orders</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-bag"></i>
+                            </div>
+                            <a href="{{route('admin.orders.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-warning">
+                            <div class="inner">
                                 <h3>{{App\Models\Customer::get()->count()}}</h3>
                                 <p>User Registrations</p>
                             </div>
