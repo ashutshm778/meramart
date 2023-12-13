@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-6">
-                        <div class="small-box bg-warning">
+                        <div class="small-box bg-error">
                             <div class="inner">
                                 <h3>{{App\Models\Order::where('order_status','pending')->get()->count()}}</h3>
                                 <p>Pending Orders</p>
