@@ -50,7 +50,10 @@ class LevelIncomeController extends Controller
         return view('frontend.user.level_income.user_under_fourty_pv',compact('teams'));
     }
 
-
+    private function getChildren($referralCode)
+    {
+        return Customer::where('refered_by', $referralCode)->get();
+    }
 
     private function getTeamMembers($referralCode)
     {
