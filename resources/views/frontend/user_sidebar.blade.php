@@ -64,7 +64,7 @@
 
                    Total PV: {{$total_pv}}
                    <div class="marquee">
-                    @if(Auth::guard('customer')->user()->verify_status==0)
+                    @if(Auth::guard('customer')->user()->verify_status==1)
                       <p><b><marquee><a href="/">To Activate Your Account & Referral Code Please Buy a Product of Worth ₹999</a></marquee></b></p>
                     @endif
 

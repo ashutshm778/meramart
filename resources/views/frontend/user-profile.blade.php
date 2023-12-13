@@ -93,7 +93,7 @@
                                                     <input type="file" class="form-control" name="photo" accept="image/*">
                                                 </div>
                                                 @if(featureActivation('mlm') == '1' && !empty(Auth::guard('customer')->user()->refered_by))
-                                                @if(Auth::guard('customer')->user()->verify_status==0)
+                                                @if(Auth::guard('customer')->user()->verify_status==1)
                                                    <div class="col-md-6">
                                                       <label class="form-label">Referral Code</label>
                                                       <input type="text" class="form-control" value="{{Auth::guard('customer')->user()->referral_code}}" readonly>
