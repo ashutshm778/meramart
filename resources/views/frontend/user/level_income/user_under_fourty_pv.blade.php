@@ -37,7 +37,6 @@
                                             <th class="text-center">Name</th>
                                             <th class="text-center">Phone</th>
                                             <th class="text-center">Total PV </th>
-                                            <th class="text-center">Total BV </th>
                                             <th class="text-center">Join Date</th>
                                         </tr>
                                     </thead>
