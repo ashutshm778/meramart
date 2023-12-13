@@ -45,25 +45,58 @@ class LevelIncomeController extends Controller
 
     public function user_under_forty_pv(){
 
-        $referral_code = Auth::guard('customer')->user()->referral_code;
-        $current_user = Customer::find(Auth::guard('customer')->user()->id);
-        $user_id=array();
-
-        do {
-            $parent_user = Customer::where('referral_code', $referral_code)->first();
-            if(!empty($parent_user)){
-                array_push($user_id,$parent_user->id);
-            $current_user = $parent_user;
-            $referral_code = $parent_user->referral_by;
-            }
-        } while (!empty(Customer::where('referral_code', $referral_code)->first()));
-
-
-            return  $user_id;
+       $team=[];
+       return $this->getMLMTree();
         return view('frontend.user.level_income.user_under_fourty_pv',compact('teams'));
     }
 
 
+
+    private function getChildren($referralCode)
+    {
+        return Customer::where('refered_by', $referralCode)->get();
+    }
+
+
+    private function buildTree($referralCode = null)
+    {
+
+
+        $node = Customer::where('referral_code', $referralCode)->first();
+        if (!$node) {
+            return null;
+        }
+        $children = $this->getChildren($referralCode);
+        if (!$children->count()) {
+            return [
+                'v' => $node->referral_code,
+                'f' =>'<div class=mytooltip><img src='.($node->verify_status == 1 ? ($node->photo ? asset('public/public/frontend/user_profile/'.$node->photo): asset('/public/green.png')) : ($node->photo ?asset('public/public/frontend/user_profile/'.$node->photo) : asset('/public/red.png'))).' style=height:50px;width:50px;><a
+                href='.route('tree_view').'?referral_code='.$node->referral_code.'><span style=color:black>'.$node->referral_code.'</span><br><span
+                     style=color:black>'.$node->name.'</span></a><span class=mytext id=my'.$node->referral_code.'></span></div>' ,
+                'p' => $node->refered_by ?: null,
+            ];
+        }
+        $tree = [
+            'v' => $node->referral_code,
+            'f' => '<div class=mytooltip><img src='.($node->verify_status == 1 ? ($node->photo ? asset('public/public/frontend/user_profile/'.$node->photo): asset('/public/green.png')): ( $node->photo ? asset('public/public/frontend/user_profile/'.$node->photo) : asset('/public/red.png'))).' style=height:50px;width:50px;><a
+            href='.route('tree_view').'?referral_code='.$node->referral_code.'><span style=color:black>'.$node->referral_code.'</span><br><span
+                 style=color:black>'.$node->name.'</span></a><span class=mytext id=my'.$node->referral_code.'></span></div>',
+            'p' => $node->refered_by ?: null,
+            'c' => [],
+        ];
+        foreach ($children as $child) {
+            $tree['c'][] = $this->buildTree($child->referral_code);
+        }
+        return $tree;
+    }
+
+    // Function to get the MLM tree starting from the top-level member (John)
+    public function getMLMTree()
+    {
+        $topLevelReferralCode = Auth::guard('customer')->user()->referral_code; // Change this to the referral code of your top-level member (e.g., 'John')
+        $mlmTree = $this->buildTree($topLevelReferralCode);
+        return response()->json($mlmTree);
+    }
 
 
 }
