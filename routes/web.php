@@ -93,6 +93,8 @@ Route::group(['middleware' => 'auth:customer'], function () {
     Route::get('level-income-index',[LevelIncomeController::class,'index'])->name('level.income.index');
     Route::get('level-team-list/{level}',[LevelIncomeController::class,'teamList'])->name('level.team.list');
 
+    Route::get('user_under_forty_pv',[LevelIncomeController::class,'user_under_forty_pv'])->name('user_under_forty_pv');
+
 
     Route::get('tree-view', [FrontController::class, 'tree_view'])->name('tree_view');
 
