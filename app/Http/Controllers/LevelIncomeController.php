@@ -45,9 +45,23 @@ class LevelIncomeController extends Controller
 
     public function user_under_forty_pv(){
 
-       $teams=[];
+        $referralCode = Auth::guard('customer')->user()->referral_code;
+
+        $user = Customer::where('referral_code', $referralCode)->first();
+
+        if ($user) {
+            $teamMembers = $user->allReferrals;
+            return  $teamMembers;
+            // $teamMembers now contains all direct and indirect referrals
+            // You can iterate through $teamMembers to get the details of each team member.
+        } else {
+            // Handle the case where the user with the given referral code is not found.
+        }
         return view('frontend.user.level_income.user_under_fourty_pv',compact('teams'));
     }
+
+
+
 
 
 }

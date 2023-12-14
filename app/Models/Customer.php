@@ -49,4 +49,15 @@ class Customer extends Authenticatable
         return $this->hasMany(Order::class,'user_id','id');
     }
 
+    public function directReferrals()
+    {
+        return $this->hasMany(Customer::class, 'refered_by', 'referral_code');
+    }
+
+    // Define the indirect referral relationship
+    public function allReferrals()
+    {
+        return $this->directReferrals()->with('allReferrals');
+    }
+
 }
