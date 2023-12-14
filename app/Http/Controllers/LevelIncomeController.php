@@ -64,7 +64,15 @@ class LevelIncomeController extends Controller
                 }
                 if($total_pv < 40){
                     $teamMember->totalPv=$total_pv;
-                    array_push($user_list,$teamMember);
+                    array_push($user_list,[
+                        'id'=>$teamMember->id,
+                        'first_name'=>$teamMember->first_name,
+                        'last_name'=>$teamMember->last_name,
+                        'phone'=>$teamMember->phone,
+                        'totalPv'=>$teamMember->totalPv,
+                        'referral_code'=>$teamMember->referral_code,
+                        'refered_by'=>$teamMember->refered_by,
+                    ]);
                 }
             }
         }
