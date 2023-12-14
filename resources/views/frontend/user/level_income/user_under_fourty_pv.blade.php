@@ -41,8 +41,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($teams as $key=>$team)
-
+                                        @foreach ($user_list as $key=>$team)
+                                        <td>{{$team->first_name.' '.$team->last_name}}</td>
+                                        <td>{{$team->phone}}</td>
+                                        <td>{{$team->totalPv}}</td>
+                                        <td>{{$team->created_at}}</td>
                                         @endforeach
                                     </tbody>
                                 </table>

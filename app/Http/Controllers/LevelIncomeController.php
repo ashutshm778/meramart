@@ -72,11 +72,11 @@ class LevelIncomeController extends Controller
                         'totalPv'=>$teamMember->totalPv,
                         'referral_code'=>$teamMember->referral_code,
                         'refered_by'=>$teamMember->refered_by,
+                        'created_at'=>$teamMember->created_at,
                     ]);
                 }
             }
         }
-        return $user_list;
-        return view('frontend.user.level_income.user_under_fourty_pv', compact('teams'));
+        return view('frontend.user.level_income.user_under_fourty_pv', compact('user_list'));
     }
 }
