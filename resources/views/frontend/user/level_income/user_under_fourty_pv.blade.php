@@ -43,6 +43,7 @@
                                     <tbody>
                                         @foreach ($user_list as $key=>$team)
                                         <tr>
+                                            <td>{{$key+1}}</td>
                                             <td>{{$team['first_name'].' '.$team['last_name']}}</td>
                                             <td>{{$team['phone']}}</td>
                                             <td>{{$team['totalPv']}}</td>
