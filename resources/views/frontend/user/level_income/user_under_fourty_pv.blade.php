@@ -42,10 +42,12 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($user_list as $key=>$team)
-                                        <td>{{$team['first_name'].' '.$team['last_name']}}</td>
-                                        <td>{{$team['phone']}}</td>
-                                        <td>{{$team['totalPv']}}</td>
-                                        <td>{{$team['created_at']}}</td>
+                                        <tr>
+                                            <td>{{$team['first_name'].' '.$team['last_name']}}</td>
+                                            <td>{{$team['phone']}}</td>
+                                            <td>{{$team['totalPv']}}</td>
+                                            <td>{{$team['created_at']}}</td>
+                                        </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
