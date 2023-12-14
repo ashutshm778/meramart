@@ -60,4 +60,15 @@ class Customer extends Authenticatable
         return $this->directReferrals()->with('allReferrals');
     }
 
+    public function flattenReferrals()
+    {
+        $result = [$this];
+
+        foreach ($this->directReferrals as $referral) {
+            $result = array_merge($result, $referral->flattenReferrals());
+        }
+
+        return $result;
+    }
+
 }

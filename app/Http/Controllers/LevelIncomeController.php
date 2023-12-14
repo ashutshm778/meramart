@@ -50,7 +50,7 @@ class LevelIncomeController extends Controller
         $user = Customer::where('referral_code', $referralCode)->first();
 
         if ($user) {
-            $teamMembers = $user->allReferrals;
+            $teamMembers = $user->flattenReferrals();
             return  $teamMembers;
             // $teamMembers now contains all direct and indirect referrals
             // You can iterate through $teamMembers to get the details of each team member.
