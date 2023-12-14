@@ -63,7 +63,7 @@ class LevelIncomeController extends Controller
                     }
                 }
                 if($total_pv < 40){
-                    $teamMember->total_pv=$total_pv;
+                    $teamMember->totalPv=$total_pv;
                     array_push($user_list,$teamMember);
                 }
             }
