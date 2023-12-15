@@ -50,7 +50,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="shop-pro-content" id="product_list_data">
+                    <div class="shop-pro-content scrolling-pagination" id="product_list_data">
                         @include('frontend.product_list_data')
                         <div class="kinetic" style="left: 40%;bottom: 80%; display: none"></div>
                     </div>
