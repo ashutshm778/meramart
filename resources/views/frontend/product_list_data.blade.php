@@ -80,11 +80,7 @@
                 </div>
             </div>
         @endforeach
+        {{ $list->links() }}
     </div>
 </div>
-<div class="ec-pro-pagination">
-    {{-- <span>Showing 1-12 of {{$list->total()}} item(s)</span> --}}
-    <p><b>Showing {{($list->currentpage()-1)*$list->perpage()+1}} to {{(($list->currentpage()-1)*$list->perpage())+$list->count()}} of {{$list->total()}} Items</b></p>
-    {{-- {!! $list->links() !!} --}}
-    @include('backend.pagination',['list' =>$list,'class'=>'product_index'])
-</div>
+
