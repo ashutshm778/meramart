@@ -683,7 +683,7 @@ if (!function_exists('calculateTotalTeamPvCount')) {
               }
              }
             $teamPv+=$total_pv; // Count the direct children
-            $teamPv += calculateTotalTeamCount($child); // Recursively count their teams
+            $teamPv += calculateTotalTeamPvCount($child); // Recursively count their teams
         }
 
         return $teamPv;
