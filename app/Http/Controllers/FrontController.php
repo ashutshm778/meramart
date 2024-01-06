@@ -374,30 +374,8 @@ class FrontController extends Controller
           }
          }
 
-         $levels = [1,2,3,4,5,6,7,8,9,10];
-         $commissions = commissions();
-         $final_arr = [];
-         $total_all_pv=0;
-         foreach($levels as $key=>$level){
-             $teams = Commission::where('user_id',$data->id)->where('level',$level)->get();
 
-             $total_pv_all=0;
-             foreach($teams as $team){
-              $order_data=Order::where('user_id', $team->order->user_id)->where('payment_status','success')->get();
-              $total_pv=0;
-              foreach($order_data as $datas){
-               foreach($datas->order_details as $order_detail){
-                $total_pv= $total_pv + ($order_detail->pv *  $order_detail->quantity);
-                }
-               }
-               $total_pv_all=$total_pv_all+$total_pv;
-              }
-
-              $total_all_pv=$total_all_pv+$total_pv_all;
-         }
-
-
-        return 'Name: '.$data->first_name.' '.$data->last_name.'<br>User Id: '.$data->referral_code.' <br>Sponsor Id: '.$data->refered_by.' <br>Phone No: '.$data->phone.' <br>Total PV: '.$total_pv.' <br>Total Team PV: '.$total_all_pv.' <br>Total Team BV: '.$total_all_pv/40;
+        return 'Name: '.$data->first_name.' '.$data->last_name.'<br>User Id: '.$data->referral_code.' <br>Sponsor Id: '.$data->refered_by.' <br>Phone No: '.$data->phone.' <br>Total PV: '.$total_pv;
     }
 
     private function buildTree($referralCode = null,$level = 1)
