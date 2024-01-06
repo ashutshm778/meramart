@@ -102,4 +102,11 @@ class CustomerController extends Controller
 
     }
 
+    public function destroy($id)
+    {
+        Customer::where('id',$id)->delete();
+
+        return back()->with('success','Customer Delete Successfully!');
+    }
+
 }
