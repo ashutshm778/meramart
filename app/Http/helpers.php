@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Order;
 use App\Models\Upload;
 use App\Models\Customer;
 use App\Models\Admin\Brnad;
@@ -665,6 +666,27 @@ if (!function_exists('calculateTotalTeamCount')) {
         }
 
         return $teamCount;
+    }
+}
+
+if (!function_exists('calculateTotalTeamPvCount')) {
+    function calculateTotalTeamPvCount($user)
+    {
+        $teamPv= 0;
+
+        foreach (Customer::where('refered_by', $user->referral_code)->get() as $child) {
+          $total_pv=0;
+          $order_data=Order::where('user_id', $child->id)->where('payment_status','success')->get();
+            foreach($order_data as $datas){
+             foreach($datas->order_details as $order_detail){
+              $total_pv= $total_pv + ($order_detail->pv *  $order_detail->quantity);
+              }
+             }
+            $teamPv+=$total_pv; // Count the direct children
+            $teamPv += calculateTotalTeamCount($child); // Recursively count their teams
+        }
+
+        return $teamPv;
     }
 }
 
