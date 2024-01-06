@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Upload;
+use App\Models\Customer;
 use App\Models\Admin\Brnad;
 use App\Models\Admin\Product;
 use App\Models\Admin\Category;
@@ -649,6 +650,22 @@ if (! function_exists('getIndianCurrency')) {
         $paise = ($decimal > 0) ? "." . ($words[$decimal / 10] . " " . $words[$decimal % 10]) . ' Paise' : '';
         return ($Rupees ? $Rupees . 'Rupees ' : '') . $paise;
     }
+}
+
+if (!function_exists('calculateTotalTeamCount')) {
+    function calculateTotalTeamCount($user)
+    {
+        $teamCount = 0;
+
+        foreach (Customer::where('refered_by', $user->refered_by)->get() as $child) {
+            if ($child->status == 1) {
+                $teamCount++; // Count the direct children
+            }
+            $teamCount += calculateTotalTeamCount($child); // Recursively count their teams
+        }
+
+        return $teamCount;
     }
+}
 
 ?>

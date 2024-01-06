@@ -373,9 +373,9 @@ class FrontController extends Controller
           $total_pv= $total_pv + ($order_detail->pv *  $order_detail->quantity);
           }
          }
+         $total_team=calculateTotalTeamCount($data);
 
-
-        return 'Name: '.$data->first_name.' '.$data->last_name.'<br>User Id: '.$data->referral_code.' <br>Sponsor Id: '.$data->refered_by.' <br>Phone No: '.$data->phone.' <br>Total PV: '.$total_pv;
+        return 'Name: '.$data->first_name.' '.$data->last_name.'<br>User Id: '.$data->referral_code.' <br>Sponsor Id: '.$data->refered_by.' <br>Phone No: '.$data->phone.' <br>Total PV: '.$total_pv.' <br>Total Team: '.$total_team;
     }
 
     private function buildTree($referralCode = null,$level = 1)
