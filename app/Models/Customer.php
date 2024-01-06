@@ -33,7 +33,8 @@ class Customer extends Authenticatable
         'pv',
         'nominee_name',
         'nominee_relation',
-        'nominee_dob'
+        'nominee_dob',
+        'dob'
     ];
 
     protected $hidden = [

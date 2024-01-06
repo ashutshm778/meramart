@@ -92,6 +92,13 @@
                                                     <label class="form-label">Photo</label>
                                                     <input type="file" class="form-control" name="photo" accept="image/*">
                                                 </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Birth Of Birth</label>
+                                                    <input type="date" class="form-control" name="dob" value="{{Auth::guard('customer')->user()->dob}}">
+                                                    @if ($errors->has('dob'))
+                                                        <span class="text-danger">{{ $errors->first('dob') }}</span>
+                                                    @endif
+                                                </div>
                                                 @if(featureActivation('mlm') == '1' && !empty(Auth::guard('customer')->user()->refered_by))
                                                 @if(Auth::guard('customer')->user()->verify_status==1)
                                                    <div class="col-md-6">
@@ -105,7 +112,7 @@
                                                       </div>
                                                       <div class="col-md-6">
                                                         <label class="form-label">Referral By Name</label>
-                                                        <input type="text" class="form-control" value="{{optional(App\Models\Customer::where('referral_code',Auth::guard('customer')->user()->refered_by)->first())->first_name}}" readonly>
+                                                        <input type="text" class="form-control" value="{{optional(App\Models\Customer::where('referral_code',Auth::guard('customer')->user()->refered_by)->first())->first_name}}.'-'.{{optional(App\Models\Customer::where('referral_code',Auth::guard('customer')->user()->refered_by)->first())->last_name}}" readonly>
                                                       </div>
                                                 @endif
                                                 <div class="col-md-12">

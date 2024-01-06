@@ -328,6 +328,7 @@ class FrontController extends Controller
             'nominee_name' => $request->nominee_name,
             'nominee_relation' => $request->nominee_relation,
             'nominee_dob' => $request->nominee_dob,
+            'dob' => $request->dob,
         ]);
 
         return back()->with('success', 'Profile Updated Successfully!');
