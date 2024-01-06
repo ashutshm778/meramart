@@ -657,7 +657,7 @@ if (!function_exists('calculateTotalTeamCount')) {
     {
         $teamCount = 0;
 
-        foreach (Customer::where('refered_by', $user->refered_by)->get() as $child) {
+        foreach (Customer::where('refered_by', $user->referral_code)->get() as $child) {
 
                 $teamCount++; // Count the direct children
 
