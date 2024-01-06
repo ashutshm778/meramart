@@ -377,9 +377,9 @@ class FrontController extends Controller
          }
         }
          $total_team=calculateTotalTeamCount($data);
-         $total_team_pv=calculateTotalTeamPvCount($data);
+         $total_team_pv=round(calculateTotalTeamPvCount($data),2);
 
-        return 'Name: '.$data->first_name.' '.$data->last_name.'<br>User Id: '.$data->referral_code.' <br>Sponsor Id: '.$data->refered_by.' <br>Phone No: '.$data->phone.' <br>Total PV: '.$total_pv.' <br>Total Team: '.$total_team.' <br>Total Team PV: '.$total_team_pv.' <br>Total Team BV: '.$total_team_pv/40;
+        return 'Name: '.$data->first_name.' '.$data->last_name.'<br>User Id: '.$data->referral_code.' <br>Sponsor Id: '.$data->refered_by.' <br>Phone No: '.$data->phone.' <br>Total PV: '.$total_pv.' <br>Total Team: '.$total_team.' <br>Total Team PV: '.$total_team_pv.' <br>Total Team BV: '.round($total_team_pv/40,2);
     }
 
     private function buildTree($referralCode = null,$level = 1)
