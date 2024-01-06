@@ -402,9 +402,7 @@ class FrontController extends Controller
 
     private function buildTree($referralCode = null,$level = 1)
     {
-        if ($level > 4) {
-            return null; // Limit the depth to four levels
-        }
+
 
         $node = Customer::where('referral_code', $referralCode)->first();
         if (!$node) {
