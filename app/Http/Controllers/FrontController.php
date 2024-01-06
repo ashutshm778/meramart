@@ -365,14 +365,17 @@ class FrontController extends Controller
     }
     public function referral_details(Request $request)
     {
-        $data=Customer::where('referral_code', $request->referral_code)->first();
-        $order_data=Order::where('user_id', $data->id)->where('payment_status','success')->get();
         $total_pv=0;
+        $data=Customer::where('referral_code', $request->referral_code)->first();
+        if(!empty($data->id)){
+        $order_data=Order::where('user_id', $data->id)->where('payment_status','success')->get();
+
         foreach($order_data as $datas){
          foreach($datas->order_details as $order_detail){
           $total_pv= $total_pv + ($order_detail->pv *  $order_detail->quantity);
           }
          }
+        }
          $total_team=calculateTotalTeamCount($data);
 
         return 'Name: '.$data->first_name.' '.$data->last_name.'<br>User Id: '.$data->referral_code.' <br>Sponsor Id: '.$data->refered_by.' <br>Phone No: '.$data->phone.' <br>Total PV: '.$total_pv.' <br>Total Team: '.$total_team;

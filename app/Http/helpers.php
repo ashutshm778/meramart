@@ -658,9 +658,9 @@ if (!function_exists('calculateTotalTeamCount')) {
         $teamCount = 0;
 
         foreach (Customer::where('refered_by', $user->refered_by)->get() as $child) {
-            if ($child->status == 1) {
+
                 $teamCount++; // Count the direct children
-            }
+
             $teamCount += calculateTotalTeamCount($child); // Recursively count their teams
         }
 
