@@ -113,7 +113,7 @@ Route::prefix("admin")->group(function(){
             Route::get('customer-level-team/{customer_id}/{level}',[CustomerController::class,'levelTeam'])->name('customer.level.team');
             Route::get('customer-reward-list/{customer_id}',[CustomerController::class,'customerRewardList'])->name('customer.reward.list');
             Route::get('customer-login/{customer_id}',[CustomerController::class,'customer_login'])->name('customer_login');
-            Route::get('customers-delete',[CustomerController::class,'destroy'])->name('customers.destroy');
+            Route::get('customers-delete/{id}',[CustomerController::class,'destroy'])->name('customers.destroy');
 
         }
         Route::post('customers-verification', [CustomerController::class,'updateVerificationStatus'])->name('customers.updateVerificationStatus');

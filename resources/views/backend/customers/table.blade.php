@@ -42,7 +42,7 @@
                     <a href="{{route('admin.customer.level.income',encrypt($customer->id))}}" class="btn btn-outline-primary btn-sm mr-1 mb-1" title="Level Income" style="width: 34px;"><i class="fas fa-level-up-alt"></i></a>
                     <a href="{{route('admin.customer_login',encrypt($customer->id))}}" target="_blank" class="btn btn-outline-primary btn-sm mr-1 mb-1" title="Customer Login" style="width: 34px;"><i class="fas fa-level-up-alt"></i></a>
                     @if($customer->verify_status!=1)
-                    <a href="{{route('admin.customers.destroy',$customer->id)}}" target="_blank" class="btn btn-outline-danger btn-sm mr-1 mb-1" title="Customer Delete" style="width: 34px;"><i class="fas fa-trash"></i></a>
+                    <a href="{{route('admin.customers.destroy',$customer->id)}}"  class="btn btn-outline-danger btn-sm mr-1 mb-1" title="Customer Delete" style="width: 34px;"><i class="fas fa-trash"></i></a>
                     @endif
                 </td>
             </tr>
