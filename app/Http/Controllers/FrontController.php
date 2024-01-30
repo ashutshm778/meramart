@@ -314,6 +314,25 @@ class FrontController extends Controller
         } else {
             $name = Auth::guard('customer')->user()->photo;
         }
+
+        if ($request->hasFile('aadhaar_front_image')) {
+            $image = $request->file('aadhaar_front_image');
+            $aadhaar_front_image = rand() . time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/public/frontend/user_profile');
+            $image->move($destinationPath, $aadhaar_front_image);
+        }
+        if ($request->hasFile('aadhaar_back_image')) {
+            $image = $request->file('aadhaar_back_image');
+            $aadhaar_back_image = rand() . time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/public/frontend/user_profile');
+            $image->move($destinationPath, $aadhaar_back_image);
+        }
+        if ($request->hasFile('pan_image')) {
+            $image = $request->file('pan_image');
+            $pan_image = rand() . time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/public/frontend/user_profile');
+            $image->move($destinationPath, $pan_image);
+        }
         Customer::where('id', Auth::guard('customer')->user()->id)->update([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
@@ -329,6 +348,12 @@ class FrontController extends Controller
             'nominee_relation' => $request->nominee_relation,
             'nominee_dob' => $request->nominee_dob,
             'dob' => $request->dob,
+            'aadhaar_no' => $request->aadhaar_no,
+            'pan_no' => $request->dob,
+            'aadhaar_front_image' =>$aadhaar_front_image,
+            'aadhaar_back_image' =>$aadhaar_back_image,
+            'pan_image' => $pan_image ,
+
         ]);
 
         return back()->with('success', 'Profile Updated Successfully!');

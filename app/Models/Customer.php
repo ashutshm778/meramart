@@ -34,7 +34,12 @@ class Customer extends Authenticatable
         'nominee_name',
         'nominee_relation',
         'nominee_dob',
-        'dob'
+        'dob',
+        'aadhaar_no',
+        'pan_no',
+        'aadhaar_front_image',
+        'aadhaar_back_image' ,
+        'pan_image' ,
     ];
 
     protected $hidden = [

@@ -178,6 +178,33 @@
                                                         <span class="text-danger">{{ $errors->first('nominee_dob') }}</span>
                                                     @endif
                                                 </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Aadhaar No</label>
+                                                    <input type="number" class="form-control" name="aadhaar_no" value="{{Auth::guard('customer')->user()->aadhaar_no}}">
+                                                    @if ($errors->has('aadhaar_no'))
+                                                        <span class="text-danger">{{ $errors->first('aadhaar_no') }}</span>
+                                                    @endif
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Aadhar Image Front</label>
+                                                    <input type="file" class="form-control" name="aadhaar_front_image" accept="image/*">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Aadhar Image Back</label>
+                                                    <input type="file" class="form-control" name="aadhaar_back_image" accept="image/*">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Pan No</label>
+                                                    <input type="number" class="form-control" name="pan_no" value="{{Auth::guard('customer')->user()->pan_no}}">
+                                                    @if ($errors->has('pan_no'))
+                                                        <span class="text-danger">{{ $errors->first('pan_no') }}</span>
+                                                    @endif
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Pan Image</label>
+                                                    <input type="file" class="form-control" name="pan_image" accept="image/*">
+                                                </div>
                                                 <div class="col-md-12 text-center">
                                                     <button type="submit" class="btn btn-primary">Update</button>
                                                 </div>
