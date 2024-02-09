@@ -320,18 +320,24 @@ class FrontController extends Controller
             $aadhaar_front_image = rand() . time() . '.' . $image->getClientOriginalExtension();
             $destinationPath = public_path('/public/frontend/user_profile');
             $image->move($destinationPath, $aadhaar_front_image);
+        }else{
+            $aadhaar_front_image = Auth::guard('customer')->user()->aadhaar_front_image;
         }
         if ($request->hasFile('aadhaar_back_image')) {
             $image = $request->file('aadhaar_back_image');
             $aadhaar_back_image = rand() . time() . '.' . $image->getClientOriginalExtension();
             $destinationPath = public_path('/public/frontend/user_profile');
             $image->move($destinationPath, $aadhaar_back_image);
+        }else{
+            $aadhaar_back_image = Auth::guard('customer')->user()->aadhaar_back_image;
         }
         if ($request->hasFile('pan_image')) {
             $image = $request->file('pan_image');
             $pan_image = rand() . time() . '.' . $image->getClientOriginalExtension();
             $destinationPath = public_path('/public/frontend/user_profile');
             $image->move($destinationPath, $pan_image);
+        }else{
+            $pan_image = Auth::guard('customer')->user()->pan_image;
         }
         Customer::where('id', Auth::guard('customer')->user()->id)->update([
             'first_name' => $request->first_name,
