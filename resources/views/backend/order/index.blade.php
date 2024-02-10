@@ -83,9 +83,9 @@
                                                     $customer = App\Models\Customer::where('id',$customer_details->user_id)->first();
                                                 @endphp
                                                 <td class="text-left">
-                                                    <b>Name: </b>{{$customer_details->name??}} <br>
-                                                    <b>Phone: </b>{{$customer->phone??}} <br>
-                                                    <b>Email: </b>{{$customer->email??}}
+                                                    <b>Name: </b>{{optional($customer_details)->name}} <br>
+                                                    <b>Phone: </b>{{optional($customer)->phone}} <br>
+                                                    <b>Email: </b>{{optional($customer)->email}}
                                                 </td>
                                                 <td class="text-center">{{$order->grand_total}}</td>
                                                 <td class="text-center">{{$order->order_details_count}}</td>
