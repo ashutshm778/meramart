@@ -27,6 +27,7 @@
                                             <th class="text-center">Name</th>
                                             <th class="text-center">Phone</th>
                                             <th class="text-center">Email</th>
+                                            <th>Bank Details</th>
                                             {{-- <th class="text-center">Total Amount</th> --}}
                                             <th class="text-center">Remainig Amount</th>
                                             <th class="text-center">Action</th>
@@ -39,6 +40,13 @@
                                                 <td class="text-center">{{$customer->first_name}} {{$customer->last_name}}</td>
                                                 <td class="text-center">{{$customer->phone}}</td>
                                                 <td class="text-center">{{$customer->email}}</td>
+                                                <td class="text-center">
+                                                    @if(!empty($customer->account_number))
+                                                    Bank Name:{{$customer->bank_name}}<br>
+                                                    Account Number:{{$customer->account_number}}<br>
+                                                    IFSC Code:{{$customer->ifsc_code}}
+                                                    @endif
+                                                </td>
                                                 </td>
                                                 {{-- <td class="text-center">{{$customer->balance + $customer->payout}}</td> --}}
                                                 <td class="text-center">{{$customer->balance}}</td>
