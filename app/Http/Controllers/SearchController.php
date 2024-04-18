@@ -31,7 +31,7 @@ class SearchController extends Controller
                 $list=$list->whereJsonContains('subsubcategory_id',''.$request->subsubcategory_filler);
             }
             $list=$list->paginate(16)->appends(request()->query());
-            return vieW('frontend.product_list',compact('list'));;
+            return view('frontend.product_list',compact('list'));
 
     }
 

@@ -74,9 +74,9 @@
                         <div class="header-search">
                             <form class="ec-search-group-form" action="{{ route('product-search') }}" method="GET"
                                 autocomplete="off">
-                                <input class="form-control flip" name="search" value="{{ request()->search }}"
+                                <input class="form-control" name="search" value="{{ request()->search }}"
                                     placeholder="I’m searching for..." type="text" id="flip"
-                                    onkeyup="searchs()">
+                                   >
                                 <button class="search_submit" type="submit">
                                     <img src="{{ asset('public/frontend/assets/images/icons/search.svg') }}"
                                         class="svg_img search_svg" alt="" />
@@ -171,8 +171,8 @@
                         <form class="ec-search-group-form" action="{{ route('product-search') }}" method="GET"
                             autocomplete="off">
                             <input class="form-control flip" name="search" value="{{ request()->search }}"
-                                placeholder="I’m searching for..." type="text" id="flip"
-                                onkeyup="searchs()">
+                                placeholder="I’m searching for..." type="text" id="flip_mobile"
+                               >
                             <button class="search_submit" type="submit">
                                 <img src="{{ asset('public/frontend/assets/images/icons/search.svg') }}"
                                     class="svg_img search_svg" alt="" />
@@ -347,7 +347,19 @@
 
 <script>
     function searchs() {
-        var search_val = $('.flip').val();
+        var search_val = $('#flip').val();
+        $.ajax({
+            type: 'GET',
+            url: "{{ route('product-search') }}?search=" + search_val,
+            success: function(data) {
+                $(".searchRes").html(data);
+                $(".searchRes").css("display", "block");
+            }
+        });
+    }
+
+    function searchs_mobile() {
+        var search_val = $('#flip_mobile').val();
         $.ajax({
             type: 'GET',
             url: "{{ route('product-search') }}?search=" + search_val,
