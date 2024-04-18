@@ -35,11 +35,15 @@
                                     @php
                                         $address = App\Models\Admin\WebsiteSetting::where('type', 'address')->first();
                                     @endphp
+                                    @if(!empty($address->image))
                                     <li><i class="ecicon eci-map-marker"></i>{{ optional($address)->image }}</li>
+                                    @endif
                                     @php
                                         $email = App\Models\Admin\WebsiteSetting::where('type', 'email')->first();
                                     @endphp
+                                    @if(!empty($email->image))
                                     <li><i class="ecicon eci-envelope-o"></i>{{ optional($email)->image }}</li>
+                                    @endif
                                     {{-- <li><i class="ecicon eci-volume-control-phone"></i> {{ optional($phone)->image }} --}}
                                     </li>
                                 </ul>
