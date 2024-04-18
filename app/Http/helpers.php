@@ -420,7 +420,7 @@ if(!function_exists('getProductDiscountedPrice')){
 
 if (!function_exists('websiteSettingValue')) {
     function websiteSettingValue($type) {
-        return WebsiteSetting::where('type', $type)->first() ? WebsiteSetting::where('type', $type)->first()->image : "";
+        return WebsiteSetting::where('type', $type)->first() ? WebsiteSetting::where('type', $type)->first() : "";
     }
 }
 
