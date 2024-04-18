@@ -121,10 +121,10 @@
                     <div class="col-8 footer-copy">
                         <div class="footer-bottom-copy ">
                             <div class="ec-copy">Copyright &copy;
-                                <script>
+                                {{-- <script>
                                     document.write(new Date().getFullYear())
                                 </script> All Rights Reserved. Developed By <a href="#"
-                                    class="site-name">  </a>
+                                    class="site-name">  </a> --}}
                             </div>
                         </div>
                     </div>
