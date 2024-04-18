@@ -18,9 +18,28 @@ class OrderController extends Controller
 
     public function index(Request $request)
     {
-        $orders = Order::withCount('order_details')->orderBy('id', 'desc')->paginate(10);
+        $search=$request->search;
+        $search_payment_status=$request->search_payment_status;
+        $search_delivery_status=$request->search_delivery_status;
 
-        return view('backend.order.index', compact('orders'), ['page_title' => 'Order List']);
+        $orders = Order::withCount('order_details')->orderBy('id', 'desc');
+
+        if($search)
+        {
+            $orders=$orders->where(function ($query) use ($search) {
+                $query->where('order_id','like','%'.$search.'%');
+            });
+        }
+        if($search_payment_status)
+        {
+            $orders=$orders->where('payment_status',$search_payment_status);
+        }
+        if($search_delivery_status)
+        {
+            $orders=$orders->where('order_status',$search_delivery_status);
+        }
+        $orders=$orders->paginate(10);
+        return view('backend.order.index', compact('orders','search','search_payment_status','search_delivery_status'), ['page_title' => 'Order List']);
     }
 
     public function detail($order_id)

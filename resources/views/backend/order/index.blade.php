@@ -28,27 +28,28 @@
                     <div class="col-12">
                         <div class="card card-outline card-info">
                             <div class="card-header">
+                                <form action="{{route('admin.orders.index')}}">
                                 <div class="row">
                                     <div class="col-md-3"></div>
                                     <div class="col-md-3">
                                         <select name="search_payment_status" class="form-control" id="search_payment_status">
                                             <option value="">Select Payment Status...</option>
-                                            <option value="unpaid">Unpaid</option>
-                                            <option value="paid">Paid</option>
+                                            <option value="pending" @if($search_payment_status=='pending') selected @endif>Unpaid</option>
+                                            <option value="success" @if($search_payment_status=='success') selected @endif>Paid</option>
                                         </select>
                                     </div>
                                     <div class="col-md-3">
                                         <select name="search_delivery_status" class="form-control" id="search_delivery_status">
                                             <option value="">Select Delivery Status...</option>
-                                            <option value="pending">Pending</option>
-                                            <option value="confirmed">Confirmed</option>
-                                            <option value="on_delivery">On Delivery</option>
-                                            <option value="delivered">Delivered</option>
-                                            <option value="cancel">Cancel</option>
+                                            <option value="pending" @if($search_delivery_status=='pending') selected @endif>Pending</option>
+                                            <option value="confirmed" @if($search_delivery_status=='pending') selected @endif>Confirmed</option>
+                                            <option value="on_delivery" @if($search_delivery_status=='pending') selected @endif>On Delivery</option>
+                                            <option value="delivered" @if($search_delivery_status=='pending') selected @endif>Delivered</option>
+                                            <option value="cancel" @if($search_delivery_status=='pending') selected @endif>Cancel</option>
                                         </select>
                                     </div>
                                     <div class="col-md-2 p-0">
-                                        <input type="text" class="form-control" name="search" placeholder="Order ID, Phone, Email...">
+                                        <input type="text" class="form-control" name="search" placeholder="Order ID" value="{{$search}}" >
                                     </div>
                                     <div class="col-md-1 p-0">
                                         <button type="submit" class="btn btn-default">
@@ -56,6 +57,7 @@
                                         </button>
                                     </div>
                                 </div>
+                                </form>
                             </div>
                             <div class="card-body table-responsive p-2">
                                 <table class="table table-bordered table-striped">
