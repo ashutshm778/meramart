@@ -83,4 +83,37 @@
         {{ $list->links() }}
     </div>
 </div>
+<script src="{{ asset('public/dashboard_css/plugins/jquery/jquery.min.js') }}"></script>
+<script>
+
+    $(document).on('click', '.product_index a', function(event)
+    {
+        event.preventDefault();
+        var page = $(this).attr('href').split('page=')[1];
+        filler_product(page);
+    });
+
+    function filler_product(page)
+    {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        });
+        $.ajax({
+            type: 'POST',
+            url: "{{route('product.fillter')}}?&page=" + page,
+            data: $('.fillter').serialize(),
+            beforeSend: function(msg){
+                $('.kinetic').show()
+            },
+            success: function(data) {
+                $('.kinetic').hide()
+                $('#product_list_data').html(data)
+                $('html, body').animate({ scrollTop: 0 }, 'fast');
+            }
+        });
+    }
+
+</script>
 
