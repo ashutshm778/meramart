@@ -304,7 +304,7 @@
                             <ul class="sub-menu">
                                 @foreach (App\Models\Admin\SubCategory::where('is_active', 1)->whereJsonContains('category_id', '' . $mob_header_category->id)->get() as $mob_header_subcategory)
                                     <li><a
-                                            href="{{ route('search', $mob_header_subcategory->slug) }}?type=subcategory">{{ $mob_header_subcategory->name }}</a>
+                                            href="{{ route('product-search') }}?subcategory_filler={{$mob_header_subcategory->id}}">{{ $mob_header_subcategory->name }}</a>
                                     </li>
                                 @endforeach
                             </ul>
