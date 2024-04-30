@@ -37,9 +37,12 @@
         <!-- Sidebar Category Block -->
         <div class="ec-sidebar-block">
             <div class="ec-vendor-block">
+
                 <div class="ec-vendor-block-detail">
                     <img src="@if(Auth::guard('customer')->user()->photo) {{asset('public/public/frontend/user_profile/'.Auth::guard('customer')->user()->photo)}} @else {{asset('public/public/frontend/assets/images/149071.png')}} @endif" alt="vendor image">
                     <h5 class="pt-3">{{Auth::guard('customer')->user()->first_name}} {{Auth::guard('customer')->user()->last_name}}</h5>
+                    @if(Auth::guard('customer')->user()->type!='frenchies')
+
                     @if(featureActivation('mlm') == '1' && !empty(Auth::guard('customer')->user()->refered_by))
                       @if(Auth::guard('customer')->user()->verify_status==1)
                        <a  href="https://web.whatsapp.com/send?text=https://themeramart.com/user-register-mlm?referral_code={{Auth::guard('customer')->user()->referral_code}}" data-action="share/whatsapp/share" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" class="theme_btns theme_btn_bg desktop">
@@ -72,12 +75,16 @@
                      <p><b><marquee><a href="/">For getting team income 40 PV required.</a></marquee></b></p>
                     @endif
                   </div>
+                  @endif
                 </div>
+
+
                 <div class="ec-vendor-block-items">
                     <ul>
                         {{-- <li><a href="{{route('user_dashboard')}}">Dashboard</a></li> --}}
                         <li><a href="{{route('user_profile')}}">User Profile</a></li>
                         <li><a href="{{route('manage.address')}}">Manage Address</a></li>
+                        @if(Auth::guard('customer')->user()->type!='frenchies')
                         <li><a href="{{route('user_history')}}">Order History</a></li>
                         <li><a href="{{route('wishlist')}}">Wishlist</a></li>
                         <li><a href="{{route('cart')}}">Cart</a></li>
@@ -95,6 +102,7 @@
                         <li><a href="{{route('user_ten_direct_commission')}}">Bonanza Income</a></li>
                         <li><a href="{{route('user_reward')}}">Reward Income</a></li>
                         <li><a href="{{route('user_under_forty_pv')}}">Under 40 PV</a></li>
+                        @endif
 
                         {{-- <li><a href="{{route('user_ten_direct_commission')}}">Franchise Income</a></li> --}}
                     </ul>

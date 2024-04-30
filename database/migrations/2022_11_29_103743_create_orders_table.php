@@ -28,6 +28,7 @@ class CreateOrdersTable extends Migration
             $table->text('payment_details')->nullable();
             $table->enum('payment_status',['pending','success','cancel'])->default('pending');
             $table->text('remark')->nullable();
+            $table->text('frenchies_referral_code')->nullable();
             $table->string('shippment_id')->nullable();
             $table->timestamps();
         });

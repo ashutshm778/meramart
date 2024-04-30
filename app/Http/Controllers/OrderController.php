@@ -51,6 +51,9 @@ class OrderController extends Controller
             $order->payment_details = '';
             $order->payment_status = 'pending';
             $order->remark = '';
+            if(!empty($request->frenchies_referral_code)){
+                $order->frenchies_code = $request->frenchies_referral_code;
+            }
 
             if ($order->save()) {
                 foreach ($carts as $cart) {

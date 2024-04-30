@@ -292,6 +292,10 @@
                                         <span class="text-left">Total Amount</span>
                                         <span class="text-right">₹{{ $total_amount }}</span>
                                     </div>
+                                    <div class="ec-checkout-summary-total">
+                                        <span class="text-left">Frenchies Refferal Code</span>
+                                        <span class="text-right"><input type="text" class="form-control" id="frenchies_reffreal_code"> </input></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -366,6 +370,7 @@
     {
         $('.ajax-loader').css("visibility", "visible");
         var shipping_address_id = $('input[name="address_select"]:checked').val();
+        var frenchies_referral_code = $('#frenchies_reffreal_code').val();
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -377,6 +382,7 @@
             data:{
                 shipping_address_id:shipping_address_id,
                 payment_type:type,
+                frenchies_referral_code:frenchies_referral_code,
             },
             success: function(data){
                if(data=='no'){

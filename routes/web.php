@@ -114,6 +114,11 @@ if(featureActivation('mlm') == '1'){
     Route::view('user-register-mlm', 'frontend.auth.register_mlm')->name('user.register.mlm');
     Route::post('customer-register-mlm', [FrontController::class, 'attemptRegisterMlm'])->name('customer.register_mlm');
 }
+
+Route::view('frenchiese-register', 'frontend.auth.frenchiese_register')->name('user.register.frenchiese');
+Route::post('frenchiese-register-mlm', [FrontController::class, 'attemptRegisterFrenchiese'])->name('customer.frenchiese_register');
+
+
 Route::get('send-otp/{phone}', [FrontController::class, 'sendOtp'])->name('send.otp');
 Route::get('verify-otp/{phone}/{otp}', [FrontController::class, 'verifyOtp'])->name('verify.otp');
 

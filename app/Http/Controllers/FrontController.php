@@ -116,6 +116,31 @@ class FrontController extends Controller
             return redirect()->route('index')->with('success', 'You Have Successfully Register!');
         }
     }
+
+    public function attemptRegisterFrenchiese(Request $request)
+    {
+
+        $this->validate($request, [
+            'first_name' => 'required|min:3|max:50',
+            'last_name' => 'required|min:3|max:50',
+            'phone' => 'required|min:10|max:10|unique:customers,phone',
+            'password' => 'min:6|required_with:confirm_password|same:confirm_password',
+            'confirm_password' => 'min:6',
+            'referral_code'=>'required',
+        ]);
+
+        Customer::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'phone' => $request->phone,
+            'type' => 'frenchies',
+            'password' => Hash::make($request->password),
+            'referral_code' =>'MF' . rand(1111, 9999),
+            'refered_by' => $request->referral_code
+        ]);
+            return back()->with('success', 'You Have Successfully Register!');
+    }
+
     public function businessPersonRequestSave(Request $request)
     {
         $this->validate($request, [
