@@ -44,10 +44,10 @@
                     <div class="col-md-2 col-xs-4">
                         <div class="ec_cat_inner">
                             <div class="ec-cat-image">
-                                <a href="{{ route('search',$sub->slug) }}?type=subcategory&brand={{request()->brand}}"> <img src="{{asset('public/'.api_asset($sub->image))}}" alt="" /></a>
+                                <a href="{{ route('product-search') }}?subcategory_filler={{$sub->id}}"> <img src="{{asset('public/'.api_asset($sub->image))}}" alt="" /></a>
                             </div>
                             <div class="ec-cat-descs">
-                                <a href="{{ route('search',$sub->slug) }}?type=subcategory&brand={{request()->brand}}" class="text-center">{{$sub->name}}</a>
+                                <a href="{{ route('product-search') }}?subcategory_filler={{$sub->id}}" class="text-center">{{$sub->name}}</a>
                             </div>
                         </div>
                     </div>

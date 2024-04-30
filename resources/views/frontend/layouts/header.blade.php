@@ -211,11 +211,11 @@
                                                 @foreach (App\Models\Admin\SubCategory::where('is_active', 1)->whereJsonContains('category_id', '' . $header_category->id)->get() as $header_subcategory)
                                                     <ul class="d-block">
                                                         <li class="menu_title"><a
-                                                                href="{{ route('search', $header_subcategory->slug) }}?type=subcategory">{{ $header_subcategory->name }}</a>
+                                                                href="{{ route('product-search') }}?subcategory_filler={{$header_subcategory->id}}">{{ $header_subcategory->name }}</a>
                                                         </li>
                                                         @foreach (App\Models\Admin\SubSubCategory::where('is_active', 1)->whereJsonContains('subcategory_id', '' . $header_subcategory->id)->get() as $header_subsubcategory)
                                                             <li><a
-                                                                    href="{{ route('search', $header_subsubcategory->slug) }}?type=subsubcategory">{{ $header_subsubcategory->name }}</a>
+                                                                    href="{{ route('product-search') }}?subsubcategory_filler={{$header_subsubcategory->id}}">{{ $header_subsubcategory->name }}</a>
                                                             </li>
                                                         @endforeach
                                                     </ul>
