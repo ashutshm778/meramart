@@ -116,6 +116,8 @@ Route::prefix("admin")->group(function(){
             Route::get('customers-delete/{id}',[CustomerController::class,'destroy'])->name('customers.destroy');
 
         }
+        Route::get('frenchies_customers-index',[CustomerController::class,'frenchies_customers'])->name('frenchies_customers.index');
+
         Route::post('customers-verification', [CustomerController::class,'updateVerificationStatus'])->name('customers.updateVerificationStatus');
 
         //App Setting

@@ -49,6 +49,41 @@ class CustomerController extends Controller
         return view('backend.customers.index',compact('customers','search_key','search_date_range'),['page_title'=>'Customer List']);
     }
 
+    public function frenchies_customer(Request $request){
+        $search_key = $request->search_key;
+        $search_date_range = $request->search_date_range;
+
+        $customers = Customer::where('type','frenchies');
+
+        if($search_date_range){
+            $dates=explode('-',$search_date_range);
+            $d1=strtotime($dates[0]);
+            $d2=strtotime($dates[1]);
+            $da1=date('Y-m-d',$d1);
+            $da2=date('Y-m-d',$d2);
+            $startDate = Carbon::createFromFormat('Y-m-d', $da1)->startOfDay();
+            $endDate = Carbon::createFromFormat('Y-m-d', $da2)->endOfDay();
+
+            $search_date_range=$dates[0].'-'.$dates[1];
+            $customers = $customers->whereBetween('created_at', [$startDate, $endDate]);
+        }
+        if($search_key){
+            $customers = $customers->where(function($query) use ($search_key){
+                $query->where('first_name','like','%'.$search_key.'%')
+                ->orWhere('phone',$search_key)
+                ->orWhere('email','like','%'.$search_key.'%');
+            });
+        }
+
+        $customers = $customers->orderBy('created_at','desc')->paginate(10);
+
+        if($request->ajax()){
+            return view('backend.frenchies_customers.table',compact('customers','search_key','search_date_range'));
+        }
+
+        return view('backend.frenchies_customers.index',compact('customers','search_key','search_date_range'),['page_title'=>'Customer List']);
+    }
+
     public function updateVerificationStatus(Request $request)
     {
         $customer = Customer::findOrFail($request->id);
