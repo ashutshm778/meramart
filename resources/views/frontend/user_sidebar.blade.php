@@ -83,8 +83,9 @@
                     <ul>
                         {{-- <li><a href="{{route('user_dashboard')}}">Dashboard</a></li> --}}
                         <li><a href="{{route('user_profile')}}">User Profile</a></li>
-                        <li><a href="{{route('manage.address')}}">Manage Address</a></li>
+
                         @if(Auth::guard('customer')->user()->type!='frenchies')
+                        <li><a href="{{route('manage.address')}}">Manage Address</a></li>
                         <li><a href="{{route('user_history')}}">Order History</a></li>
                         <li><a href="{{route('wishlist')}}">Wishlist</a></li>
                         <li><a href="{{route('cart')}}">Cart</a></li>
@@ -102,6 +103,8 @@
                         <li><a href="{{route('user_ten_direct_commission')}}">Bonanza Income</a></li>
                         <li><a href="{{route('user_reward')}}">Reward Income</a></li>
                         <li><a href="{{route('user_under_forty_pv')}}">Under 40 PV</a></li>
+                        @else
+                        <li><a href="{{route('order_histroy')}}">Order History</a></li>
                         @endif
 
                         {{-- <li><a href="{{route('user_ten_direct_commission')}}">Franchise Income</a></li> --}}

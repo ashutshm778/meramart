@@ -81,6 +81,7 @@
                                     <li class="ec-footer-link"><a href="#">Refer & Earn</a></li>
                                     <li class="ec-footer-link"><a href="#">Delivery Location</a></li>
                                     <li class="ec-footer-link"><a href="#">Sitemap</a></li>
+                                    <li class="ec-footer-link"><a href="{{route('user.register.frenchiese')}}">Register as Frenchies</a></li>
                                 </ul>
                             </div>
                         </div>
