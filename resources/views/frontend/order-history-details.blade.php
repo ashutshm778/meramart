@@ -30,6 +30,26 @@
 
                         </div>
                         <div class="ec-vendor-card-body">
+                            <div class="col-sm-3 m-auto">
+                                <form method="post" action="{{route('frenchies.order.payment.status')}}">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{$order->id}}" />
+                                    <div class="col-md-12 mb-3">
+                                        <b class="mb-2">Payment Status:</b>
+                                        <select id="payment_status" name="payment_status" class="form-control mt-2" @if($order->payment_status == 'success') {{'disabled'}} @endif>
+                                            <option >Select Status</option>
+                                            <option value="success" @if($order->payment_status == 'success') selected @endif>Paid</option>
+                                            <option value="pending" @if($order->payment_status == 'pending') selected @endif>Unpaid</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <textarea name="remark" class="form-control">{{$order->remark}}</textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button class="btn btn-outline-primary btn-sm mr-1 mb-1" @if($order->payment_status == 'success') {{'disabled'}} @endif > Submit</button>
+                                    </div>
+                                    </form>
+                            </div>
                             <div class="row">
                                 <div class="col-12">
                                     <div class="card card-outline card-info">

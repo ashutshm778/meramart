@@ -56,6 +56,7 @@ Route::group(['middleware' => 'auth:customer'], function () {
 
     Route::view('order-histroy', 'frontend.order_histroy')->name('order_histroy');
     Route::get('order-history-details/{id}', [FrontController::class, 'order_history_detail'])->name('order_history_details');
+    Route::post('frenchies-payment-status',[FrontController::class,'frenchiespaymentStatus'])->name('frenchies.order.payment.status');
 
     Route::view('user-wallet', 'frontend.user-wallet')->name('user_wallet');
     Route::view('user-commission', 'frontend.user-comission')->name('user_commission');

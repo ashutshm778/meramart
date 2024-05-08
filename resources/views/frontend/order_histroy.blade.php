@@ -31,6 +31,7 @@
 
                             </div>
                         </div>
+
                         <div class="ec-vendor-card-body">
                             <div class="ec-vendor-card-table">
                                 <table class="table ec-table">
