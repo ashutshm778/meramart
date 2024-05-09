@@ -12,9 +12,15 @@ class PayoutController extends Controller
 {
 
     public function index(){
-        $customers = Customer::where('balance','!=',0)->paginate(10);
+        $customers = Customer::where('type','retailer')->where('balance','!=',0)->paginate(10);
 
         return view('backend.payout.index',compact('customers'),['page_title'=>'Payout List']);
+    }
+
+    public function frenchies_index(){
+        $customers = Customer::where('type','frenchies')->where('balance','!=',0)->paginate(10);
+
+        return view('backend.payout.frenchies_index',compact('customers'),['page_title'=>'Payout List']);
     }
 
     public function store(Request $request){

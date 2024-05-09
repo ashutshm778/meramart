@@ -223,6 +223,7 @@ Route::prefix("admin")->group(function(){
 
         //Payout
         Route::get('payout-index',[PayoutController::class,'index'])->name('payout.index');
+        Route::get('frenchies_payout-index',[PayoutController::class,'frenchies_index'])->name('payout.frenchies_index');
         Route::post('payout-store',[PayoutController::class,'store'])->name('payout.store');
 
         //Setup & Configuration
