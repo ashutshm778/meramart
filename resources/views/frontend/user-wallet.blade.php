@@ -45,7 +45,7 @@
                                     </thead>
                                     <tbody>
                                         @php
-                                            $transaction_histories = App\Models\CustomerWallet::where('user_id',Auth::guard('customer')->user()->id)->orderby('id','desc')->get();
+                                            $transaction_histories = App\Models\CustomerWallet::where('user_id',Auth::guard('customer')->user()->id)->orderby('id','asc')->get();
                                         @endphp
                                         @foreach ($transaction_histories as $transaction_history)
                                             <tr>

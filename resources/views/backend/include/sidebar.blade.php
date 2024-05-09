@@ -225,6 +225,13 @@
                 @endif
 
                 <li class="nav-item">
+                    <a href="{{route('admin.frenchies_customers.index')}}" class="nav-link @if(Route::currentRouteName() == 'admin.frenchies_customers.index') active @endif">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>Frenchies Customers</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a href="{{route('admin.payout.index')}}" class="nav-link @if(Route::currentRouteName() == 'admin.payout.index') active @endif">
                         <i class="nav-icon fas fa-money-bill"></i>
                         <p>Payout</p>

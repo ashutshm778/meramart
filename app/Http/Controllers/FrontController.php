@@ -490,8 +490,12 @@ class FrontController extends Controller
 
     public function frenchiespaymentStatus(Request $request)
     {
+        $frenchies_customer=Customer::find(Auth::guard('customer')->user()->id);
 
         $order = Order::find($request->id);
+
+        if($frenchies_customer->balance >=  $order->grand_total){
+
         $order->payment_status = $request->payment_status;
         $order->remark = $request->remark;
         $order->save();
@@ -771,7 +775,13 @@ class FrontController extends Controller
         }
 
 
+
+
+
         return redirect()->back();
+     }else{
+        return redirect()->back()->with('error', 'Please Recharge Wallet!');
+     }
     }
 
 }

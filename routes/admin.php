@@ -117,6 +117,7 @@ Route::prefix("admin")->group(function(){
 
         }
         Route::get('frenchies_customers-index',[CustomerController::class,'frenchies_customers'])->name('frenchies_customers.index');
+        Route::post('frenchies_customers-add_money_to_wallet',[CustomerController::class,'add_money_to_wallet'])->name('frenchies_customers.add_money_to_wallet');
 
         Route::post('customers-verification', [CustomerController::class,'updateVerificationStatus'])->name('customers.updateVerificationStatus');
 

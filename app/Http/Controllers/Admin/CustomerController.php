@@ -8,6 +8,7 @@ use App\Models\Commission;
 use App\Models\Admin\Payout;
 use App\Models\Admin\Reward;
 use Illuminate\Http\Request;
+use App\Models\CustomerWallet;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,7 +50,7 @@ class CustomerController extends Controller
         return view('backend.customers.index',compact('customers','search_key','search_date_range'),['page_title'=>'Customer List']);
     }
 
-    public function frenchies_customer(Request $request){
+    public function frenchies_customers(Request $request){
         $search_key = $request->search_key;
         $search_date_range = $request->search_date_range;
 
@@ -82,6 +83,28 @@ class CustomerController extends Controller
         }
 
         return view('backend.frenchies_customers.index',compact('customers','search_key','search_date_range'),['page_title'=>'Customer List']);
+    }
+
+    public function add_money_to_wallet(Request $request){
+
+        $customer = Customer::where('id', $request->customer_id)->first();
+        $customer->balance = $customer->balance + $request->amount;
+        $customer->save();
+
+        $customer_wallet = new CustomerWallet;
+        $customer_wallet->user_id = $request->customer_id;
+        $customer_wallet->amount = $request->amount;
+        $customer_wallet->transaction_type = 'credited';
+        $customer_wallet->transaction_detail = 'Add Balance To Wallet';
+        $customer_wallet->payment_details = '';
+        $customer_wallet->balance = $customer->balance;
+        $customer_wallet->approval = 0;
+        $customer_wallet->save();
+
+
+
+        return back()->with('success', 'You Have Successfully Added Money !');
+
     }
 
     public function updateVerificationStatus(Request $request)

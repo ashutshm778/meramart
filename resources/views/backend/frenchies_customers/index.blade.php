@@ -52,13 +52,39 @@
                                 </form>
                             </div>
                             <div class="card-body table-responsive p-2" id="table">
-                                @include('backend.customers.table')
+                                @include('backend.frenchies_customers.table')
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <div class="modal" tabindex="-1" role="dialog" id="payout">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Frenchies Add Money To Wallet</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="{{route('admin.frenchies_customers.add_money_to_wallet')}}" method="POST">
+                        <div class="modal-body">
+                            @csrf
+                            <input type="hidden" name="customer_id" id="customer_id">
+                            <label for="amount" class="mt-2">Amount</label>
+                            <input type="number" name="amount" id="amount" class="form-control">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Add</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script>
@@ -91,6 +117,12 @@
                 }
             });
         }
+
+        function payout(customer_id){
+            $('#payout').modal('show')
+            $('#customer_id').val(customer_id)
+        }
+
     </script>
 
 @endsection
