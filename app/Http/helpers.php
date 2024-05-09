@@ -690,4 +690,15 @@ if (!function_exists('calculateTotalTeamPvCount')) {
     }
 }
 
+if (! function_exists('frenchies_commissions')) {
+    function frenchies_commissions()
+    {
+        return [
+          5,3,2,1
+        ];
+    }
+}
+
+
+
 ?>
